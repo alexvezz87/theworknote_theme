@@ -7,7 +7,6 @@ Description: Tema personalizzato per l'attività The Work Note
 Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Template: bp-default
 Tags: buddypress, two-column, light
 Text Domain: The Work Note
 
@@ -27,6 +26,11 @@ Use it to make something cool, have fun, and share what you've learned with othe
 
 body {
     background:#30ad63;
+}
+
+.container-1024 {
+    max-width: 1024px;
+    margin:auto;
 }
 
 header {
@@ -54,8 +58,260 @@ header .logo-txt {
     margin-top:10px
 }
 
-header .menu .avatar-50 {
+.avatar-50 {
     border-radius: 50%;
+}
+
+
+.hambuger-menu{
+    display:block;
+    width:50px;
+    height: 50px;
+    background: url('images/mobile/hamburger-menu.png') center center no-repeat;
+    background-size:contain;
+    float:right;
+    cursor:pointer;
+    
+}
+
+.menu {
+    font-family: 'Oswald'; 
+    height: 60px;
+    padding:5px 0;    
+}
+
+.menu > * {
+    float:left;
+}
+
+.menu .user-name {
+    font-size:17px;
+    font-weight: bold;
+    color:#0b3a08;
+    text-transform: uppercase;
+    line-height: 53px;
+    margin-left: 8px;
+    margin-right: 39px;
+}
+
+.menu .icona{   
+    height: 30px;
+    width:34px;
+    margin-top:13px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.menu .posta{     
+    background:url('images/icona-posta.png') center center no-repeat;
+}
+.menu .notifiche{     
+    background:url('images/icona-notifiche.png') center center no-repeat;
+}
+.menu .collaborazioni{     
+    background:url('images/icona-collaborazioni.png') center center no-repeat;
+}
+.menu .cv{     
+    background:url('images/icona-curriculum.png') center center no-repeat;
+}
+.menu .impostazioni{     
+    background:url('images/icona-impostazioni.png') center center no-repeat;
+    margin-right:0px;
+}
+
+.notifica {
+    width:16px;
+    height: 16px;   
+    border-radius: 50%; 
+    text-align: center; 
+    line-height: 15px;    
+}
+
+.menu .icona .notifica {   
+    float:right;    
+    background:#067a36;
+    margin-right: -3px;
+    margin-top: -3px;   
+    font-size: 10px;    
+    color: #fff;
+}
+
+.submenus .sub-menu .notifica, .mobile-menu .icona .notifica, .mobile-menu .sotto-menu .notifica {
+    background:#fff;
+    color:#067a36;
+    font-size:13px;
+    display:inline-block;
+    margin-left:5px;
+}
+
+.mobile-menu .icona .notifica {
+    float: right;
+    margin-top: -5px;
+    margin-right: -5px;
+}
+
+.mobile-menu .sotto-menu .notifica {
+    font-size: 14px;
+    width: 17px;
+    height: 17px;
+    line-height: 17px;
+}
+
+.submenus{
+    clear:both;
+    float:right;
+    padding:0;
+    display:none;    
+    z-index:9999999;
+}
+
+.submenus .sub-menu{   
+    background:#067a36;    
+    border-radius: 5px;
+    padding:15px;
+    display: none;
+}
+
+.submenus .sub-menu a {
+    display: block;
+    font-size:14px;
+    color:#fff;
+    text-transform: uppercase;
+    margin-bottom:5px;
+}
+
+div.triangolo {
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border-bottom: 15px solid #067a36;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    margin-top: 33px;
+    margin-left: 3px;
+    display: none;
+}
+
+.selected {
+    display:block;
+}
+
+
+/** Menu mobile **/
+.mobile-menu{    
+    height: 100vh;
+    background: #067a36;
+    position: absolute; 
+    top:0;
+    z-index:999999;
+    display:none;
+    right:0;
+    padding:0;
+    overflow-y: scroll;
+}
+
+.mobile-menu .chiudi {
+    display:block;
+    float:right;
+    width:50px;
+    height:50px;
+    background: url('images/mobile/chiudi-menu.png') center center no-repeat;
+    background-size: contain;
+    margin-top:10px;
+    cursor: pointer;    
+}
+
+.mobile-menu .riga {
+    clear:both;
+}
+
+.mobile-menu .riga {
+    font-size:17px;
+    text-transform: uppercase;
+    color:#fff;
+    padding-top:25px;
+}
+
+.mobile-menu .riga .title {
+    float:left;
+    margin-left:10px;
+    height: 38px;
+    line-height: 38px;
+    cursor: pointer;
+}
+
+.mobile-menu .riga .title a {
+    color:#fff;
+}
+
+.mobile-menu .avatar-50 {
+    float:left;
+}
+
+.mobile-menu .utente .title {
+    font-size: 17px;
+    line-height: 50px;
+}
+
+.mobile-menu .riga .icona {
+    float:left;
+    cursor: pointer;
+    display: block;
+    width:51px;
+}
+
+.mobile-menu .posta .icona { 
+    height:38px;
+    background:url('images/mobile/icona-posta-white.png') center center no-repeat;    
+}
+
+.mobile-menu .notifiche .icona {
+    height:46px;
+    background:url('images/mobile/icona-notifiche-white.png') center center no-repeat;    
+}
+
+.mobile-menu .collaborazioni .icona {
+    height:41px;
+    background:url('images/mobile/icona-collaborazioni-white.png') center center no-repeat;    
+}
+
+.mobile-menu .cv .icona {
+    height:41px;
+    background:url('images/mobile/icona-curriculum-white.png') center center no-repeat;    
+}
+
+.mobile-menu .impostazioni .icona {
+    height:38px;
+    background:url('images/mobile/icona-impostazioni-white.png') center center no-repeat;    
+}
+
+.mobile-menu .collaborazioni .sotto-menu .notifica{
+    margin-left: 0px;
+}
+
+.mobile-menu .notifiche .notifica{
+    margin:0;
+}
+
+
+.mobile-menu .sotto-menu {
+    clear:both;
+    padding-top:10px;
+    display: none;
+}
+
+.mobile-menu .sotto-menu a {
+    display:block;
+    color:#fff;
+    line-height: 25px;
+}
+
+/** ACCROCCHIO **/
+@media (max-width:869px){
+    .menu .user-name {
+        margin-right: 5px;
+        font-size: 15px;
+    }
 }
 
 
@@ -70,5 +326,62 @@ header .menu .avatar-50 {
         font-size:13px;
         margin-top:25px;
         text-align:right;            
+    }
+    
+    .mobile-menu {
+        display:none !important;
+    }
+}
+
+
+/** DEKSTOP **/
+@media (min-width: 992px) {
+    .menu .icona{   
+        margin-right: 15px;
+    }
+}
+
+/** RETINA  **/
+@media  (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) { 
+    /* Retina-specific stuff here */
+    
+    header .logo-img div {   
+        background:url('images/mobile/retina-twn-logo.png') no-repeat;
+        background-size: contain;
+    }
+    
+    .hambuger-menu{        
+        background: url('images/mobile/retina-hamburger-menu.png') center center no-repeat;
+        background-size:contain;
+    }
+    
+    .mobile-menu .chiudi {       
+        background: url('images/mobile/retina-chiudi-menu.png') center center no-repeat;
+        background-size: contain;
+    }
+    
+    .mobile-menu .posta .icona {        
+        background:url('images/mobile/retina-icona-posta-white.png') center center no-repeat;
+        background-size: contain;
+    }
+    
+    .mobile-menu .notifiche .icona {
+        background:url('images/mobile/retina-icona-notifiche-white.png') center center no-repeat;    
+        background-size: contain;
+    }
+    
+    .mobile-menu .collaborazioni .icona {    
+        background:url('images/mobile/retina-icona-collaborazioni-white.png') center center no-repeat;    
+        background-size: contain;
+    }
+    
+    .mobile-menu .cv .icona {        
+        background:url('images/mobile/retina-icona-curriculum-white.png') center center no-repeat;    
+        background-size: contain;
+    }
+    
+    .mobile-menu .impostazioni .icona {        
+        background:url('images/mobile/retina-icona-impostazioni-white.png') center center no-repeat;    
+        background-size: contain;
     }
 }

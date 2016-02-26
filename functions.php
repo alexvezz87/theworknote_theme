@@ -26,6 +26,8 @@
  * @since The Work Note 1.0
  */
 
+require_once 'myWidget.php';
+
 /**
  * The Work Note only works in WordPress 4.1 or later.
  */
@@ -119,6 +121,36 @@ add_action( 'after_setup_theme', 'twn_setup' );
 
 add_theme_support( 'buddypress' );
 
-require_once(plugins_url().'/buddypress/bp-templates/bp-legacy/buddypress-functions.php');
+
+//ADD WIDGET
+function myplugin_register_widgets() {
+	register_widget( 'MyWidget' );
+}
+
+add_action( 'widgets_init', 'myplugin_register_widgets' );
+
+//ADD SIDEBAR
+function add_personal_sidebar() {
+    register_sidebar( array(
+        'name' => __( 'MySidebar', 'make-child' ),
+        'id' => 'personal_sidebar_1',
+        'description' => __( 'Questa sidebar è personalizzata per me.', 'DailyNews' ),
+        'before_title' => '<h1>',
+        'after_title' => '</h1>',
+    ) );
+}
+add_action( 'widgets_init', 'add_personal_sidebar' );
+
+//ADD SIDEBAR
+function add_header_bar() {
+    register_sidebar( array(
+        'name' => __( 'HeaderBar', 'make-child' ),
+        'id' => 'header_bar_1',
+        'description' => __( 'SideBar che compare nell\'header', 'make-child' ),
+        'before_title' => '<h1>',
+        'after_title' => '</h1>',
+    ) );
+}
+add_action( 'widgets_init', 'add_header_bar' );
 
 ?>
