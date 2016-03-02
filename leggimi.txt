@@ -1,0 +1,15 @@
+ULTERIORI PASSI PER IL CORRETTO FUNZIONAMENTO DEL TEMA
+
+- Aggiornare il plugin bp-profile-search
+    Aggiunto il template bps-form-twn.php a templates/members
+    Aggiornato il file bps-main.php con la riga:
+        $templates = array ('members/bps-form-legacy', 'members/bps-form-sample-1', 'members/bps-form-sample-2', 'members/bps-form-twn');
+        all'incirca alla riga 37, nella funzione bps_templates()
+
+- Aggiungere il campo Provincia, lato amministrativo Utenti -> Profile Search
+- Cambiare i campi nella sidebar all'occorrenza del nuovo template 
+- Inserire il widget profile search nell'header bar
+
+- Nella pagina non registrato, eliminare la formattazione di visual composer e scrivere il testo nella casella di testo e stop.
+
+- Modificato il core di buddypress in bp-core-widgets.php per personalizzare gli input del login form

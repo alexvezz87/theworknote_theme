@@ -132,7 +132,7 @@ add_action( 'widgets_init', 'myplugin_register_widgets' );
 //ADD SIDEBAR
 function add_personal_sidebar() {
     register_sidebar( array(
-        'name' => __( 'MySidebar', 'make-child' ),
+        'name' => __( 'MySidebar', 'theworknote_theme' ),
         'id' => 'personal_sidebar_1',
         'description' => __( 'Questa sidebar è personalizzata per me.', 'DailyNews' ),
         'before_title' => '<h1>',
@@ -144,7 +144,7 @@ add_action( 'widgets_init', 'add_personal_sidebar' );
 //ADD SIDEBAR
 function add_header_bar() {
     register_sidebar( array(
-        'name' => __( 'HeaderBar', 'make-child' ),
+        'name' => __( 'HeaderBar', 'theworknote_theme' ),
         'id' => 'header_bar_1',
         'description' => __( 'SideBar che compare nell\'header', 'make-child' ),
         'before_title' => '<h1>',
@@ -152,5 +152,68 @@ function add_header_bar() {
     ) );
 }
 add_action( 'widgets_init', 'add_header_bar' );
+
+//ADD SIDEBAR
+function add_right_bar() {
+    register_sidebar( array(
+        'name' => __( 'Right sidebar', 'theworknote_theme' ),
+        'id' => 'right_bar_1',
+        'description' => __( 'SideBar che a destra', 'theworknote_theme' ),
+        'before_title' => '<h1>',
+        'after_title' => '</h1>',
+    ) );
+}
+add_action( 'widgets_init', 'add_right_bar' );
+
+
+/**
+ * Aggiunge il menu personalizzato 
+ * @param type $current_user
+ */
+function add_menu_personalizzato($current_user){
+    
+    $img = "";
+    $n_posta = 0;
+    $n_notifiche = 0;
+    $n_collab = 0;
+
+    //se esiste il current user
+    if($current_user->ID > 0){
+        //url dell'immagine dell'avatar
+        $img = bp_core_fetch_avatar(  array( 'item_id' => $current_user->ID, 'html' => false ) );
+        //numero di messaggi non letti
+        $n_posta = messages_get_unread_count( $current_user->ID );
+        //numero di notifiche non lette
+        $n_notifiche = bp_notifications_get_unread_notification_count( $current_user->ID );
+        //numero di richieste di collaborazione
+        $n_collab = bp_friend_get_total_requests_count($current_user->ID);            
+    }
+
+
+
+    //impostazione lunghezza nome utente
+    $max_lenght_nome = 15;
+    
+    include 'menu.php';
+}
+
+
+/**
+ * Aggiunge il motore di ricerca alla pagina che invoca la funzione
+ */
+function add_motore_ricerca(){
+    include 'motore-ricerca.php';
+}
+
+add_action('wp_logout','go_home');
+add_action('wp_login','go_home');
+function go_home(){
+  wp_redirect( home_url() );
+  exit();
+}
+
+
+
+
 
 ?>
