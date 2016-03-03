@@ -83,7 +83,7 @@ $current_user = wp_get_current_user();
         <header class="container-1024">
 
             <div class="col-xs-10 col-sm-6 logo-img">
-                <div></div>            
+                <a href="<?php echo home_url() ?>"></a>            
             </div> 
 
             <?php if(!is_user_logged_in()){ //Utente non loggato ?>

@@ -55,14 +55,14 @@ header {
     background:#30ad63;
 }
 
-header .logo-img div {   
+header .logo-img a {   
     width:100%;
     height: 100%;
     max-width:311px;
     background:url('images/twn-logo.png') no-repeat;
     background-size:100% auto;
     min-height: 60px;
-    
+    display:block;    
 }
 
 header .logo-txt {
@@ -171,12 +171,20 @@ header .logo-txt {
     line-height: 17px;
 }
 
-.submenus{
-    clear:both;
-    float:right;
+.submenus{ 
     padding:0;
     display:none;    
     z-index:9999999;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 70px;
+    margin-left: 56%;
+    max-width: 500px;
+}
+
+.admin .submenus{
+    margin-top: 102px;
 }
 
 .submenus .sub-menu{   
@@ -377,6 +385,7 @@ div.triangolo {
     background-size: 25px 30px;
     padding: 2px;
     padding-right: 25px;
+    border:none;
 }
 
 #motore-ricerca .standard-form-twn .submit{
@@ -430,7 +439,7 @@ div.triangolo {
     display: block;
     width:210px;
     height: 55px;
-    line-height: 55px;
+    line-height: 51px;
     border:3px solid #7CD7A1;
     border-radius: 30px;
     margin:auto;
@@ -461,6 +470,7 @@ div.triangolo {
 .box-login #bp-login-widget-submit{
     width:30%;
     margin-left:5%;
+    margin-right:0px !important;
     height: 62px;
     background: #067a36;
     color:#fff;
@@ -473,7 +483,7 @@ div.triangolo {
 
 .box-login .standard-form label{
     margin:0;
-    margin-top:10px;
+    margin-top:10px !important;
     float:left;
     width:100px;
     font-family: 'Oswald';
@@ -495,6 +505,25 @@ div.triangolo {
 }
 
 /** Fine non registrato **/
+
+
+/** Invia CV **/
+.invia-cv .first-main-container{
+    background:#067a36;
+    color:#fff;
+}
+
+.invia-cv .first-main-container h1{
+    padding-top:20px;
+    padding-bottom:20px;
+    margin:0;
+    text-transform: uppercase;    
+    font-size: 20px;
+    line-height: 25px;
+    font-family: 'Oswald';
+}
+
+/** fine Invia CV **/
 
 
 /** ACCROCCHI **/
@@ -611,6 +640,7 @@ div.triangolo {
         width:13%;
         height: 32px;
         margin-left: 2%;
+        margin-right:0px !important;
         margin-top:-3px;
         background:#7bd6a0;
         color:#080e0b;
@@ -636,13 +666,34 @@ div.triangolo {
     }
     
     .box-login .standard-form label, .box-login .bp-login-widget-register-link a{
-        margin-top:0px;
+        margin:0px !important;
         font-size:12px;
     }
     
     .container-contenuto p {
         margin-bottom:5px;
     }
+    
+    
+    /** Invia CV **/
+    .invia-cv .first-main-container{       
+        width:100%;
+        padding-top:80px;
+        padding-bottom: 80px;
+        background:url('images/desktop/sfondo-invia-cv.jpg') center center;
+        background-size:cover;
+    }
+    
+    .invia-cv .first-main-container h1{
+        font-size:40px;
+        font-weight: bold;
+        line-height: 50px;
+        padding-top:0px;
+        padding-bottom:0px;
+        text-shadow: 2px 2px #067a36;
+    }
+    
+    /** fine Invia CV **/
     
 }
 

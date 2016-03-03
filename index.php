@@ -21,28 +21,18 @@
 
 get_header();
 
+
 ?>
 
-<?php if ( have_posts() ) : ?>            
+<div class="main-container">
+    
+    <?php if ( have_posts() ) : ?>
+        <?php while ( have_posts() ) : the_post(); ?>		
+            <?php the_content(); ?>  
+        <?php endwhile; ?>
 
-                            <?php
-                            // Start the loop.
-                            while ( have_posts() ) : the_post();
-                                 the_content();
-
-
-                            // End the loop.
-                            endwhile;
-
-
-
-                    // If no content, include the "No posts found" template.
-                    else :
-                            get_template_part( 'content', 'none' );
-
-                    endif;
-                    ?>
-
+    <?php endif; ?>
+</div>
 
 <?php
 get_footer();

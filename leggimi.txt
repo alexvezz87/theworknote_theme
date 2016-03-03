@@ -13,3 +13,10 @@ ULTERIORI PASSI PER IL CORRETTO FUNZIONAMENTO DEL TEMA
 - Nella pagina non registrato, eliminare la formattazione di visual composer e scrivere il testo nella casella di testo e stop.
 
 - Modificato il core di buddypress in bp-core-widgets.php per personalizzare gli input del login form
+
+- Modificato il plugin buddypress per cofigurarlo con il tema nuovo
+    le modifiche effettuate riguardano principalmente la visione del loop delle attività
+
+- Modifica pagina invia-cv
+    Aggiornamento nel plugin gestione cv per renderlo bootstrp friendly
+    Nella gestione delle pagine, cambio template pagina a Invia CV

@@ -12,7 +12,7 @@ get_header();
 
 ?>
 
-<div class="main-container">
+<div class="main-container non-registrato">
     <div class="first-main-container">
         <div class="container-1024">
         
