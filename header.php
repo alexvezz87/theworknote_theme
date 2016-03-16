@@ -28,7 +28,17 @@ $menu = wp_get_nav_menu_items( 'primary');
 //current user
 $current_user = wp_get_current_user();
 
+$pagename = get_query_var('pagename');  
+if ( !$pagename && $id > 0 ) {  
+    // If a static page is set as the front page, $pagename will not be set. Retrieve it from the queried object  
+    $post = $wp_query->get_queried_object();  
+    $pagename = $post->post_name;  
+}
 
+//redirect all'home page dell'attività se utente è loggato
+if($pagename == 'non-registrato' && is_user_logged_in()){
+    header("location: ".  home_url());
+}
 
 
 ?>
@@ -37,11 +47,13 @@ $current_user = wp_get_current_user();
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width">
-        <title>The Work Note - <?php echo get_the_title(get_the_ID()); ?></title>
+        
 	
 	<!--[if lt IE 9]>
 	<script src="<?php echo $path_js ?>html5.js"></script>
 	<![endif]-->
+        
+        
         
        <script src="<?php echo $path_js ?>jquery-2.1.4.min.js"></script>
         <!-- swiper -->
@@ -57,12 +69,15 @@ $current_user = wp_get_current_user();
        
         
         <link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/css/bootstrap.min.css" type="text/css" >
-        <link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/style.css" type="text/css" >
+        
         
         
         <link rel="icon" href="<?php echo $path_img ?>favicon.png" type="image/png" />
         
-	<?php wp_head(); ?>
+        <?php wp_head(); ?>
+        
+        <link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/style.css" type="text/css" >
+	
 </head>
 <body 
     <?php

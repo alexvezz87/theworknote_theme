@@ -79,8 +79,80 @@ $( document ).ready(function() {
         }
     });
     
+    /** PAGINA REGISTRAZIONE **/
+    if($('.registrazione').size()>0){
+        //eseguo qualche accrocchio, tra i quali spostare alcuni field in fondo alla pagina
+        $('.field_immagine-aziendale, .field_privacy').appendTo('#last-options');
+                
+        
+        $('.field_tipo-societa select option[value=""]').html('Tipo Società');
+        $('.field_categoria-commerciale select option[value=""]').html('Categoria commerciale');
+        
+        //sposto l'indirizzo sotto al numero di telefono
+        $('.field_indirizzo, .field_n-civico, .field_cap, .field_citta, .field_provincia').insertAfter('.field_contatto-telefonico');
+        
+        
+    }
+    
+        
+    //listner sul SUBMIT della ricerca in sidebar
+    $('.sidebar #motore-ricerca input[type=submit]').click(function(){
+        //devo controllare che almeno un campo sia stato compilato
+        //non è permessa la ricerca senza almeno un campo compilato
+        
+        var compilato = 0;
+        $('.sidebar #motore-ricerca input[type=text]').each(function(){
+            if($.trim($(this).val()) !== ''){
+                compilato++;
+            }
+        });
+        if($('.sidebar #motore-ricerca select').val() !== ''){
+            compilato++;
+        }      
+        
+        if(compilato === 0){
+            alert('Per effettuare una ricerca bisogna almeno inserire un campo');
+            return false;       
+        }
+    });
+    //listner sul SUBMIT della ricerca in mobile
+    $('.ricerca-mobile #motore-ricerca input[type=submit]').click(function(){
+        //devo controllare che almeno un campo sia stato compilato
+        //non è permessa la ricerca senza almeno un campo compilato
+        
+        var compilatoM = 0;
+        $('.ricerca-mobile #motore-ricerca input[type=text]').each(function(){
+            if($.trim($(this).val()) !== ''){
+                compilatoM++;
+            }
+        });
+        if($('.ricerca-mobile #motore-ricerca select').val() !== ''){
+            compilatoM++;
+        }      
+        
+        if(compilatoM === 0){
+            alert('Per effettuare una ricerca bisogna almeno inserire un campo');
+            return false;       
+        }
+    });
+    
+   
+    //elimino gli 0 dai like-numbers
+    $('.likes-number, .comment-number, .rs-count').each(function(){
+        if($.trim($(this).text()) === '0'){
+            $(this).text('');
+        }
+        if($.trim($(this).text()) === ''){
+            
+        }
+    });    
     
     
+    //accrocchio sulla struttura del reshare
+    $('.reshare-button').each(function(){
+        $(this).find('.rs-count').insertBefore($(this));
+        $(this).html('');
+    });
     
     
 });

@@ -20,3 +20,21 @@ ULTERIORI PASSI PER IL CORRETTO FUNZIONAMENTO DEL TEMA
 - Modifica pagina invia-cv
     Aggiornamento nel plugin gestione cv per renderlo bootstrp friendly
     Nella gestione delle pagine, cambio template pagina a Invia CV
+
+- Modifica di register.php nel plugin di buddypress. 
+    La modifica permette di visualizzare anche i campi indirizzo nella pagina di registrazione
+
+- Aggiunti nuovi campi per la registrazione (area amministrativa --> Utenti --> Campi profilo)
+    - tipo società
+    - fatturato annuo
+    - numero dipendenti
+    - mercato
+    - privacy se non c'è già
+
+- Modifca alle classi di bx-profile per personalizzazione dei campi nella pagina di registrazione
+
+- Modifica a bp-activity-template per sistemare l'output delle attività
+
+- Ulteriori modifiche al flusso di attività nel template di buddypress per visualizzare meglio i pulsanti di share/like/comment
+
+- Inserito il box della borsa nei widget

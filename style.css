@@ -46,6 +46,11 @@ body {
     background:#30ad63;
 }
 
+.main-container {
+    width:100%;
+    background: #e2e2e2;
+}
+
 header {
     padding-top:10px;
     font-family: 'Oswald', sans-serif;
@@ -223,7 +228,7 @@ div.triangolo {
 .mobile-menu{    
     height: 100vh;
     background: #067a36;
-    position: absolute; 
+    position: fixed; 
     top:0;
     z-index:999999;
     display:none;
@@ -374,11 +379,11 @@ div.triangolo {
     text-overflow: ellipsis;
 }
 
-#motore-ricerca .standard-form-twn .editfield select::-ms-expand {
+#motore-ricerca .standard-form-twn .editfield select::-ms-expand, #buddypress.registrazione .standard-form select::-ms-expand {
     display: none;
 }
 
-#motore-ricerca .standard-form-twn .editfield select{
+#motore-ricerca .standard-form-twn .editfield select, #buddypress.registrazione .standard-form select{
     -webkit-appearance:none;
     -moz-appearance: none;
     background: #fff url('images/mobile/hamburger-menu.png') no-repeat right center;
@@ -392,14 +397,18 @@ div.triangolo {
     margin-top:20px;
 }
 
-#motore-ricerca .standard-form-twn .submit input{
+#motore-ricerca .standard-form-twn .submit input, 
+#motore-ricerca .standard-form-twn .submit input:hover,
+#motore-ricerca .standard-form-twn .submit input:active,
+#motore-ricerca .standard-form-twn .submit input:focus{
     width:102px;
     height: 124px;
     display:block;
-    border:none;
-    background:url('images/bottone-cerca.png') center center no-repeat;
-    background-size: contain;
+    border:0px !important;
+    background:url('images/bottone-cerca.png') center center no-repeat !important;
+    background-size: contain !important;
     margin:auto;
+    font-size:0px;
 }
 
 /** fine motore di ricerca **/
@@ -526,7 +535,484 @@ div.triangolo {
 /** fine Invia CV **/
 
 
+/** Registrazione **/
+
+#buddypress.registrazione {
+    max-width:800px;
+    margin:auto;
+    padding-top:20px;
+    padding-bottom: 50px;
+    font-family: 'Oswald';
+    color:#000;
+    
+}
+
+#buddypress.registrazione label, #buddypress.registrazione p.description{
+    font-weight: normal;
+    color:#000;
+    margin:0;
+    margin-top:-6px;
+    font-size:13px;
+    margin-bottom:8px;
+}
+
+#buddypress.registrazione .optional-field, 
+#buddypress.registrazione .field-visibility-settings-toggle,
+#buddypress.registrazione .field-visibility-settings-notoggle,
+#buddypress.registrazione .field_privacy label{
+    display:none;
+}
+
+#buddypress.registrazione .field_immagine-aziendale, 
+#buddypress.registrazione .field_descrizione,
+#buddypress.registrazione .field_sito-web,
+#buddypress.registrazione .field_motto{
+    display: block;
+}
+
+#buddypress .standard-form #profile-details-section {
+    float: left;
+    width:100%;
+}
+
+
+#buddypress.registrazione .standard-form #basic-details-section{
+    width:100%;
+}
+
+#buddypress.registrazione .standard-form input[type="email"],
+#buddypress.registrazione #signup_form.standard-form input[type="text"],
+#buddypress.registrazione .standard-form #basic-details-section input[type="password"],
+#buddypress.registrazione .standard-form select,
+#buddypress.registrazione #signup_form.standard-form textarea,
+#buddypress.registrazione .standard-form input[type="number"]{
+    width:100%;
+    min-height: 35px;
+    margin-bottom:8px;
+    color:#000;
+    font-size:15px;
+    border:none;
+}
+
+
+#buddypress.registrazione h4{
+    background:#067a36;
+    margin:0;
+    padding-top:20px;
+    padding-bottom:20px;
+    color:#fff;
+    text-transform: uppercase;
+    font-size:18px;
+}
+
+#buddypress.registrazione .register-section{
+    padding-top:20px;
+    padding-bottom: 20px;
+    background: #2fac62;
+}
+
+#buddypress.registrazione .field_immagine-aziendale{
+    background:url('images/ico-immagine-aziendale.png') no-repeat top center;
+    background-size:61px 61px;
+    padding-top: 70px;
+    text-align: center;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+#buddypress.registrazione .field_immagine-aziendale input{
+    width:270px;
+    margin:auto;
+}
+
+#buddypress.registrazione .field_privacy {
+    line-height: 35px;    
+    margin-top: 15px;
+    text-align: center;
+}
+
+#buddypress.registrazione .field_privacy input {
+    width: 35px;
+    height: 35px;
+    vertical-align: bottom;
+}
+
+#buddypress.registrazione #signup_form.standard-form div.submit{
+    width:100%;
+    clear:both;
+    display:block;
+    text-align: center;
+    margin:0;
+    padding-top:20px;
+    padding-bottom:30px;
+    background: #2fac62;
+}
+
+#buddypress.registrazione #signup_form.standard-form div.submit input{    
+    background: transparent;
+    font-size:18px;
+    text-transform: uppercase;
+    color:#0a3907;
+    font-family: 'Oswald';
+    border:3px solid #5fc689;
+    border-radius:30px;
+    padding:18px;
+    height: auto;
+}
+
+#buddypress.registrazione #last-desclaimer{
+    background:#2fac62;
+    padding-bottom:20px;
+}
+
+#buddypress.registrazione #last-desclaimer p{
+    background:#4fbe7b;
+    padding-top:10px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-family: 'Open Sans';
+}
+
+#buddypress.registrazione .no-show{
+    display:none;
+}
+
+/** fine Registrazione **/
+
+
+/** Home **/
+
+.home .main-content {
+   
+}
+
+.home .sidebar{   
+    background:#fff;
+}
+
+.home #buddypress form#whats-new-form p.activity-greeting{
+    font-family:'Open Sans';
+    font-size:14px;
+    color:#000;
+    font-weight: 600;
+    margin-left:0px;
+    text-align:center;
+}
+
+/*
+.home #whats-new-options {
+    display:block !important;
+    height:50px;
+    clear:both;
+}
+
+
+#aw-whats-new-submit{
+    display:block !important;
+    
+}
+
+*/
+#buddypress form#whats-new-form #whats-new-submit{
+    float:none;
+    clear:both;
+    text-align: center;
+}
+
+#buddypress input[type="submit"], #buddypress input[type="submit"]:hover,
+#buddypress input[type="button"], #buddypress input[type="button"]:hover{
+    height:35px;
+    background:#067a36;
+    color:#fff;
+    font-family:'Oswald';
+    font-size:13px;
+    border:none;    
+    text-transform: uppercase;
+    border-radius: 0px;
+    margin:auto;    
+}
+.home #whats-new-post-in-box{
+    display:none;
+}
+
+
+
+#bpfb_addLinks {    
+    background: url('images/ico-upload-url.png') center top no-repeat;
+}
+#bpfb_addVideos {
+    background: url('images/ico-upload-video.png') center top no-repeat;
+}
+
+#bpfb_addPhotos {
+    background: url('images/ico-upload-img.png') center top no-repeat;
+}
+
+.home .bpfb_actions_container.bpfb-theme-round.bpfb-alignment-right{
+    float:left;
+}
+
+.bpfb_form_container {
+    background:#e1e1e1;
+}
+
+#buddypress div#subnav.item-list-tabs {
+    border:0;
+    text-align: right;
+    padding: 15px;
+    background:#f2f2f2;
+    margin:0px;
+}
+
+#select-categoria {
+    height: 30px;
+    width: 70%;
+    max-width: 280px;
+    border: 2px solid #067a36;
+    -webkit-appearance:none;
+    -moz-appearance: none;
+   
+}
+
+#buddypress #form-categoria input {
+    float:right;
+    height: 30px;
+}
+
+#buddypress ul.item-list li {
+    background:#e1e1e1;
+    border-bottom: none;
+    margin-bottom: 10px;
+}
+
+#buddypress #activity-stream{
+    margin:0px;
+    border:0px;
+    background:#f2f2f2;
+}
+
+#buddypress .activity-list .activity-avatar {
+    padding-left:15px;
+}
+
+#buddypress .activity-list li .activity-content {
+    margin:0;
+    padding:0 15px;
+}
+
+#buddypress .activity-list .activity-content .activity-inner, 
+#buddypress .activity-list .activity-content blockquote{
+    clear:both;
+}
+
+#buddypress ul.item-list li img.avatar {
+    border: 1px solid rgb(141, 202, 166);
+    border-radius: 0px;
+    width: 40px;
+    height: 40px;
+}
+
+#buddypress .activity-list .activity-content .activity-header{
+    float:left;
+    margin:0;
+    font-family:'Open Sans';
+    font-size:16px;    
+}
+
+#buddypress .activity-list .activity-content .activity-header a {
+    color:#000;
+    text-decoration: none;
+}
+#buddypress .activity-list .activity-content .activity-header a:first-child{
+    font-weight: bold;
+}
+
+#buddypress #activity-stream p{
+    margin:0;
+}
+
+#buddypress .activity-list .activity-content .activity-inner{
+    font-family: 'Open Sans';
+    font-size: 16px;
+    color:#000;
+}
+
+div.activity-comments {
+    margin: 5px 0 0 70px;
+}
+
+.social-buttons{
+    text-align: right;
+    width: auto;
+    float: right;   
+    clear: both;
+}
+
+#buddypress .bp-social-button a.buddypress-social-button, 
+#buddypress .bp-social-button a.buddypress-social-button:hover{
+    display:block;
+    font-size:0px; 
+    float:left;
+    width:22px;
+    height: 22px;
+    background: url('images/ico-share.png') center center no-repeat;
+    border:0px;    
+    margin: 0;
+    margin-left: 15px;
+}
+
+#buddypress .activity-list .activity-content .activity-inner img {
+    max-width:100%;
+}
+
+#buddypress a.button.acomment-reply, #buddypress a.button.acomment-reply:hover{
+    display:block;
+    float:left;
+    width:22px;
+    height: 22px;
+    background: url('images/ico-commenta.png') center center no-repeat;
+    border:0px;
+    margin:0;
+}
+
+#buddypress div.activity-comments ul {
+    padding:0px;
+}
+#buddypress div.activity-comments form.root {
+    width:95%;
+}
+
+#buddypress .button.unfav.bp-secondary-action{
+    font-size:0px;
+    display:block;
+    border:0px;
+    width:22px;
+    height: 22px;
+    background: url('images/ico-good-full.png') no-repeat center center;
+    float:left;  
+    margin-top: -2px;    
+}
+
+#buddypress .button.fav.bp-secondary-action{
+    font-size:0px;
+    display:block;
+    border:0px;
+    width:22px;
+    height: 22px;
+    background: url('images/ico-good.png') no-repeat center center;
+    float:left;  
+    margin-top: -2px;    
+}
+
+#buddypress .likes-number, #buddypress .comment-number, #buddypress .rs-count {
+    float: left;
+    font-size: 12px;
+    font-family: 'Oswald';
+    color: #0B3A08;    
+    height: 22px;
+    width: auto;
+    min-width:5px;
+    margin-right: 5px;
+    display: block;
+    background:transparent;
+    border:0px;
+}
+
+.comment-number {
+    margin-left:4px;
+}
+
+
+#buddypress a.button.delete-activity, #buddypress a.button.delete-activity:hover, a.button.delete-activity:active, a.button.delete-activity:focus{    
+    display:block;
+    width:22px;
+    height: 22px;
+    background: url('images/ico-cancella.png') no-repeat center center;
+    font-size:0px;
+    border:0px;
+    position: absolute;
+    top: 0;
+    right: 0;    
+}
+
+#buddypress a.reshare-button, #buddypress a.reshare-button:hover, #buddypress a.reshare-button:active, #buddypress a.reshare-button:focus{
+    display:block;
+    width:22px;
+    height: 22px;
+    background: url('images/ico-reshare.png') no-repeat center center;
+    border:0px;
+    float:left;    
+}
+
+#buddypress div.activity-meta {
+    margin: 0;
+    height: auto;   
+    width: auto;
+    float: right;
+    margin-top:10px;
+}
+
+#buddypress .activity-comments ul > li {
+    margin-bottom: 0px;
+}
+
+#buddypress div.activity-comments {    
+    font-size: 16px;
+    font-family: 'Open Sans';
+}
+
+/** fine Home **/
+
+
 /** ACCROCCHI **/
+
+@media (max-width:767px) {
+    
+    /** Home **/
+    .home #buddypress form#whats-new-form #whats-new-avatar{
+        float: none;
+    }
+
+    .home #buddypress form#whats-new-form #whats-new-avatar a{
+        display: block;
+        width: 65px;
+        height: 65px;
+        margin: auto auto 15px;
+    }
+    
+    .home #buddypress form#whats-new-form #whats-new-avatar img.avatar{
+        border:none;
+        margin: auto;
+        width: 65px;
+        height: 65px;       
+        float: none;
+        display: block;
+        margin-bottom: 15px;
+    }
+    
+    .home #buddypress form#whats-new-form #whats-new-content{
+        margin:0;
+        padding:0;
+    }
+    
+    .home .bpfb_form_container {
+        padding-bottom: 25px;
+    }
+    
+    #buddypress .activity-list .activity-content .activity-header a{
+        display: block;
+        font-size:13px;
+        line-height: 18px;
+    }
+    
+    #buddypress div.activity-comments {
+        margin:0;
+        padding-left:15px;
+    }
+        
+    /** fine Home **/
+}
+
 @media (max-width:869px){
     .menu .user-name {
         margin-right: 5px;
@@ -603,7 +1089,7 @@ div.triangolo {
         width:40%;
     }
     
-    #motore-ricerca .standard-form-twn .editfield select{       
+    #motore-ricerca .standard-form-twn .editfield select, #buddypress.registrazione .standard-form select{       
         background: #fff url('images/select-arrow.png') no-repeat 98% center;
         background-size:12px 5px;        
     }
@@ -695,7 +1181,209 @@ div.triangolo {
     
     /** fine Invia CV **/
     
+    /** Registrazione **/
+    
+    #buddypress.registrazione .register-section{
+        padding-left:35px;
+        padding-right: 35px;
+    }
+    
+    #buddypress.registrazione .field_indirizzo{
+        width: 72%;
+        float: left;
+        margin-right: 3%;
+    }
+    
+    #buddypress.registrazione .field_n-civico{
+        float: left;
+        width: 25%;
+    }
+    
+    #buddypress.registrazione .field_cap{
+        float: left;
+        width: 20%;
+        margin-right: 3%;
+    }
+    
+    #buddypress.registrazione .field_citta{
+        float: left;
+        width: 64%;
+        margin-right: 3%;
+    }
+    
+    #buddypress.registrazione .field_provincia{
+        float: left;
+        width: 10%;
+    }
+    #buddypress.registrazione .field_categoria-commerciale{
+        float: left;
+        width: 40%;
+        margin-right: 3%;
+    }
+    #buddypress.registrazione .field_sito-web{
+        float: left;
+        width: 57%;
+    }
+    
+    #buddypress.registrazione #last-options{
+        padding-left:5%;
+    }
+    #buddypress.registrazione .field_immagine-aziendale {
+        float: left;
+        padding-left: 70px;
+        background-position: left center;
+        height: 61px;
+        text-align: left;
+        padding-top: 11px;
+    }
+    
+    #buddypress.registrazione .field_privacy{
+        padding-top:25px;
+    }
+
+    /** fine Registrazione **/
+
+    /** Home **/
+    
+    .home {
+        padding-top:25px;
+        background:#f2f2f2;
+        min-height: 100vh;
+    }
+    
+    .home .main-content.no-padding{
+        padding:0 15px;
+    }
+    
+    .home .sidebar{   
+        padding:0;
+    }
+    
+    .home .sidebar #motore-ricerca .container-testata{
+        font-size:13px;
+        padding:13px 0;
+    }
+    
+    .home .sidebar #motore-ricerca .standard-form-twn .editfield{
+        padding:0;
+    }
+    
+    .home .sidebar #motore-ricerca .standard-form-twn .editfield.field_citta,
+    .home .sidebar #motore-ricerca .standard-form-twn .editfield.field_provincia,
+    .home .sidebar #motore-ricerca .standard-form-twn .editfield.field_parole-chiave{
+        width:100%;
+    }
+    
+    .home .sidebar #motore-ricerca .standard-form-twn .editfield.field_categoria-commerciale{
+        width:70%;
+    }
+    
+    .home .sidebar #motore-ricerca .standard-form-twn .submit input, #motore-ricerca .standard-form-twn .submit input:hover{
+        width: 28%;
+        height: 30px;
+        background: #7bd6a0 url('images/ico-cerca-sidebar.png') no-repeat !important;
+        background-size: 17px 21px !important;
+        font-size: 13px;
+        font-family: 'Oswald';
+        color: #0a3907;
+        text-align: left;
+        margin-left: 2%;
+        float: left;
+        padding-left: 17px;
+        background-position: 55px center !important;
+    }
+    
+    
+    .home .sidebar #motore-ricerca .standard-form-twn .editfield input, 
+    .home .sidebar #motore-ricerca .standard-form-twn .editfield textarea, 
+    .home .sidebar #motore-ricerca .standard-form-twn .editfield select{
+        font-size:13px;
+    }
+    
+    #buddypress form#whats-new-form #whats-new-submit {
+        text-align: right;
+    }
+    
+    .home #buddypress form#whats-new-form p.activity-greeting {
+        text-align: left;
+    }
+    
+    #buddypress div#subnav.item-list-tabs{
+        padding-right: 0px;
+    }
+    
+    #buddypress .activity-list li .activity-content {
+        margin: 0;
+        padding: 0 30px;
+    }
+    
+    #buddypress .activity-list .activity-avatar {
+        padding-left: 30px;
+    }
+    
+    #buddypress div.activity-comments {        
+        margin: 0;
+        margin-left: 30px;
+    }
+    
+    .pre-main{
+        margin:auto;
+        margin-top:20px;
+        margin-bottom:20px;
+        background:#eeeeee;
+        padding:20px 5px;
+        width:99%;        
+    }
+    
+    .pre-main .feed-news a{
+        color: #276328;
+        font-family: 'Open Sans';
+        font-size:18px;
+        font-weight: bold;
+    }
+    
+    .pre-main .feed-news > div, #rss_scr_spancontant {
+        height: 70px !important;       
+    }
+    
+    #rss_scr_spancontant {
+        width:83%;
+    }
+    
+    .pre-main .icona-news {
+        width: 30px;
+        height: 30px;
+        float: left;
+        background: url("images/icona_news.png") no-repeat center center;
+        background-size: 100% auto;
+        margin-right: 10px;
+    } 
+    /** fine  Home **/
+    
+    /** sidebar **/
+    
+    .right-sidebar{
+        padding: 0 15px;
+    }
+    
+    .right-sidebar h4{
+        font-family: 'Oswald';
+        color: #0b3a08;
+        font-size:16px;
+        text-transform: uppercase;
+        height: 32px;
+        line-height: 32px;
+        background:url('images/ico-borsa.png') no-repeat left center;
+        padding-left: 45px;
+    }
+    
+    .right-sidebar li {
+        list-style: none;
+    }
+    
+    /** fine sidebar **/
 }
+
 
 
 /** DEKSTOP **/
@@ -754,12 +1442,58 @@ div.triangolo {
         background-size: contain;       
     }
     
+    .home .sidebar #motore-ricerca .standard-form-twn .submit input, #motore-ricerca .standard-form-twn .submit input:hover{       
+        background: #7bd6a0 url('images/retina-ico-cerca-sidebar.png') no-repeat !important;        
+    }
     
+    #bpfb_addLinks {
+        background: url('images/retina-ico-upload-img.png') center top no-repeat;
+        background-size: 22px 16px;
+    }
+    #bpfb_addVideos {
+        background: url('images/retina-ico-upload-video.png') center top no-repeat;
+        background-size: 16px 16px;
+    }
+    #bpfb_addPhotos {
+        background: url('images/retina-ico-upload-url.png') center top no-repeat;
+        background-size: 16px 16px;
+    }
+    
+    #buddypress .bp-social-button a.buddypress-social-button, 
+    #buddypress .bp-social-button a.buddypress-social-button:hover{
+        background: url('images/retina-ico-share.png') center center no-repeat;
+        background-size: 18px 16px;
+    }   
+    #buddypress a.button.acomment-reply, #buddypress a.button.acomment-reply:hover{
+        background: url('images/retina-ico-commenta.png') center center no-repeat;
+        background-size: 19px 16px;
+    }
+    
+    #buddypress .button.unfav.bp-secondary-action{        
+        background: url('images/retina-ico-good-full.png') no-repeat center center;
+        background-size: 22px 22px;
+        
+    }
+
+    #buddypress .button.fav.bp-secondary-action{        
+        background: url('images/retina-ico-good.png') no-repeat center center;
+        background-size: 22px 22px;
+    }
+    
+    #buddypress a.button.delete-activity, #buddypress a.button.delete-activity:hover, a.button.delete-activity:active, a.button.delete-activity:focus{           
+        background: url('images/retina-ico-cancella.png') no-repeat center center;
+        background-size: 22px 22px;
+    }
+    
+    #buddypress a.reshare-button, #buddypress a.reshare-button:hover, #buddypress a.reshare-button:active, #buddypress a.reshare-button:focus{        
+        background: url('images/retina-ico-reshare.png') no-repeat center center;
+        background-size: 22px 22px;    
+    }
     
 }
 
 @media (min-width: 768px) and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    #motore-ricerca .standard-form-twn .editfield select{       
+    #motore-ricerca .standard-form-twn .editfield select, #buddypress.registrazione .standard-form select{       
         background: #fff url('images/retina-select-arrow.png') no-repeat 98% center;
         background-size:12px 5px;        
     } 

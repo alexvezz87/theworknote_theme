@@ -235,7 +235,7 @@ function getImmagineAziendale(){
 
 function curPageURL() {
     $pageURL = 'http';
-    if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
+    //if ($_SERVER["HTTPS"] == "on") {$pageURL .= "s";}
     $pageURL .= "://";
     if ($_SERVER["SERVER_PORT"] != "80") {
      $pageURL .= $_SERVER["SERVER_NAME"].":".$_SERVER["SERVER_PORT"].$_SERVER["REQUEST_URI"];
@@ -495,6 +495,7 @@ function getIdMemeber($url){
    
     //controllo in che pagina sono
     $split_url = explode('/members/', $url);
+    $user_name="";
     if(count($split_url) > 0){
         //se sono nella pagina di un utente splitto il nome dall'indirizzo        
         //ho ottenuto tutto il nome dopo la stringa ..../memebers/
@@ -707,7 +708,7 @@ add_action( 'wp_footer', 'my_action_javascript' ); // Write our JS below here
 function my_action_javascript() { ?>
 	<script type="text/javascript" >
 	jQuery(document).ready(function($) {           
-
+            //contatore di like
             $('.button.fav, .button.unfav').click(function(){
                
                 var idActivity = $(this).parent().find('input[name=activity-id]').val();                
@@ -721,6 +722,22 @@ function my_action_javascript() { ?>
                     $('li#activity-'+idActivity+' .likes-number').text(response);			
 		});
             });
+            
+            //se faccio tap da mobile
+            $('.button.fav, .button.unfav').on('tap', function(){
+               
+                var idActivity = $(this).parent().find('input[name=activity-id]').val();                
+                var data = {
+			'action': 'my_action',
+			'activityID': idActivity
+		};
+
+		// since 2.8 ajaxurl is always defined in the admin header and points to admin-ajax.php
+		$.post(ajaxurl, data, function(response) {
+                    $('li#activity-'+idActivity+' .likes-number').text(response);			
+		});
+            });
+            
 	});
 	</script> <?php
 }
@@ -767,6 +784,35 @@ function updateBuddypressProvincia($idUtente, $provincia){
         return false;
     }    
             
+}
+
+function showCustomTime($time){
+    //viene passata una data nella forma aaaa-mm-dd hh:mm:ss (es. 2015-09-13 16:30:40)
+    //devo restituire gg/mm/aaaa hh:mm
+
+    $temp = explode(' ', $time);
+    $time1 = explode('-', $temp[0]);
+    $time2 = explode(':', $temp[1]);
+    
+    $mese = '';
+    //scrivo il mese
+    switch ($time1[1]){
+        case '01': $mese = 'gennaio'; break; 
+        case '02': $mese = 'febbraio'; break; 
+        case '03': $mese = 'marzo'; break; 
+        case '04': $mese = 'aprile'; break; 
+        case '05': $mese = 'maggio'; break; 
+        case '06': $mese = 'giugno'; break; 
+        case '07': $mese = 'luglio'; break; 
+        case '08': $mese = 'agosto'; break; 
+        case '09': $mese = 'settembre'; break; 
+        case '10': $mese = 'ottobre'; break; 
+        case '11': $mese = 'novembre'; break; 
+        case '12': $mese = 'dicembre'; break; 
+    }
+    
+
+    return '| '.$time1[2].' '.$mese.' '.$time1[0].' | ore '.$time2[0].':'.$time2[1];
 }
 
 ?>
