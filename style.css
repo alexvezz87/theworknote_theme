@@ -690,7 +690,8 @@ div.triangolo {
     background:#fff;
 }
 
-.home #buddypress form#whats-new-form p.activity-greeting{
+.home #buddypress form#whats-new-form p.activity-greeting,
+ form#whats-new-form p.activity-greeting{
     font-family:'Open Sans';
     font-size:14px;
     color:#000;
@@ -720,7 +721,9 @@ div.triangolo {
 }
 
 #buddypress input[type="submit"], #buddypress input[type="submit"]:hover,
-#buddypress input[type="button"], #buddypress input[type="button"]:hover{
+#buddypress input[type="button"], #buddypress input[type="button"]:hover,
+input[type="submit"], input[type="submit"]:hover,
+input[type="button"], input[type="button"]:hover{
     height:35px;
     background:#067a36;
     color:#fff;
@@ -962,6 +965,307 @@ div.activity-comments {
 }
 
 /** fine Home **/
+
+
+/** Pagina negozio **/
+#buddypress #header-cover-image {
+    top:auto;
+}
+
+#buddypress div#item-header {
+    overflow: visible;
+}
+
+#buddypress #header-cover-image {   
+    position: relative;
+    z-index: 0;
+}
+
+#buddypress #item-header-cover-image #item-header-avatar {
+    margin-top:0;
+}
+
+#buddypress .container-avatar-info .subcontainer{
+    background: rgba(255,255,255,0.8);
+    padding:30px 15px 5px 15px;   
+}
+
+#buddypress #item-header-cover-image #item-header-avatar img.avatar{
+    width:100px;
+    height: 100px;
+    border-radius: 50%;
+    border:0px;
+}
+
+#buddypress div#item-header #item-header-cover-image #item-header-content {
+    clear: none;
+    float: left;
+    margin:0;   
+}
+
+#buddypress div#item-header-cover-image h2{
+    font-family: 'Oswald';
+    color:#067a36;
+    font-size:33px;
+    text-transform: uppercase;
+    text-shadow: none;
+    font-weight: bold;
+    margin:0;
+    margin-bottom:8px;
+}
+
+#buddypress div#item-header-cover-image .motto{
+    font-family: 'Oswald';
+    color:#067a36;
+    font-size:21px;
+    text-transform: uppercase;
+    margin:0;
+}
+
+#buddypress .subcontainer-indirizzo p{
+    font-family:'Oswald';
+    font-size:16px;
+    color:#067a36;
+}
+
+#buddypress .subcontainer-indirizzo {        
+    padding-top:30px;
+    text-align: center;
+}
+
+#buddypress #item-header-cover-image .categoria-commerciale{
+    text-align:center;
+    margin-top:40px;
+}
+
+#buddypress #item-header-cover-image .categoria-commerciale p{
+    font-family: 'Oswald';
+    color:#067a36;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+#buddypress #item-header-cover-image .categoria-commerciale p span{
+    font-size: 17px;
+}
+
+#buddypress #item-header-cover-image .container-boxes{
+    margin-top:25px;
+    width:100%;
+}
+
+#buddypress #item-header-cover-image .container-boxes > a{
+    display:table;
+    padding:0;
+    text-decoration: none;
+}
+
+#buddypress #item-header-cover-image .container-boxes > a span.sup {
+    text-align: center;
+    display: block;
+    height:80px;
+    border: 2px solid #f17153;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#buddypress #item-header-cover-image .container-boxes a span.sup span{
+    display:block;
+    margin:auto;
+    height: 30px;
+    line-height: 30px;
+    font-family: 'Oswald';
+    font-size:18px;
+    color:#F16443;
+    text-transform: uppercase;
+}
+
+#buddypress #item-header-cover-image .container-boxes a.web span.sup span{
+    width:80px;    
+    padding-left:45px;
+    background:url('images/ico-negozio-web.png') no-repeat center left;
+}
+
+#buddypress #item-header-cover-image .container-boxes a.email span.sup span{
+    width:105px;    
+    padding-left:55px;
+    background:url('images/ico-negozio-email.png') no-repeat center left;
+}
+
+#buddypress #item-header-cover-image .container-boxes a.commenta span.sup span{
+    width:135px;    
+    padding-left:50px;
+    background:url('images/ico-negozio-commenta.png') no-repeat center left;
+}
+
+#info_gallery .gallery-image{
+    width:225px;
+    height: 250px;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center center !important;
+}
+
+#info_gallery li {
+    float:left;
+    margin-right: 15px;
+    margin-bottom:15px;
+    cursor: pointer;
+}
+
+
+#container-slider-foto {
+    position:fixed;
+    width:100%;
+    height: 100vh;
+    z-index: 9999;
+    background: rgba(0,0,0,0.6);    
+    display:none;
+    top:0;
+    left:0;
+    padding-top:3vh
+}
+
+#container-slider-foto .container-1024{
+    height: 90vh;
+}
+
+#container-slider-foto ul {
+    list-style: none;
+    width:90%;
+    float:left;
+    display: block;
+    height: 90vh;
+}
+
+#container-slider-foto .prec, #container-slider-foto .succ{
+    width:5%;
+    height: 90vh;    
+    float:left;  
+}
+
+#container-slider-foto .prec span, #container-slider-foto .succ span{
+    display: block;    
+    width:50px;
+    height:60px;    
+    margin:auto;
+    margin-top:40vh;
+    position: relative;
+    cursor: pointer;  
+}
+
+#container-slider-foto .prec span{
+   float:right;
+   margin-right:-20px;
+   background:url('images/ico-slider-prec.png') no-repeat center center;
+}
+
+#container-slider-foto .succ span{
+   float:left;
+   margin-left: -20px;
+   background:url('images/ico-slider-succ.png') no-repeat center center;   
+}
+
+#container-slider-foto ul li{
+    width:100%;    
+    height: 90vh;
+    background-size: contain !important;
+    background-position: center center !important;
+    background-repeat: no-repeat;    
+    display: none;
+}
+
+#container-slider-foto .close-window{
+    width:100%;
+    height: 50px;
+}
+
+#container-slider-foto .close-window span{
+    width: 5%;
+    min-width: 50px;
+    height: 50px; 
+    cursor: pointer;
+    float:right;    
+    display: block;
+    background:url('images/ico-slider-chiudi.png') no-repeat center center;
+}
+
+.mywidget {
+    padding-top:60px;
+}
+
+.mywidget h3 {
+    font-family:'Oswald';
+    font-size:16px;
+    color:#000;
+    text-transform: uppercase;
+}
+
+.mywidget p{
+    font-family: 'Open Sans';
+    font-size:15px;
+    color:#000;
+}
+
+.mywidget .box {
+    margin-bottom:60px;
+}
+
+.mywidget .collaboratori li{
+    margin-right: 30px;
+    margin-bottom: 15px;
+    float:left;
+}
+
+.mywidget .collaboratori li img {
+    border-radius: 50%;
+    border:0px;
+}
+
+.mywidget #orari-apertura {
+    border:1px solid #067a36;
+    padding:15px 30px 15px 70px;
+}
+
+.mywidget #orari-apertura td {
+    padding:0;
+    font-family:'Open Sans';
+    color:#000;
+    font-size:15px;
+}
+
+.mywidget #orari-apertura .ico-orario{
+    width:36px;
+    height: 36px;
+    position:absolute;
+    background:url('images/ico-orari.png') no-repeat center center;
+    left:0;
+    margin-top: -25px;
+    margin-left: 10px;
+}
+
+
+.container-activity-background {
+    padding-top:45px;
+    background: #fff;
+}
+
+.container-activity-background h3 {
+    font-family: 'Oswald';
+    font-size: 25px;
+    color:#000;
+    text-transform: uppercase;
+}
+
+.container-activity-background #buddypress #activity-stream{
+    background:#fff;
+}
+
+.container-activity-background .bpfb_form_container{
+    margin-bottom:10px;
+}
+
+/** fine Pagina negozio **/
 
 
 /** ACCROCCHI **/
@@ -1304,7 +1608,8 @@ div.activity-comments {
         text-align: right;
     }
     
-    .home #buddypress form#whats-new-form p.activity-greeting {
+    .home #buddypress form#whats-new-form p.activity-greeting,
+    form#whats-new-form p.activity-greeting {
         text-align: left;
     }
     
@@ -1382,6 +1687,44 @@ div.activity-comments {
     }
     
     /** fine sidebar **/
+    
+    /** Pagina negozio **/
+    
+    .pre-container-1024 #buddypress {
+        height: 380px;
+    }
+    
+    #buddypress #header-cover-image {
+        height: 380px;
+    }
+    
+    #buddypress .container-avatar-info{
+        margin-top:-135px;
+    }
+    
+    #buddypress #item-header-cover-image #item-header-avatar {
+        margin:0;
+    }
+    
+    #buddypress .subcontainer-avatar-info {        
+       
+    }
+    
+    #buddypress .subcontainer-indirizzo {        
+        padding-top:30px;
+        text-align: left;
+    }
+    
+    #buddypress #item-header-cover-image #item-header-avatar img.avatar {
+        margin:0;
+        margin-right: 30px;
+    }
+    
+    #buddypress div#item-header #item-header-cover-image #item-header-content {
+        padding-top:15px;
+    }
+    
+    /** fine Pagina negozio **/
 }
 
 
@@ -1437,13 +1780,17 @@ div.activity-comments {
         background-size: contain;
     }
     
-    #motore-ricerca .standard-form-twn .submit input{        
-        background:url('images/mobile/retina-bottone-cerca.png') center center no-repeat;
-        background-size: contain;       
-    }
-    
+       
     .home .sidebar #motore-ricerca .standard-form-twn .submit input, #motore-ricerca .standard-form-twn .submit input:hover{       
         background: #7bd6a0 url('images/retina-ico-cerca-sidebar.png') no-repeat !important;        
+    }
+    
+    #motore-ricerca .standard-form-twn .submit input,
+    #motore-ricerca .standard-form-twn .submit input:hover,
+    #motore-ricerca .standard-form-twn .submit input:focus,
+    #motore-ricerca .standard-form-twn .submit input:visited{        
+        background:url('images/mobile/retina-bottone-cerca.png') center center no-repeat !important;
+        background-size: contain !important;       
     }
     
     #bpfb_addLinks {
@@ -1488,6 +1835,41 @@ div.activity-comments {
     #buddypress a.reshare-button, #buddypress a.reshare-button:hover, #buddypress a.reshare-button:active, #buddypress a.reshare-button:focus{        
         background: url('images/retina-ico-reshare.png') no-repeat center center;
         background-size: 22px 22px;    
+    }
+    
+    #buddypress #item-header-cover-image .container-boxes a.web span.sup span{        
+        background:url('images/retina-ico-negozio-web.png') no-repeat center left;
+        background-size: 28px 28px;
+    }
+    
+    #buddypress #item-header-cover-image .container-boxes a.email span.sup span{        
+        background:url('images/retina-ico-negozio-email.png') no-repeat center left;
+        background-size: 38px 28px;
+    }
+    
+    #buddypress #item-header-cover-image .container-boxes a.commenta span.sup span{        
+        background:url('images/retina-ico-negozio-commenta.png') no-repeat center left;
+        background-size: 33px 28px;
+    }
+    
+    .mywidget #orari-apertura .ico-orario{       
+        background:url('images/retina-ico-orari.png') no-repeat center center;
+        background-size: 36px 36px;      
+    }
+    
+    #container-slider-foto .prec span{       
+        background:url('images/retina-ico-slider-prec.png') no-repeat center center;
+        background-size: 29px 50px;
+     }
+
+     #container-slider-foto .succ span{       
+        background:url('images/retina-ico-slider-succ.png') no-repeat center center;  
+        background-size: 29px 50px;
+     }
+     
+    #container-slider-foto .close-window span{        
+        background:url('images/retina-ico-slider-chiudi.png') no-repeat center center;
+        background-size: 50px 50px;
     }
     
 }

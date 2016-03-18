@@ -6,7 +6,9 @@
 
 <!-- menu utente loggato -->
         <div class="col-sm-6 hidden-xs menu">
-            <img class="avatar-50" src="<?php echo $img ?>" alt="<?php $current_user->display_name ?>" />
+            <a href="<?php echo bp_loggedin_user_domain() ?>">
+                <img class="avatar-50" src="<?php echo $img ?>" alt="<?php $current_user->display_name ?>" />
+            </a>
             <div class="user-name">                
                <?php 
                     //stampo il nome dell'utente
@@ -16,9 +18,10 @@
                     else{
                         echo $current_user->display_name;
                     }
-                        
+
                 ?>             
             </div>
+           
             
             <div class="icona posta" data-name="posta">
                 <?php

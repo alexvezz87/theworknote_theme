@@ -611,6 +611,7 @@ function getField($id, $nameField){
         //prendo il valore finale
         $query_result = "SELECT value FROM wp_bp_xprofile_data WHERE field_id = $field_id AND user_id = $id";
         //echo $query_result;
+       
         return $wpdb->get_var($query_result);
         
     }
@@ -814,5 +815,33 @@ function showCustomTime($time){
 
     return '| '.$time1[2].' '.$mese.' '.$time1[0].' | ore '.$time2[0].':'.$time2[1];
 }
+
+
+
+/**
+ * Resize xprofile image uploads before saving them to the filesystem
+ */
+function resize_image_uploads($data) {
+    $field_id = $data->field_id;
+    $field = new BP_XProfile_Field($field_id);
+
+    
+    for($i = 1; $i <= 4 ; $i++ ){
+        if ($field->name === "Immagine 0".$i && !empty($data->value)) {
+            $upload_dir = wp_upload_dir();
+            $image_path = $upload_dir['basedir'] . $data->value;
+            $image = new Imagick(realpath($image_path));
+
+            if ($image->valid()) {
+
+                $image->resizeImage(400, 210, Imagick::FILTER_LANCZOS, 1);
+                $image->writeImage();
+                $image->destroy();
+            }
+        }
+    }
+}
+
+add_action('xprofile_data_before_save', __NAMESPACE__ . '\\resize_image_uploads', 15);
 
 ?>

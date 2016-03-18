@@ -25,6 +25,10 @@ get_header();
 ?>
 
 <div class="main-container">
+    <div class="pre-container-1024">
+        <div id="buddypress"></div>
+        <div class="clear"></div>
+    </div>
     <div class="container-1024">
     
     <?php if ( have_posts() ) : ?>

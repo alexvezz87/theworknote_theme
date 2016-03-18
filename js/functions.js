@@ -146,12 +146,75 @@ $( document ).ready(function() {
             
         }
     });    
-    
-    
+        
     //accrocchio sulla struttura del reshare
     $('.reshare-button').each(function(){
         $(this).find('.rs-count').insertBefore($(this));
         $(this).html('');
+    });
+    
+    
+    //PAGINA NEGOZIO (../memebers/nome-membro)
+    //sposto la copertina fuori dal container-1024
+    
+    $('#header-cover-image').appendTo('.main-container .pre-container-1024 #buddypress');
+    
+    
+    //Gestione slider foto
+    $('#info_gallery li').click(function(){
+        //prendo il numero
+        var slide = $(this).data('num');
+        
+        //nascondo le foto già presenti
+        $('#container-slider-foto li').hide();
+        $('#container-slider-foto li').removeClass('current');
+        //visualizzo la foto corrispondente
+        $('#container-slider-foto li[data-num='+slide+']').show();
+        $('#container-slider-foto li[data-num='+slide+']').addClass('current');
+        $('#container-slider-foto').show();
+        $('body').css('overflow', 'hidden');
+    });
+    
+    //gestione avanti e indietro
+    $('#container-slider-foto .prec span').click(function(){
+        //prendo il numero della foto visualizzato
+        if($('#container-slider-foto .current').size() > 0 ){
+            var slide = $('#container-slider-foto .current').data('num');
+            if(slide > 1){
+                slide = slide -1;
+                //nascondo e visualizzo la slide precedente
+                $('#container-slider-foto li').hide();
+                $('#container-slider-foto li').removeClass('current');
+                $('#container-slider-foto li[data-num='+slide+']').show();
+                $('#container-slider-foto li[data-num='+slide+']').addClass('current');
+                
+            }
+        }
+    });
+    
+    $('#container-slider-foto .succ span').click(function(){
+        var max = $('#container-slider-foto .slider-foto').data('slide');
+        //prendo il numero della foto visualizzato
+        if($('#container-slider-foto .current').size() > 0 ){
+            var slide = $('#container-slider-foto .current').data('num');
+            if(slide < max){
+                slide = slide +1;
+                //nascondo e visualizzo la slide precedente
+                $('#container-slider-foto li').hide();
+                $('#container-slider-foto li').removeClass('current');
+                $('#container-slider-foto li[data-num='+slide+']').show();
+                $('#container-slider-foto li[data-num='+slide+']').addClass('current');
+                
+            }
+        }
+    });
+    
+    $('#container-slider-foto .close-window span').click(function(){
+        $('#container-slider-foto').hide();
+        $('#container-slider-foto li').hide();
+        $('#container-slider-foto li').removeClass('current');
+        $('body').css('overflow', 'visible');
+        
     });
     
     
