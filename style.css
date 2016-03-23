@@ -77,6 +77,105 @@ header .logo-txt {
     margin-top:10px;          
 }
 
+footer{
+    width:100%;
+    padding:0;    
+}
+
+footer .primary-footer{
+    width:100%;
+    min-height: 240px;
+    height: auto;
+    background:#001400;
+    padding-top:20px;
+}
+
+footer .secondary-footer{
+    width:100%;
+    height: 45px;
+    background: #0b3a08;
+    color:#fff;
+    padding-top: 12px;
+}
+
+footer .footer-1{
+    margin-bottom:20px;
+}
+
+footer .footer-1 p {
+    max-width:305px;
+    width:100%;
+    height: 190px;
+    background:url('images/ico-footer-1.png') no-repeat center right;
+    margin:auto;
+    color:#fff;
+    font-family: 'Oswald';
+    font-size:22px;
+    line-height: 27px;
+    text-transform: uppercase;
+    display:table;
+}
+
+footer .footer-1 p span{
+    display: table-cell;
+    vertical-align: middle;
+}
+
+
+footer .footer-2 a.cv{
+    display: block;
+    width:240px;
+    height: 45px;
+    padding-left:55px;
+    background:url('images/ico-footer-cv.png') no-repeat left center;
+    color:#fff;
+}
+
+footer .footer-2 a{    
+    font-family: 'Oswald';
+    font-size:16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin:auto;
+    margin-bottom:20px;
+}
+
+footer .footer-2 a.help{
+    display: block;
+    width:255px;
+    height: 40px;
+    border:2px solid #066A2E;
+    border-radius: 30px;
+    color:#7CD588;
+    padding-left:70px;
+    line-height: 36px;
+}
+
+footer .footer-2 a.migliorare {
+    background:url('images/ico-footer-migliorare.png') no-repeat 30px;
+}
+
+footer .footer-2 a.assistenza {
+    background:url('images/ico-footer-assistenza.png') no-repeat 30px;
+}
+
+
+footer .footer-2 div {
+    width: 270px;
+    margin: auto;
+}
+footer .footer-2 a.to-info-page{
+    font-size:13px;
+    color:#C6C7B1;
+    min-width: 105px;
+    display: block;
+    float:left;
+    padding-left:15px;
+    background:url('images/ico-footer-tag.png') no-repeat center left;
+    text-align: left;
+}
+
+
 .avatar-50 {
     border-radius: 50%;
 }
@@ -544,7 +643,7 @@ div.triangolo {
     padding-bottom: 50px;
     font-family: 'Oswald';
     color:#000;
-    
+    margin-top: -380px;
 }
 
 #buddypress.registrazione label, #buddypress.registrazione p.description{
@@ -979,6 +1078,7 @@ div.activity-comments {
 #buddypress #header-cover-image {   
     position: relative;
     z-index: 0;
+    background-position: center center;
 }
 
 #buddypress #item-header-cover-image #item-header-avatar {
@@ -1054,13 +1154,18 @@ div.activity-comments {
     width:100%;
 }
 
-#buddypress #item-header-cover-image .container-boxes > a{
+#buddypress #item-header-cover-image .container-boxes > div{
+    padding:0;
+}
+
+#buddypress #item-header-cover-image .container-boxes > div a{
     display:table;
     padding:0;
     text-decoration: none;
+    width:100%;
 }
 
-#buddypress #item-header-cover-image .container-boxes > a span.sup {
+#buddypress #item-header-cover-image .container-boxes > div a span.sup {
     text-align: center;
     display: block;
     height:80px;
@@ -1078,6 +1183,12 @@ div.activity-comments {
     font-size:18px;
     color:#F16443;
     text-transform: uppercase;
+}
+
+#buddypress #item-header-cover-image .container-boxes a.dettagli span.sup span{
+    width:130px;    
+    padding-left:56px;
+    background:url('images/ico-negozio-dettagli.png') no-repeat center left;
 }
 
 #buddypress #item-header-cover-image .container-boxes a.web span.sup span{
@@ -1262,10 +1373,104 @@ div.activity-comments {
 }
 
 .container-activity-background .bpfb_form_container{
-    margin-bottom:10px;
-}
+    margin-bottom:10px;}
 
 /** fine Pagina negozio **/
+
+/** modifica dati **/
+.modifica-dati {
+    display: block;
+    width:35px;
+    height: 35px;
+    background:url('images/ico-modifica.png') no-repeat center center;
+    background-size: 35px 35px;
+}
+
+#item-header-avatar .modifica-dati {
+    position: relative;    
+    margin-top: 65px;
+    margin-left: -25px;
+}
+
+#header-cover-image .container-1024{
+    padding-top:180px;
+    padding-left:15px;
+}
+
+.grayBG{
+    background: #e2e2e2;
+    padding-bottom: 30px;
+}
+
+.container-boxes .modifica-dati{
+    position: absolute;
+    margin-top: -40px;
+    margin-left: 80%;
+    width: 40px !important;
+}
+
+/** fine modifica dati **/
+
+/** Altro **/
+
+.profile-fields {
+    clear:both;   
+    height: auto;
+}
+
+.profile-fields .last-li{
+    width:100%; height: 1px;
+    border-bottom: 1px solid #067a36;
+}
+.profile-fields li {
+    margin-bottom:20px;
+    float:left;    
+    
+}
+.label-title, #buddypress .standard-form label{
+    font-family:'Oswald';
+    font-size:16px;
+    color:#067a36;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.label-data, #buddypress .standard-form input[type="text"],
+#buddypress div.item-list-tabs ul li a, #buddypress table.profile-settings tr td{
+    font-family:'Open Sans';
+    font-size:14px;
+    color:#000;
+}
+
+.profile-fields .field_descrizione, .profile-fields .field_type_image{
+    width:100%;
+    clear:both;
+}
+
+#buddypress div.profile h4.title-group-info{
+    font-family:'Oswald';
+    font-size:22px;
+    text-transform: uppercase;
+    color:#067a36;    
+    text-align: center;
+    margin-bottom:15px;
+}
+
+.editfield img {
+    max-width:100%;
+    max-height: 300px;
+}
+
+.profile img{
+    max-width:100%;
+}
+
+#buddypress table.messages-notices{
+    width: 95%;
+    margin: auto;
+}
+
+/** fine Altro **/
 
 
 /** ACCROCCHI **/
@@ -1315,6 +1520,19 @@ div.activity-comments {
     }
         
     /** fine Home **/
+    
+    /** Modifica dati **/
+    #buddypress #item-header-cover-image {
+        padding:0;
+    }
+    
+    #settings-form input {
+         width:100%;
+     }
+     
+     .mywidget #orari-apertura {       
+        padding: 15px 17px 15px 25px;
+    }
 }
 
 @media (max-width:869px){
@@ -1328,6 +1546,13 @@ div.activity-comments {
     .container-contenuto p {
         font-size:12px;
     }
+}
+
+@media (max-width:991px){
+     #item-body {
+        padding:0 15px;
+    }
+    
 }
 
 /** FINE ACCROCCHI **/
@@ -1582,7 +1807,8 @@ div.activity-comments {
         width:70%;
     }
     
-    .home .sidebar #motore-ricerca .standard-form-twn .submit input, #motore-ricerca .standard-form-twn .submit input:hover{
+    .home .sidebar #motore-ricerca .standard-form-twn .submit input, 
+    .sidebar #motore-ricerca .standard-form-twn .submit input:hover{
         width: 28%;
         height: 30px;
         background: #7bd6a0 url('images/ico-cerca-sidebar.png') no-repeat !important;
@@ -1725,6 +1951,15 @@ div.activity-comments {
     }
     
     /** fine Pagina negozio **/
+    
+    /** Modifica dati **/
+    #item-header-avatar .modifica-dati {
+        margin-left:70px;
+    }
+    
+    #settings-form input {
+         width:50%;
+     }
 }
 
 
@@ -1837,6 +2072,12 @@ div.activity-comments {
         background-size: 22px 22px;    
     }
     
+    #buddypress #item-header-cover-image .container-boxes a.dettagli span.sup span{       
+        background:url('images/retina-ico-negozio-dettagli.png') no-repeat center left;
+        background-size: 40px 28px;
+    }
+
+    
     #buddypress #item-header-cover-image .container-boxes a.web span.sup span{        
         background:url('images/retina-ico-negozio-web.png') no-repeat center left;
         background-size: 28px 28px;
@@ -1870,6 +2111,31 @@ div.activity-comments {
     #container-slider-foto .close-window span{        
         background:url('images/retina-ico-slider-chiudi.png') no-repeat center center;
         background-size: 50px 50px;
+    }
+    
+    footer .footer-1 p {       
+        background:url('images/retina-ico-footer-1.png') no-repeat center right;
+        background-size: 160px 187px;        
+    }
+    
+    footer .footer-2 a.cv{       
+        background:url('images/retina-ico-footer-cv.png') no-repeat left center;
+        background-size: 43px 40px;
+    }
+    
+    footer .footer-2 a.migliorare {
+        background:url('images/retina-ico-footer-migliorare.png') no-repeat 30px;
+        background-size: 25px 25px;
+    }
+    
+    footer .footer-2 a.assistenza {
+        background:url('images/retina-ico-footer-assistenza.png') no-repeat 30px;
+        background-size: 25px 25px;
+    }
+    
+    footer .footer-2 a.to-info-page{       
+        background:url('images/retina-ico-footer-tag.png') no-repeat center left;
+        background-size: 8px 12px;
     }
     
 }

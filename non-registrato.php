@@ -28,7 +28,7 @@ get_header();
     <div class="second-main-container">
         <div class="container-1024">
             <div class="container-video col-sm-5 no-padding">        
-                 <iframe width="100%" height="250" src="https://www.youtube.com/embed/f5Q9QyXpYJM" frameborder="0" allowfullscreen></iframe>
+                 <iframe width="100%" height="250" src="https://www.youtube.com/embed/f5Q9QyXpYJM?rel=0" frameborder="0" allowfullscreen></iframe>
 
             </div>
 

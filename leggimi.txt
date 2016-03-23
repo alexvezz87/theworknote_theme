@@ -38,3 +38,7 @@ ULTERIORI PASSI PER IL CORRETTO FUNZIONAMENTO DEL TEMA
 - Ulteriori modifiche al flusso di attività nel template di buddypress per visualizzare meglio i pulsanti di share/like/comment
 
 - Inserito il box della borsa nei widget
+
+- Inserite ultieriori modifiche al flusso di attività nel bp-template di buddypress
+
+- Ricordarsi di spuntare l'opzione che gli utenti possono inserire l'immagine di copertina nel proprio profilo

@@ -117,6 +117,7 @@
                 <a href="<?php echo bp_loggedin_user_domain() ?>profile/edit">Modifica profilo</a>
                 <a href="<?php echo bp_loggedin_user_domain() ?>profile/public">Visualizza profilo</a>
                 <a href="<?php echo bp_loggedin_user_domain() ?>profile/change-avatar">Cambia immagine profilo</a>
+                <a href="<?php echo bp_loggedin_user_domain() ?>profile/change-cover-image/">Cambia immagine di copertina</a>
                 <a href="<?php echo bp_loggedin_user_domain() ?>settings">Impostazioni</a>
                 <a href="<?php echo bp_loggedin_user_domain() ?>settings/notifications">Notifiche</a>
                 <a href="<?php echo wp_logout_url() ?>">Logout</a>
@@ -134,8 +135,11 @@
                 <div class="chiudi"></div>
                 <!-- UTENTE -->
                 <div class="utente riga">
-                    <img class="avatar-50" src="<?php echo $img ?>" alt="<?php $current_user->display_name ?>" />
+                    <a href="<?php echo bp_loggedin_user_domain() ?>">
+                        <img class="avatar-50" src="<?php echo $img ?>" alt="<?php $current_user->display_name ?>" />
+                    </a>
                     <div class="title">
+                        <a href="<?php echo bp_loggedin_user_domain() ?>">
                         <?php 
                             //stampo il nome dell'utente
                             if(strlen($current_user->display_name) > $max_lenght_nome){
@@ -144,8 +148,8 @@
                             else{
                                 echo $current_user->display_name;
                             }
-
-                        ?>                        
+                        ?>   
+                        </a>
                     </div>
                 </div>
                 
@@ -222,6 +226,7 @@
                         <a href="<?php echo bp_loggedin_user_domain() ?>profile/edit">- Modifica profilo</a>
                         <a href="<?php echo bp_loggedin_user_domain() ?>profile/public">- Visualizza profilo</a>
                         <a href="<?php echo bp_loggedin_user_domain() ?>profile/change-avatar">- Cambia immagine</a>
+                        <a href="<?php echo bp_loggedin_user_domain() ?>profile/change-cover-image/">- Cambia copertina</a>
                         <a href="<?php echo bp_loggedin_user_domain() ?>settings">- Impostazioni</a>
                         <a href="<?php echo bp_loggedin_user_domain() ?>settings/notifications">- Notifiche</a>
                         <a href="<?php echo wp_logout_url() ?>">- Logout</a>

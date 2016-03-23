@@ -135,6 +135,27 @@ $( document ).ready(function() {
             return false;       
         }
     });
+    //listener sul SUBMIT della ricerca in pagina non-registrato
+    $('.non-registrato #motore-ricerca input[type=submit]').click(function(){
+        //devo controllare che almeno un campo sia stato compilato
+        //non è permessa la ricerca senza almeno un campo compilato
+        
+        var compilatoM = 0;
+        $('.non-registrato #motore-ricerca input[type=text]').each(function(){
+            if($.trim($(this).val()) !== ''){
+                compilatoM++;
+            }
+        });
+        if($('.non-registrato #motore-ricerca select').val() !== ''){
+            compilatoM++;
+        }      
+        
+        if(compilatoM === 0){
+            alert('Per effettuare una ricerca bisogna almeno inserire un campo');
+            return false;       
+        }
+    });
+    
     
    
     //elimino gli 0 dai like-numbers

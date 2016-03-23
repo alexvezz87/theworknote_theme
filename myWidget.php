@@ -219,7 +219,7 @@ class MyWidget extends WP_Widget {
 
                  
                //  printProfileUserButton(curPageURL());
-               //  printModifyImagesButton($current_user->ID, curPageURL());       
+               //printModifyImagesButton($current_user->ID, curPageURL());       
                 
                 //print_r($result_get_images);
                 

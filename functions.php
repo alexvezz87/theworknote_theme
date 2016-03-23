@@ -484,6 +484,34 @@ function getUsername($url){
     }
 }
 
+
+function getUserNameMember(){
+    $url = curPageURL();
+    //controllo in che pagina sono
+    $split_url = explode('/members/', $url);
+    $user_name="";
+    if(count($split_url) > 0){
+        //se sono nella pagina di un utente splitto il nome dall'indirizzo        
+        //ho ottenuto tutto il nome dopo la stringa ..../memebers/
+        //ho ora da trovare il nome in nome_utente/*
+        try{
+            $temp_user_name = array();
+            if(count($split_url) > 1){
+                $temp_user_name = explode('/', $split_url[1]);
+            }
+            if(count($temp_user_name) > 0){
+                $user_name = $temp_user_name[0];
+            }
+           
+        } catch (Exception $ex) {
+            return null;
+        }       
+    }
+    
+    return $user_name;
+    
+}
+
 /**
  * La funzione ricevuto in ingresso un url, controlla se si tratta di un pagina utente e filtra l'id dell'utente in questione
  * ricavandolo dallo user indicato nell'indirizzo url.
@@ -561,6 +589,15 @@ function printModifyImagesButton($userID, $url){
         $url = get_home_url().'/members/'.$user_info->user_login.'/profile/edit/group/3/';
         echo '<a class="btn gallery" href="'.$url.'">Modifica Galleria</a>';
     }
+}
+
+function isCurrentUserLoggedPage(){
+    $userID_url = getIdMemeber(curPageURL());
+    $current_user = wp_get_current_user();
+    if($current_user->ID == $userID_url){
+        return true;
+    }
+    return false;
 }
 
 function printModifyOrariApertura($userID, $url){
