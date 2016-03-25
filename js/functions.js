@@ -238,6 +238,121 @@ $( document ).ready(function() {
         
     });
     
+    //chiamata ajax al commento
+    $('.comment-container .comment-submit input[name=submit-button]').click(function(){
+        var commento = new Object();
+        commento.testo = $(this).parent('.comment-submit').siblings('.comment-text').find('textarea').val();
+        commento.idUserCommenting = $(this).siblings('input[name=id-user-commenting]').val();
+        commento.idUserCommented = $(this).siblings('input[name=id-user-commented]').val();
+       
+        if(commento.testo !== ''){
+       
+            $.ajax({
+                type:'POST',
+                dataType: 'json', 
+                url : $(this).siblings('input[name=url]').val(),
+                data: {
+                    action : 'my_ajax',
+                    commento : commento
+                },
+                success: function(data){
+                    
+                    printCommento(data);
+                   
+                },
+                error: function(){
+                    alert('error');
+                }
+            });
+            
+            $(this).parent('.comment-submit').siblings('.comment-text').find('textarea').val('');
+            
+        }else{
+            alert('Per commentare scrivi qualcosa');
+        }  
+    });
+    
+    
+    $(document).on('click', '.elimina-commento', function(){ 
+        var idCommento = $(this).siblings('input[name=id]').val();       
+        var idCommented = $('input[name=id-user-commented]').val();
+        
+        $.ajax({
+            type:'POST',
+            dataType:'json',
+            url: $('input[name=url]').val(),
+            data: {
+                action : 'my_ajax',
+                idCommento : idCommento,
+                idCommented : idCommented
+            },
+            success: function(data){
+               
+                printCommento(data);
+            },
+            error: function(request, error) {
+                alert(error);
+            }
+        });
+    });
+    
+    function printCommento(data){
+        //riscrivo la nuova colonna dei commenti
+        $('.colonna-commenti').html('');
+        var idUserCommenting = $('input[name=id-user-commenting]').val();
+        var html='';
+        
+        if(data.length > 0){
+            for(var i=0; i < data.length; i++){
+                html+='<div class="container-commento">';
+                
+                if(data[i].idUserCommenting == idUserCommenting || data[i].idUserCommented == idUserCommenting){
+                    html+='<a class="elimina-commento">X</a>';
+                    html+='<input type="hidden" name="id" value="'+data[i].ID+'" />';                                     
+                }            
+                html+='<div class="header-commento">';
+                html+='<a href="'+data[i].url+'">'+data[i].avatar+'</a>';
+                html+='<a href="'+data[i].url+'"><span class="nome">'+data[i].nome+'</span></a>';
+                html+='<span class="time">'+data[i].time+'</span>';
+                html+='</div>';
+                html+='<div class="comment-text">'+data[i].commento+'</div>';
+                html+='</div>';
+            }
+        }
+        else{
+            html = '<p>Non ci sono commenti da visualizzare</p>';
+        }
+
+        $('.colonna-commenti').html(html);
+    }
+    
+    //scroll on commenta
+    $('#cover-image-container .commenta').click(function(){
+        if($(window).width() > 767){
+            $('html, body').animate({
+                scrollTop: $(".form-not-mobile #title-commenti").offset().top
+            }, 2000);
+        }
+        else{
+             $('html, body').animate({
+                scrollTop: $(".form-mobile #title-commenti").offset().top
+            }, 2000);
+        }
+    });
+    
+    //effetto su textarea dei commenti
+    $('html').click(function() {
+        $('.comment-container .comment-text textarea').animate({
+            height : "35px"
+        });
+    });
+    $('.comment-container .comment-text textarea').click(function(event){
+       
+        $(this).animate({
+            height : "60px"
+        });
+         event.stopPropagation();
+    });
     
 });
 

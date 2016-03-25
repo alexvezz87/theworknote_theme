@@ -27,6 +27,7 @@
  */
 
 require_once 'myWidget.php';
+require_once 'class/classes.php';
 include( ABSPATH.'wp-content/plugins/buddypress/bp-templates/bp-legacy/buddypress-functions.php' );
 
 /**
@@ -556,13 +557,7 @@ function getIdMemeber($url){
             }
             
             return null;
-            
-//            if(($wp_user = get_user_by( 'login', $user_name )) != false){
-//                return $wp_user->ID;
-//            }
-//            else{
-//                return null;
-//            }            
+     
         } catch (Exception $ex) {
             return null;
         }       
@@ -853,6 +848,35 @@ function showCustomTime($time){
     return '| '.$time1[2].' '.$mese.' '.$time1[0].' | ore '.$time2[0].':'.$time2[1];
 }
 
+function showCustomTime2($time){
+    //viene passata una data nella forma aaaa-mm-dd hh:mm:ss (es. 2015-09-13 16:30:40)
+    //devo restituire gg/mm/aaaa hh:mm
+
+    $temp = explode(' ', $time);
+    $time1 = explode('-', $temp[0]);
+    $time2 = explode(':', $temp[1]);
+    
+    $mese = '';
+    //scrivo il mese
+    switch ($time1[1]){
+        case '01': $mese = 'gennaio'; break; 
+        case '02': $mese = 'febbraio'; break; 
+        case '03': $mese = 'marzo'; break; 
+        case '04': $mese = 'aprile'; break; 
+        case '05': $mese = 'maggio'; break; 
+        case '06': $mese = 'giugno'; break; 
+        case '07': $mese = 'luglio'; break; 
+        case '08': $mese = 'agosto'; break; 
+        case '09': $mese = 'settembre'; break; 
+        case '10': $mese = 'ottobre'; break; 
+        case '11': $mese = 'novembre'; break; 
+        case '12': $mese = 'dicembre'; break; 
+    }
+    
+
+    return $time1[2].' '.$mese.' '.$time1[0].' | ore '.$time2[0].':'.$time2[1];
+}
+
 
 
 /**
@@ -880,5 +904,70 @@ function resize_image_uploads($data) {
 }
 
 add_action('xprofile_data_before_save', __NAMESPACE__ . '\\resize_image_uploads', 15);
+
+
+add_action( 'wp_ajax_my_ajax', 'my_ajax_callback' );
+add_action( 'wp_ajax_nopriv_my_ajax', 'my_ajax_callback' );
+function my_ajax_callback(){    
+    //La chiamata ajax avviene per i commenti inseriti
+    if(isset($_POST['commento'])){
+        $result = false;
+        $temp = $_POST['commento'];
+        $c = new Commento();
+        $c->setCommentText($temp['testo']);
+        $c->setCommentLikes(0);
+        $c->setIdCommentedUser($temp['idUserCommented']);
+        $c->setIdCommentingUser($temp['idUserCommenting']);
+        
+        $controller = new CommentoController();
+        //salvo il commento
+        if($controller->saveComment($c) > 0){
+            //commento andato a buon fine
+            //ottengo gli altri commenti e li butto dentro
+            $result = getCommenti($controller, $temp['idUserCommented']);            
+        }
+        
+        
+        echo json_encode($result);
+        wp_die();
+            
+    }
+    
+    if(isset($_POST['idCommento']) && isset($_POST['idCommented'])){
+        $result = false;
+        
+        $controller = new CommentoController();
+        if($controller->deleteComment($_POST['idCommento'])){
+           $result = getCommenti($controller, $_POST['idCommented']);   
+        }
+        
+        echo json_encode($result);
+        wp_die();
+    }
+}
+
+function getCommenti($controller, $idCommented){
+    //idCommented è l'id dell'utente della pagina in cui ci sono i commenti
+    $array = $controller->getCommentsByAjax($idCommented);
+    $result = array();
+    foreach($array as $item){
+        $item2 = array();
+        $item2['ID'] = $item->ID;
+        //sistemo il commenting user
+        $user_info = get_userdata($item->id_commenting_user);                
+        $item2['nome'] = $user_info->display_name;
+        $item2['url'] = home_url().'/members/'.$user_info->user_login;
+        $item2['time'] = showCustomTime2($item->comment_date);
+        $item2['commento'] = $item->comment_text;
+        $img = bp_core_fetch_avatar(  array( 'item_id' => $item->id_commenting_user, 'html' => false ) );
+        $item2['avatar'] = '<img alt="'.$user_info->display_name.'" src="'.$img.'" />';
+        $item2['idUserCommenting'] = $item->id_commenting_user;
+        $item2['idUserCommented'] = $item->id_commented_user;
+        array_push($result, $item2);
+    }
+    return $result;
+}
+
+
 
 ?>

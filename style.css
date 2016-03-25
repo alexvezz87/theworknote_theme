@@ -822,7 +822,9 @@ div.triangolo {
 #buddypress input[type="submit"], #buddypress input[type="submit"]:hover,
 #buddypress input[type="button"], #buddypress input[type="button"]:hover,
 input[type="submit"], input[type="submit"]:hover,
-input[type="button"], input[type="button"]:hover{
+input[type="button"], input[type="button"]:hover,
+#buddypress a.button,
+#buddypress a.button:hover{
     height:35px;
     background:#067a36;
     color:#fff;
@@ -1025,7 +1027,9 @@ div.activity-comments {
 }
 
 
-#buddypress a.button.delete-activity, #buddypress a.button.delete-activity:hover, a.button.delete-activity:active, a.button.delete-activity:focus{    
+#buddypress a.button.delete-activity, #buddypress a.button.delete-activity:hover,
+a.button.delete-activity:active, a.button.delete-activity:focus,
+.elimina-commento{    
     display:block;
     width:22px;
     height: 22px;
@@ -1035,6 +1039,13 @@ div.activity-comments {
     position: absolute;
     top: 0;
     right: 0;    
+    margin-right: 10px;
+}
+
+.elimina-commento{
+    top:auto;
+    margin-right:25px;
+    cursor: pointer;
 }
 
 #buddypress a.reshare-button, #buddypress a.reshare-button:hover, #buddypress a.reshare-button:active, #buddypress a.reshare-button:focus{
@@ -1043,7 +1054,8 @@ div.activity-comments {
     height: 22px;
     background: url('images/ico-reshare.png') no-repeat center center;
     border:0px;
-    float:left;    
+    float:left;  
+    margin-left: 10px;
 }
 
 #buddypress div.activity-meta {
@@ -1470,10 +1482,191 @@ div.activity-comments {
     margin: auto;
 }
 
+
+#buddypress .bps_filters, #buddypress div.dir-search,
+#buddypress div.item-list-tabs.bps_header.twnn,
+#buddypress #members-directory-form .item-list-tabs{
+    display: none;
+}
+
+#buddypress #members-dir-list{
+    padding: 0 15px;
+}
+
+#buddypress #members-list li.odd, #buddypress #members-list li.even{
+    padding:15px;
+}
+
+#buddypress div.pagination {
+    height: auto;        
+}
+
+#buddypress ul.item-list .update{
+    display:none;
+}
+
+#buddypress ul.item-list li img.avatar,
+#buddypress .activity-list li.mini .activity-avatar img.avatar{
+    width:50px;
+    height: 50px;
+    margin-left: 0px;
+}
+
+#buddypress ul.item-list li div.item-title a, 
+#buddypress #member-dir-count-top,
+#buddypress #member-dir-count-bottom{
+    font-family: 'Open Sans';
+    font-size:14px;
+    color:#000;
+}
+
+#buddypress span.activity {    
+    padding: 3px;
+    font-family: 'Open Sans';
+}
+
+#buddypress div.generic-button.friendship-button a{
+    font-size:0px;
+    display:block;
+    width:40px;
+    height: 40px;
+    border:0px;
+    margin-right:20px;
+}
+
+#buddypress div.generic-button.not_friends a, 
+#buddypress div.generic-button.not_friends a:hover,
+#buddypress div.generic-button.is_friend.add a, 
+#buddypress div.generic-button.is_friend.add a:hover{   
+    background:url('images/ico-make-friend.png') no-repeat center center;
+    background-size:40px 40px;    
+}
+#buddypress div.generic-button.pending_friend a, 
+#buddypress div.generic-button.pending_friend a:hover,
+#buddypress div.generic-button.is_friend.add.pending_friend a, 
+#buddypress div.generic-button.is_friend.add.pending_friend a:hover{   
+    background:url('images/ico-wait-friend.png') no-repeat center center;
+    background-size:40px 40px;    
+}
+#buddypress div.generic-button.is_friend a, 
+#buddypress div.generic-button.is_friend a:hover{   
+    background:url('images/ico-unfriend.png') no-repeat center center;
+    background-size:40px 40px;    
+}
+
+#buddypress div#subnav.item-list-tabs ul li.last {   
+    margin-right: 20px;
+}
+
+#buddypress #post-mention, #buddypress #item-buttons div#post-mention{
+    display: none;
+}
+
+
+#buddypress .generic-button#send-private-message a{
+    display: block;
+    width:40px;
+    height:40px;
+    font-size: 0px;
+    border:0px;
+    background: url('images/ico-messaggio-privato.png') no-repeat center center;
+    background-size:contain;
+}
+
 /** fine Altro **/
+
+/** commenti **/
+
+.comment-container{
+    width:auto;
+}
+
+.comment-container .comment-text textarea{
+    background: #fff;
+    box-sizing: border-box;
+    color: #555;
+    font-family: inherit;
+    font-size: medium;
+    height: 2.2em;
+    line-height: 1.4;
+    padding: 6px;
+    width: 100%;
+    border: 1px inset #ccc;
+    resize: vertical;
+    overflow: auto;
+}
+
+.comment-container .comment-text textarea:focus{
+    border-color: rgba(31,179,221,.9) !important;
+    outline-color: rgba(31,179,221,.9);
+    box-shadow: 0 0 7px rgba(31, 179, 221, 0.7);
+    -moz-box-shadow: 0 0 7px rgba(31, 179, 221, 0.7);
+    -webkit-box-shadow: 0 0 7px rgba(31, 179, 221, 0.7);
+}
+
+.colonna-commenti .container-commento, .comment-container{
+    background: #e1e1e1;
+    padding: 15px;
+    margin-bottom: 10px;
+    font-family: 'Open Sans';
+    color:#000;
+}
+
+.colonna-commenti .container-commento .header-commento img {
+    border: 1px solid rgb(141, 202, 166);
+    border-radius: 0px;
+    float:left;
+    margin-right:10px;
+    width:50px;
+    height: 50px;
+}
+
+.colonna-commenti .container-commento .header-commento a {
+    text-decoration: none;
+    color:#000;
+}
+
+.colonna-commenti .container-commento .header-commento a span.nome{
+    font-size:16px;
+    font-weight: bold;
+}
+.colonna-commenti .container-commento .header-commento span.time{
+    font-size:14px;
+    display: block;
+}
+.colonna-commenti .container-commento .comment-text{
+    clear:both;
+    padding-top:10px;
+    font-size:16px;
+}
+
+#cover-image-container .commenta{
+    cursor: pointer;
+}
+
+.comment-header span{
+    font-family: 'Open Sans';
+    font-size: 14px;
+    color: #000;
+    font-weight: 600;      
+    display:block;
+    width:100%;
+}
+
+.comment-header img{
+    border-radius: 50%;
+    margin-bottom:10px;
+}
+
+/** fine commenti **/
 
 
 /** ACCROCCHI **/
+
+#buddypress .bp-reshare-img, #buddypress .rs-count,
+#buddypress .bp-reshare-img.reshared, body.activity-permalink #buddypress .bp-reshare-img.reshared{
+    display:none !important;
+}
 
 @media (max-width:767px) {
     
@@ -1533,6 +1726,54 @@ div.activity-comments {
      .mywidget #orari-apertura {       
         padding: 15px 17px 15px 25px;
     }
+    
+    .container-activity-background h3{
+        padding: 0 15px;
+    }
+    
+    #item-body, .form-mobile, .mobile-commenti, .mobile-attivita {
+        padding:0 ;
+    }
+    
+    #buddypress .mobile-attivita form#whats-new-form #whats-new-avatar{
+        float:none;
+        display:block;
+        width:50px;
+        height: 50px;
+        margin:auto;
+        clear:both;
+        margin-bottom:10px;
+    }
+    
+    #buddypress .mobile-attivita form#whats-new-form p.activity-greeting,
+    #buddypress .mobile-attivita form#whats-new-form #whats-new-content{
+        margin-left: 0px;
+        padding:0;
+    }
+    
+    .colonna-commenti .container-commento .header-commento a span.nome,
+    .colonna-commenti .container-commento .header-commento span.time{
+        font-size:13px;
+    }
+    
+    .elimina-commento {        
+        margin-right: 10px;        
+    }
+    
+    .comment-header img{       
+        display: block;
+        margin: auto;        
+    }
+    
+    .comment-header span{       
+        text-align: center;
+    }
+    
+    .comment-submit{
+        text-align: center;
+        margin-top: 40px;
+    }
+    
 }
 
 @media (max-width:869px){
@@ -1548,7 +1789,7 @@ div.activity-comments {
     }
 }
 
-@media (max-width:991px){
+@media (min-width:768) and (max-width:991px){
      #item-body {
         padding:0 15px;
     }
@@ -1960,6 +2201,38 @@ div.activity-comments {
     #settings-form input {
          width:50%;
      }
+     
+    /** commenti **/
+    .colonna-commenti .container-commento{        
+        padding: 15px 30px;        
+    }
+    
+    .form-not-mobile.absoluteForm{
+        position:absolute;
+        z-index:9999;
+        left: 0;
+        max-width: 510px;
+        margin-left: 50%;
+    }
+    
+    .hidden-xs .colonna-commenti.absoluteForm{
+        margin-top: 230px;
+    }
+    
+    .comment-header img{
+        float:left;
+        margin-right: 20px;
+    }
+    
+    .comment-header span {
+        font-size:16px;
+        padding-top: 10px;
+    }
+    
+    .comment-submit{
+        text-align: right;
+        margin-top:30px;
+    }
 }
 
 
@@ -2136,6 +2409,32 @@ div.activity-comments {
     footer .footer-2 a.to-info-page{       
         background:url('images/retina-ico-footer-tag.png') no-repeat center left;
         background-size: 8px 12px;
+    }
+    
+    #buddypress div.generic-button.not_friends a, 
+    #buddypress div.generic-button.not_friends a:hover,
+    #buddypress div.generic-button.is_friend.add a, 
+    #buddypress div.generic-button.is_friend.add a:hover{   
+        background:url('images/retina-ico-make-friend.png') no-repeat center center;
+        background-size:40px 40px;    
+    }
+    
+    #buddypress div.generic-button.pending_friend a, 
+    #buddypress div.generic-button.pending_friend a:hover,
+    #buddypress div.generic-button.is_friend.add.pending_friend a, 
+    #buddypress div.generic-button.is_friend.add.pending_friend a:hover{   
+        background:url('images/retina-ico-wait-friend.png') no-repeat center center;
+        background-size:40px 40px;    
+    }
+    #buddypress div.generic-button.is_friend a, 
+    #buddypress div.generic-button.is_friend a:hover{   
+        background:url('images/retina-ico-unfriend.png') no-repeat center center;
+        background-size:40px 40px;    
+    }
+    
+    #buddypress .generic-button#send-private-message a{       
+        background: url('images/retina-ico-messaggio-privato.png') no-repeat center center;
+        background-size:contain;
     }
     
 }

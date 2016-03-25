@@ -67,12 +67,13 @@
                     ?>
                 </a>
                 <a href="<?php echo bp_loggedin_user_domain() ?>messages/sentbox"> Inviati</a>
-                <a href="<?php echo bp_loggedin_user_domain() ?>messages/compose"> Scrivici</a>
+                <a href="<?php echo bp_loggedin_user_domain() ?>messages/compose"> Scrivi</a>
             </div>
             <!-- SOTTO MENU PER LE NOTIFICHE -->
             <div class="sub-menu" data-name="notifiche">
                 <?php
                     //ottengo le notifiche
+                    //var_dump($notifiche);
                     $notifiche = bp_notifications_get_notifications_for_user( $current_user->ID, 'string' );
                     if(count($notifiche) > 10){
                         //Se ci sono più di 10 notifiche all'11-esima visualizzo il link per vederle tutte
@@ -87,11 +88,16 @@
                             $count++;
                         }
                         echo '<a href="'.bp_loggedin_user_domain().'notifications">vedi tutte le notifiche</a>';
-                    }
+                    }                   
                     else{
-                        foreach($notifiche as $notifica){
-                            echo $notifica;                            
-                        }
+                         if(count($notifiche) == 1 && gettype($notifiche) == 'boolean' ){
+                            echo '<a>Non hai notifiche da visualizzare</a>';
+                         }
+                         else{
+                            foreach($notifiche as $notifica){
+                                echo $notifica;                            
+                            }
+                         }
                     }
                 
                 ?>
@@ -173,7 +179,7 @@
                             ?>
                         </a>
                         <a href="<?php echo bp_loggedin_user_domain() ?>messages/sentbox">- Inviati</a>
-                        <a href="<?php echo bp_loggedin_user_domain() ?>messages/compose">- Scrivici</a>
+                        <a href="<?php echo bp_loggedin_user_domain() ?>messages/compose">- Scrivi</a>
                     </div>                    
                 </div>
                 <!-- NOTIFICHE -->
