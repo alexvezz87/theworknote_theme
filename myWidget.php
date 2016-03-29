@@ -59,6 +59,9 @@ class MyWidget extends WP_Widget {
                         
         ?>
                         <h3>Mappa</h3>
+                        <?php if(isCurrentUserLoggedPage()){ ?>
+                    <a title="Aggiorna gli orari" href="<?php echo bp_loggedin_user_domain() ?>profile/edit/group/2#profile-edit-form" class="modifica-dati"></a>
+                    <?php } ?>
         <?php
                         echo '<iframe
                                 width="100%"
@@ -82,6 +85,9 @@ class MyWidget extends WP_Widget {
                 <!-- Orari di apertura -->
                 <div id="orari-apertura" class="box">
                     <div class="ico-orario"></div>
+                    <?php if(isCurrentUserLoggedPage()){ ?>
+                    <a title="Aggiorna gli orari" href="<?php echo bp_loggedin_user_domain() ?>profile/edit/group/4#profile-edit-form" class="modifica-dati"></a>
+                    <?php } ?>
         <?php        
                 if(getField(bp_displayed_user_id(), 'Lunedì') != null ||  
                         getField(bp_displayed_user_id(), 'Martedì') != null ||
@@ -110,10 +116,7 @@ class MyWidget extends WP_Widget {
                         <?php
                     }
                 }
-
-                if(bp_displayed_user_id() == get_current_user_id()){
-                    printModifyOrariApertura($current_user->ID, curPageURL());
-                }          
+                       
         ?>
                 </div>                
                 <!-- fine Orari di apertura -->                
@@ -125,6 +128,9 @@ class MyWidget extends WP_Widget {
                 <!-- Galleria immagini -->
                 <div class="foto box">
                 <h3>FOTO</h3>
+                <?php if(isCurrentUserLoggedPage()){ ?>
+                    <a title="Aggiorna la gallery" href="<?php echo bp_loggedin_user_domain() ?>profile/edit/group/3#profile-edit-form" class="modifica-dati"></a>
+                <?php } ?>
                 <ul id="info_gallery">
         <?php     
                     

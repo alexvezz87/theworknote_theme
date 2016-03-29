@@ -131,7 +131,7 @@ footer .footer-2 a.cv{
     color:#fff;
 }
 
-footer .footer-2 a{    
+footer .footer-2 a, .links a{    
     font-family: 'Oswald';
     font-size:16px;
     text-transform: uppercase;
@@ -140,7 +140,7 @@ footer .footer-2 a{
     margin-bottom:20px;
 }
 
-footer .footer-2 a.help{
+footer .footer-2 a.help, .links a.help{
     display: block;
     width:255px;
     height: 40px;
@@ -151,11 +151,11 @@ footer .footer-2 a.help{
     line-height: 36px;
 }
 
-footer .footer-2 a.migliorare {
+footer .footer-2 a.migliorare, .links a.migliorare {
     background:url('images/ico-footer-migliorare.png') no-repeat 30px;
 }
 
-footer .footer-2 a.assistenza {
+footer .footer-2 a.assistenza, .links a.assistenza  {
     background:url('images/ico-footer-assistenza.png') no-repeat 30px;
 }
 
@@ -633,6 +633,94 @@ div.triangolo {
 
 /** fine Invia CV **/
 
+
+/** Info page **/
+.info-page .first-main-container{
+    background:#067a36;
+    color:#fff;
+}
+
+.info-page .first-main-container h1{
+    padding-top:20px;
+    padding-bottom:20px;
+    margin:0;
+    text-transform: uppercase;    
+    font-size: 20px;
+    line-height: 25px;
+    font-family: 'Oswald';
+}
+
+.info-page .main-content{    
+    padding-top:40px;
+    padding-bottom:40px;
+    font-family: 'Open Sans';
+    color:#000;
+    font-size:16px;
+}
+
+/** fine Info page **/
+
+/** Help page **/
+
+.help-page{
+    background-size:cover !important;
+    padding-top:40px;
+    padding-bottom:50px;
+}
+
+.help-page h1{
+    text-align: center;
+    height: 140px;
+    padding-top:110px;
+    font-family: 'Oswald';
+    font-size:30px;
+    color:#067a36;
+    text-transform: uppercase
+}
+
+.help-page h1.migliorare{
+    background:url('images/ico-migliorare.png') no-repeat top center;    
+}
+
+.help-page h1.assistenza{
+    background:url('images/ico-assistenza.png') no-repeat top center;    
+    color:#7cd7a1;
+}
+
+.help-page .form-container {
+    background:rgba(6,122,54,0.7);
+    max-width: 800px;
+    margin:auto;
+    text-align: center;
+    padding:30px;
+}
+
+.help-page .form-container p{
+    color:#fff;
+    font-family: 'Oswald';
+    font-size:16px;
+    text-transform: uppercase;
+    
+}
+
+.help-page .form-container input, .help-page .form-container textarea{
+    width:100%;
+    color:#000;
+    border:0px;
+    margin-top:5px;
+}
+
+.help-page .form-container input[type=submit]{
+    width:auto;
+    color:#fff;
+    background:transparent;
+    border:2px solid #7bd6a0;
+    border-radius: 30px;
+    padding-left:20px;
+    padding-right: 20px;
+}
+
+/** fine Help page **/
 
 /** Registrazione **/
 
@@ -1398,6 +1486,18 @@ a.button.delete-activity:active, a.button.delete-activity:focus,
     background-size: 35px 35px;
 }
 
+.foto.box .modifica-dati, #mappa .modifica-dati{
+    float:right;
+    margin-top:-40px;
+}
+
+#orari-apertura .modifica-dati{
+    float: right;
+    margin-top: -30px;
+    margin-right: -20px;
+}
+
+
 #item-header-avatar .modifica-dati {
     position: relative;    
     margin-top: 65px;
@@ -1774,6 +1874,10 @@ a.button.delete-activity:active, a.button.delete-activity:focus,
         margin-top: 40px;
     }
     
+    .help-page .main-content .container-1024 > .col-xs-12{
+        padding:0;
+    }
+    
 }
 
 @media (max-width:869px){
@@ -1937,7 +2041,8 @@ a.button.delete-activity:active, a.button.delete-activity:focus,
         padding-top:80px;
         padding-bottom: 80px;
         background:url('images/desktop/sfondo-invia-cv.jpg') center center;
-        background-size:cover;
+        background-size:cover ;
+        background-repeat: no-repeat;
     }
     
     .invia-cv .first-main-container h1{
@@ -1950,6 +2055,27 @@ a.button.delete-activity:active, a.button.delete-activity:focus,
     }
     
     /** fine Invia CV **/
+    
+    /** Info page **/
+    
+    .info-page .first-main-container{   
+        width:100%;          
+        background-size:cover !important;
+        background-repeat: no-repeat !important;
+        height: 250px;       
+    }
+    
+    .info-page .first-main-container h1{
+        font-size:40px;
+        font-weight: bold;
+        line-height: 50px;
+        padding-top:0px;
+        padding-bottom:0px;
+        text-shadow: 2px 2px #067a36;
+    }
+    
+   /** end Info Page **/
+    
     
     /** Registrazione **/
     
@@ -2436,6 +2562,15 @@ a.button.delete-activity:active, a.button.delete-activity:focus,
         background: url('images/retina-ico-messaggio-privato.png') no-repeat center center;
         background-size:contain;
     }
+    .help-page h1.migliorare{
+        background:url('images/retina-ico-migliorare.png') no-repeat top center;    
+        background-size: 85px 84px;
+    }
+    .help-page h1.assistenza{
+        background:url('images/retina-ico-assistenza.png') no-repeat top center;    
+        background-size: 83px 85px;
+    }
+    
     
 }
 

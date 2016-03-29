@@ -27,11 +27,11 @@ $path_img = esc_url( get_template_directory_uri() ).'/images/';
             </div>
             <div class="col-xs-12 col-sm-6 footer-2">
                 <a class="cv" href="<?php echo home_url() ?>/inserisci-cv">Cerchi lavoro?<br>Lascia il tuo curriculum</a>
-                <a class="help migliorare" href="#">Aiutaci a migliorare</a>
-                <a class="help assistenza" href="#">Contatta l'assistenza</a>
+                <a class="help migliorare" href="<?php echo home_url() ?>/aiutaci-a-migliorare">Aiutaci a migliorare</a>
+                <a class="help assistenza" href="<?php echo home_url() ?>/assistenza">Contatta l'assistenza</a>
                 <div>
-                    <a class="to-info-page" href="#">Note Legali</a>
-                    <a class="to-info-page" href="#">Informativa sulla privacy</a>
+                    <a class="to-info-page" href="<?php echo home_url() ?>/note-legali">Note Legali</a>
+                    <a class="to-info-page" href="<?php echo home_url() ?>/privacy">Informativa sulla privacy</a>
                     <div class="clear"></div>
                 </div>
             </div>

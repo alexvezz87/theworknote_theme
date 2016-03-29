@@ -44,3 +44,7 @@ ULTERIORI PASSI PER IL CORRETTO FUNZIONAMENTO DEL TEMA
 - Ricordarsi di spuntare l'opzione che gli utenti possono inserire l'immagine di copertina nel proprio profilo
 
 - Aggiunta le gestione dei commenti. Aggiornare il database di conseguenza
+
+- Aggiunta di form attraverso contact-form-7: Aiutaci a migliorare e Assistenza
+
+- Create pagine: Aiutaci a migliorare e Assistenza

@@ -41,7 +41,11 @@ get_header();
             </div>
             <div class="clear"></div>
             <div class="right-sidebar">
-                <?php dynamic_sidebar('right_bar_1'); ?>                                
+                <?php dynamic_sidebar('right_bar_1'); ?>
+                <div class="links">
+                    <a class="help migliorare" href="<?php echo home_url() ?>/aiutaci-a-migliorare">Aiutaci a migliorare</a>
+                    <a class="help assistenza" href="<?php echo home_url() ?>/assistenza">Contatta l'assistenza</a>
+                </div>
             </div>
             
             
