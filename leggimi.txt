@@ -48,3 +48,5 @@ ULTERIORI PASSI PER IL CORRETTO FUNZIONAMENTO DEL TEMA
 - Aggiunta di form attraverso contact-form-7: Aiutaci a migliorare e Assistenza
 
 - Create pagine: Aiutaci a migliorare e Assistenza
+
+- Aggiornate funzionalità nel plugin Curriculum

@@ -1549,7 +1549,7 @@ a.button.delete-activity:active, a.button.delete-activity:focus,
 
 .label-data, #buddypress .standard-form input[type="text"],
 #buddypress div.item-list-tabs ul li a, #buddypress table.profile-settings tr td{
-    font-family:'Open Sans';
+    /*font-family:'Open Sans';*/
     font-size:14px;
     color:#000;
 }
@@ -2040,9 +2040,10 @@ a.button.delete-activity:active, a.button.delete-activity:focus,
         width:100%;
         padding-top:80px;
         padding-bottom: 80px;
-        background:url('images/desktop/sfondo-invia-cv.jpg') center center;
-        background-size:cover ;
-        background-repeat: no-repeat;
+        /*background:url('images/desktop/sfondo-invia-cv.jpg') center center;*/
+        background-size:cover !important;
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
     }
     
     .invia-cv .first-main-container h1{
