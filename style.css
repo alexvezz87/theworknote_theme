@@ -1459,6 +1459,7 @@ a.button.delete-activity:active, a.button.delete-activity:focus,
 .container-activity-background {
     padding-top:45px;
     background: #fff;
+    min-height: 310px;
 }
 
 .container-activity-background h3 {

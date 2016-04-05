@@ -16,6 +16,8 @@
 //BuddyPress
 global $bp;
 
+date_default_timezone_set('Europe/Rome');
+
 //imposto alcuni path
 $path_img = esc_url( get_template_directory_uri() ).'/images/';
 $path_img_mobile = $path_img.'mobile/';
