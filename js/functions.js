@@ -106,9 +106,11 @@ $( document ).ready(function() {
                 compilato++;
             }
         });
-        if($('.sidebar #motore-ricerca select').val() !== ''){
-            compilato++;
-        }      
+        $('.sidebar #motore-ricerca select').each(function(){
+            if($(this).val() !== ''){
+                compilato++;
+            }
+        });            
         
         if(compilato === 0){
             alert('Per effettuare una ricerca bisogna almeno inserire un campo');
@@ -126,9 +128,11 @@ $( document ).ready(function() {
                 compilatoM++;
             }
         });
-        if($('.ricerca-mobile #motore-ricerca select').val() !== ''){
-            compilatoM++;
-        }      
+        $('.ricerca-mobile #motore-ricerca select').each(function(){
+            if($(this).val() !== ''){
+                compilatoM++;
+            }
+        });            
         
         if(compilatoM === 0){
             alert('Per effettuare una ricerca bisogna almeno inserire un campo');
@@ -146,9 +150,12 @@ $( document ).ready(function() {
                 compilatoM++;
             }
         });
-        if($('.non-registrato #motore-ricerca select').val() !== ''){
-            compilatoM++;
-        }      
+        $('.non-registrato #motore-ricerca select').each(function(){
+            if($(this).val() !== ''){
+                compilatoM++;
+            }
+        });            
+          
         
         if(compilatoM === 0){
             alert('Per effettuare una ricerca bisogna almeno inserire un campo');
