@@ -1761,6 +1761,10 @@ a.button.delete-activity:active, a.button.delete-activity:focus,
 
 /** fine commenti **/
 
+body.not-logged-in .container-1024 #buddypress .activity.no-ajax{
+    margin-top: -315px;
+    padding-bottom: 300px;
+}
 
 /** ACCROCCHI **/
 

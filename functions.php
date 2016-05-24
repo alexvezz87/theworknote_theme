@@ -30,6 +30,8 @@ require_once 'myWidget.php';
 require_once 'class/classes.php';
 include( ABSPATH.'wp-content/plugins/buddypress/bp-templates/bp-legacy/buddypress-functions.php' );
 
+
+
 /**
  * The Work Note only works in WordPress 4.1 or later.
  */
@@ -944,5 +946,257 @@ function getCommenti($controller, $idCommented){
 }
 
 
+//inserisco un menù di gestione degli utenti
+function add_admin_theme_menu(){
+    add_menu_page('Gestione Utenti', 'Gestione Utenti', 'administrator', 'gestione_utenti', 'add_gestione_utenti', get_bloginfo('template_directory').'/images/icona_20x28.png', 10 );
+    add_submenu_page('gestione_utenti', 'Impostazioni', 'Impostazioni', 'administrator', 'impostazioni', 'add_impostazioni');
+}
+
+
+function add_gestione_utenti(){
+    include 'admin-pages/gestione_utenti.php';
+}
+
+function add_impostazioni(){
+    include 'admin-pages/impostazioni_utenti.php';
+}
+
+
+//registro il menu
+add_action('admin_menu', 'add_admin_theme_menu');
+
+
+
+function calcolaScadenzaUtenti($users){
+    //La funzione prende in pasto una lista di utenti e controlla se sono in regola
+    //Il controllo si basa sul campo registrazione (data) e il calcolo dalla giornata odierna meno il periodo
+    //quindi: data_iscrizione > oggi - periodo ==> utente scaduto
+    
+    $cImp = new ImpostazioneController();
+    $cRinn = new RinnovoController();
+    
+    //ottengo i valori dei periodi dalle impostaizoni
+    $periodoRinnovo = $cImp->getImpostazioneByNome('giorni-durata-rinnovo');
+    $periodoProva = $cImp->getImpostazioneByNome('giorni-prova-gratuita');
+    $periodoScadenza = $cImp->getImpostazioneByNome('giorni-preavviso-scadenza');
+   
+    //Il controllo diventa più complesso nel caso si debba vedere se un utente è stato rinnovato o meno
+    //Il controllo prima parte per l'utente rinnovato
+    //Se non è presente, si fa il controllo sul periodo di prova.
+    
+       
+    //creo un array di risultati
+    $result = array();
+    //che si divide in utenti con iscrizione in corso
+    $inCorso = array();
+    //e utenti con iscrizione scaduta
+    $scaduti = array();
+    //e in scadenza
+    $inScadenza = array();
+    
+    foreach($users as $u){
+        $user = new WP_User();
+        $user = $u;
+        $utente = array();
+        
+        //individuo il periodo, che è deteriminato se un utente ha rinnovato o meno
+        $periodo = $cRinn->isRinnovato($user->ID) ? $periodoRinnovo : $periodoProva;  
+        //individuo la data a cui fare riferimento per contare i periodi
+        $dataPartenza = $cRinn->isRinnovato($user->ID) ? $cRinn->getDataRinnovo($user->ID) : $user->user_registered;
+        
+        
+        $utente['ID'] = $user->ID;
+        $utente['nome'] = $user->user_firstname.' '.$user->user_lastname;
+        $utente['email'] = $user->user_email;
+        $utente['registrazione'] =  showCustomTime2($user->user_registered);
+        $utente['rinnovo'] = "non ha ancora rinnovato";
+        if($cRinn->isRinnovato($user->ID)){
+            $utente['rinnovo'] = showCustomTime2($cRinn->getDataRinnovo($user->ID));
+        }
+        
+        //calcolo il tempo              
+        $oggi=time();
+        //Giorni da sottrarre
+        $giorni=$periodo*24*60*60;
+        $datascadenza=strtotime($dataPartenza)+$giorni;
+        
+        $giorniScarto = datediff('G', date("d-m-Y",$datascadenza), date("d-m-Y",$oggi));
+        $utente['time'] = $giorniScarto;
+        
+        if($datascadenza > $oggi){
+            //in corso
+            if($giorniScarto <= $periodoScadenza){
+                //utenti in scadenza
+                array_push($inScadenza, $utente);
+            }
+            else{
+                array_push($inCorso, $utente);
+            }
+        }
+        else{
+            //scaduto
+            array_push($scaduti, $utente);
+        }
+
+       
+    }
+    $result['scaduti'] = $scaduti;
+    $result['inScadenza'] = $inScadenza;
+    $result['inCorso'] = $inCorso;
+    
+    return $result;
+}
+
+
+function printTabelleUtenti($array){
+    if(count($array) > 0){
+    
+        foreach ($array as $k => $v) {
+            if($k == 'scaduti'){
+                echo '<h3>Utenze scadute: '.count($v).'</h3>';  
+                printTabellaUtenti($v, $k);
+            }
+            else if($k == 'inScadenza'){
+                echo '<h3>Utenze in scadenza: '.count($v).'</h3>';
+                printTabellaUtenti($v, $k);
+            }
+            else{
+                echo '<h3>Utenze attive: '.count($v).'</h3>';
+                //printTabellaUtenti($v, $k);
+            }
+            
+        }
+    }
+    else{
+        echo '<p>Non ci sono utenti da visualizzare</p>';
+    }
+}
+
+
+function printTabellaUtenti($array, $tipo){
+
+    
+    $stringScadenza = " giorni alla scadenza";
+    $blocca = "";
+    $sblocca = "";
+    
+    if($tipo == 'scaduti'){
+        $stringScadenza = " giorni passati dalla scadenza";  
+        $blocca = '<input type="submit" name="blocca-utente" value="SOSPENDI UTENZA" />';
+        $sblocca = '<input type="submit" name="sblocca-utente" value="RIATTIVA UTENZA" />';
+    }    
+    
+    if(count($array) > 0){
+?>
+        <table class="table-cvs">
+            <thead>
+            <tr class="intestazione">
+                <td>Utente</td>
+                <td>Email</td>
+                <td>Registrazione</td>
+                <td>Rinnovo</td>
+                <td>Scadenza</td>
+                <td>Azione</td>
+            </tr>
+            </thead>
+            <tbody>
+<?php
+            foreach($array as $item){
+?>
+            <tr>
+                <td><?php echo $item['nome'] ?></td>
+                <td><?php echo $item['email'] ?></td>
+                <td><?php echo $item['registrazione'] ?></td>
+                <td><?php echo $item['rinnovo'] ?></td>
+                <td><?php echo $item['time'].$stringScadenza ?></td>
+                <td>
+                    <form action="<?php echo curPageURL() ?>" method="POST">
+                        <input type="hidden" name="id-utente" value="<?php echo $item['ID'] ?>" />
+                        <?php 
+                            if(isUtenteBloccato($item['ID'])){
+                                echo ' <input disabled type="submit" name="rinnova-utente" value="RINNOVA ORA" />';
+                                echo $sblocca;
+                            }
+                            else{
+                                echo ' <input type="submit" name="rinnova-utente" value="RINNOVA ORA" />';
+                                echo $blocca;
+                            }
+                        ?>
+                    </form>
+                </td>
+            </tr>
+<?php
+            }
+?>           
+            </tbody>
+        </table>
+<?php
+    }
+    else{
+        echo '<p>Non ci sono utenti da visualizzare</p>';
+    }
+    
+}
+
+
+function datediff($tipo, $partenza, $fine)
+{
+    switch ($tipo)
+    {
+        case "A" : $tipo = 365;
+        break;
+        case "M" : $tipo = (365 / 12);
+        break;
+        case "S" : $tipo = (365 / 52);
+        break;
+        case "G" : $tipo = 1;
+        break;
+    }
+    $arr_partenza = explode("-", $partenza);
+    $partenza_gg = $arr_partenza[0];
+    $partenza_mm = $arr_partenza[1];
+    $partenza_aa = $arr_partenza[2];
+    $arr_fine = explode("-", $fine);
+    $fine_gg = $arr_fine[0];
+    $fine_mm = $arr_fine[1];
+    $fine_aa = $arr_fine[2];
+    $date_diff = mktime(12, 0, 0, $fine_mm, $fine_gg, $fine_aa) - mktime(12, 0, 0, $partenza_mm, $partenza_gg, $partenza_aa);
+    $date_diff  = floor(($date_diff / 60 / 60 / 24) / $tipo);
+    return abs($date_diff);
+}
+
+
+function isUtenteBloccato($idUtente){
+    try{
+        global $wpdb;
+        $query = "SELECT user_status FROM wp_users WHERE ID = ".$idUtente;
+
+        $result = $wpdb->get_var($query);
+        if($result == 0){
+            return false;
+        }
+        return true;        
+    } catch (Exception $ex) {
+        _e($ex);
+        return false;
+    }
+}
+
+function updateUserStatus($idUtente, $status){
+    global $wpdb;
+    try{
+        $wpdb->update(
+                'wp_users',
+                array('user_status' => $status),
+                array('ID' => $idUtente),
+                array('%d'),
+                array('%d')
+            ); 
+        return true;
+    } catch (Exception $ex) {
+        _e($ex);
+        return false;
+    }
+}
 
 ?>
