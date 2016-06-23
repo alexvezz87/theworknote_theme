@@ -106,11 +106,9 @@ $( document ).ready(function() {
                 compilato++;
             }
         });
-        $('.sidebar #motore-ricerca select').each(function(){
-            if($(this).val() !== ''){
-                compilato++;
-            }
-        });            
+        if($('.sidebar #motore-ricerca select').val() !== ''){
+            compilato++;
+        }      
         
         if(compilato === 0){
             alert('Per effettuare una ricerca bisogna almeno inserire un campo');
@@ -128,11 +126,9 @@ $( document ).ready(function() {
                 compilatoM++;
             }
         });
-        $('.ricerca-mobile #motore-ricerca select').each(function(){
-            if($(this).val() !== ''){
-                compilatoM++;
-            }
-        });            
+        if($('.ricerca-mobile #motore-ricerca select').val() !== ''){
+            compilatoM++;
+        }      
         
         if(compilatoM === 0){
             alert('Per effettuare una ricerca bisogna almeno inserire un campo');
@@ -150,12 +146,9 @@ $( document ).ready(function() {
                 compilatoM++;
             }
         });
-        $('.non-registrato #motore-ricerca select').each(function(){
-            if($(this).val() !== ''){
-                compilatoM++;
-            }
-        });            
-          
+        if($('.non-registrato #motore-ricerca select').val() !== ''){
+            compilatoM++;
+        }      
         
         if(compilatoM === 0){
             alert('Per effettuare una ricerca bisogna almeno inserire un campo');
