@@ -58,10 +58,7 @@ $utenti = calcolaScadenzaUtenti($users);
     <h1>Gestione utenti</h1>
 
 <div>
-    <?php
-     
-    
-    
+    <?php     
         printTabelleUtenti($utenti);
     ?>
 </div>

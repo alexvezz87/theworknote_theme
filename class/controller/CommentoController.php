@@ -46,7 +46,7 @@ class CommentoController {
                 $commento->setIdCommentedUser($item->id_commented_user);
                 $commento->setIdCommentingUser($item->id_commenting_user);
                 $commento->setCommentDate($item->comment_date);
-                $commento->setCommentText($item->comment_text);
+                $commento->setCommentText(stripslashes($item->comment_text));
                 $commento->setCommentLikes($item->comment_likes);
 
                 array_push($commenti, $commento);

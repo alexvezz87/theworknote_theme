@@ -4,7 +4,7 @@ Theme URI: http://www.alexsoluzioniweb.it/
 Author: Alex Soluzioni Web
 Author URI: https://www.alexsoluzioniweb.it/
 Description: Tema personalizzato per l'attività The Work Note
-Version: 1.0
+Version: 1.1
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: buddypress, two-column, light
@@ -1760,11 +1760,21 @@ a.button.delete-activity:active, a.button.delete-activity:focus,
 }
 
 /** fine commenti **/
-
+body.admin .container-1024 #buddypress .activity.no-ajax,
+body.not-admin .container-1024 #buddypress .activity.no-ajax,
 body.not-logged-in .container-1024 #buddypress .activity.no-ajax{
-    margin-top: -315px;
+    margin-top: -380px;
     padding-bottom: 300px;
 }
+
+
+/** PREFERENZE **/
+
+.preferenze .deselect-all, .preferenze .deselect-all + label{
+    display:none;
+}
+
+/** fine PREFERENZE **/
 
 /** ACCROCCHI **/
 

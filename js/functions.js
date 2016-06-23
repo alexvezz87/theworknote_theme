@@ -361,6 +361,69 @@ $( document ).ready(function() {
          event.stopPropagation();
     });
     
+    
+    //PAGINA PREFERENZE
+    
+    if($('.preferenze').size() > 0){
+        
+        //select all 
+        $("input[name=select-all").click(function(){
+            //becco il padre
+            var $form = $(this).parent('div').parent('form');
+            $form.find('input.sottocategorie').attr('checked', 'true');
+            $form.find('input.sottocategorie').prop('checked', true);
+            $(this).hide();
+            $(this).siblings('label').hide();
+            $(this).siblings('input').show();
+            $(this).siblings('input.deselect-all + label').show();
+        });
+        //deselect all
+        $("input[name=deselect-all").click(function(){
+            //becco il padre
+            var $form = $(this).parent('div').parent('form');
+            $form.find('input.sottocategorie').removeAttr('checked');
+            $form.find('input.sottocategorie').prop('checked', false);
+            $(this).hide();
+            $(this).siblings('label').hide();
+            $(this).siblings('input').show();
+            $(this).siblings('input.select-all + label').show();
+        });
+                
+        //rimuovi proposto
+        $("input[name=rimuovi-proposto]").click(function(){
+            var idUtente = $(this).siblings('input[name=id-utente]').val();
+            var idUtenteProposto = $(this).siblings('input[name=id-utente-proposto]').val();
+            var $objectLi = $(this).parent('li');
+            //alert('id1: '+idUtente+' id2: '+idUtenteProposto);
+            $.ajax({
+                type:'POST',
+                dataType: 'json',
+                url: $('input[name=url]').val(),
+                data: {
+                    action : 'remove_proposto',
+                    idUtente : idUtente,
+                    idUtenteProposto: idUtenteProposto
+                },
+                success : function(data){
+                   
+                    fadeOutLi(data, $objectLi);
+                        
+                    
+                },
+                error : function(){
+                    alert('error');
+                }
+                
+            });
+        });
+        
+        function fadeOutLi(data, li){
+            if(data == true){
+                li.fadeOut();
+            }
+        }
+    }
+    
 });
 
 

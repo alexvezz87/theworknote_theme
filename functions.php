@@ -292,6 +292,25 @@ function getValueCategoriaCommerciale(){
     }
 }
 
+
+function getCategoriaByUser($userID){
+    global $wpdb;
+    //ottengo l'ID della categoria commerciale
+    $categoryID = getCategoriaCommercialeID($wpdb);
+    if($categoryID != NULL && $userID != NULL){
+        $table = 'wp_bp_xprofile_fields';
+        //ottengo il value
+        $value = getValueCategoriaByUser($userID);       
+        //effettuo la query
+        $query = "SELECT name, id FROM $table WHERE parent_id = $categoryID AND name = '".$value."'";       
+        //echo $query;
+        return $wpdb->get_results($query);
+    }
+    else{
+        return NULL;
+    }
+}
+
 function printSelectCategoriaCommerciale($categoria_select){
     
     $categorie = getValueCategoriaCommerciale();
@@ -646,7 +665,7 @@ function getField($id, $nameField){
         $query_result = "SELECT value FROM wp_bp_xprofile_data WHERE field_id = $field_id AND user_id = $id";
         //echo $query_result;
        
-        return $wpdb->get_var($query_result);
+        return stripslashes($wpdb->get_var($query_result));
         
     }
     catch(Exception $ex){
@@ -743,9 +762,13 @@ add_action( 'wp_footer', 'my_action_javascript' ); // Write our JS below here
 
 function my_action_javascript() { ?>
 	<script type="text/javascript" >
-	jQuery(document).ready(function($) {           
+	jQuery(document).ready(function($) {    
+            
             //contatore di like
-            $('.button.fav, .button.unfav').click(function(){
+            
+            
+            //se faccio tap da mobile
+            $('.button.fav, .button.unfav').on('tap', function(){
                
                 var idActivity = $(this).parent().find('input[name=activity-id]').val();                
                 var data = {
@@ -759,8 +782,7 @@ function my_action_javascript() { ?>
 		});
             });
             
-            //se faccio tap da mobile
-            $('.button.fav, .button.unfav').on('tap', function(){
+            $('.button.fav, .button.unfav').click(function(){
                
                 var idActivity = $(this).parent().find('input[name=activity-id]').val();                
                 var data = {
@@ -794,6 +816,9 @@ function my_action_callback() {
 
 	wp_die(); // this is required to terminate immediately and return a proper response
 }
+
+
+
 
 
 function updateBuddypressProvincia($idUtente, $provincia){
@@ -923,6 +948,24 @@ function my_ajax_callback(){
     }
 }
 
+add_action( 'wp_ajax_remove_proposto', 'removeUtenteProposto' );
+add_action( 'wp_ajax_nopriv_remove_proposto', 'removeUtenteProposto' );
+
+function removeUtenteProposto(){
+    if(isset($_POST['idUtente']) && isset($_POST['idUtenteProposto'])){
+        $result = false;
+        $controller = new SottocategoriaController();
+        
+        if($controller->removeProposto($_POST['idUtente'], $_POST['idUtenteProposto'])){
+            $result = true;
+        }
+        
+        echo json_encode($result);
+        wp_die();
+        
+    }
+}
+
 function getCommenti($controller, $idCommented){
     //idCommented è l'id dell'utente della pagina in cui ci sono i commenti
     $array = $controller->getCommentsByAjax($idCommented);
@@ -949,7 +992,10 @@ function getCommenti($controller, $idCommented){
 //inserisco un menù di gestione degli utenti
 function add_admin_theme_menu(){
     add_menu_page('Gestione Utenti', 'Gestione Utenti', 'administrator', 'gestione_utenti', 'add_gestione_utenti', get_bloginfo('template_directory').'/images/icona_20x28.png', 10 );
+    add_submenu_page('gestione_utenti', 'Gestione Newsletter', 'Gestione Newsletter', 'administrator', 'gestione_newsletter', 'add_newsletter');
+    add_submenu_page('gestione_utenti', 'Sottocategorie', 'Sottocategorie', 'administrator', 'gestione_sottocategorie', 'add_sottocategorie');
     add_submenu_page('gestione_utenti', 'Impostazioni', 'Impostazioni', 'administrator', 'impostazioni', 'add_impostazioni');
+    
 }
 
 
@@ -959,6 +1005,14 @@ function add_gestione_utenti(){
 
 function add_impostazioni(){
     include 'admin-pages/impostazioni_utenti.php';
+}
+
+function add_newsletter(){
+    include 'admin-pages/gestione_newsletter.php';
+}
+
+function add_sottocategorie(){
+    include 'admin-pages/gestione_sottocategorie.php';
 }
 
 
@@ -1197,6 +1251,76 @@ function updateUserStatus($idUtente, $status){
         _e($ex);
         return false;
     }
+}
+
+
+function getUpdatesUtente($parametri){
+    //La funzione interroga la tabella wp_bp_activity ed estrapola i dati 
+    global $wpdb;
+    try{
+        //ottengo tutte le attività tra aggiornamenti di stato e commenti
+        $query = "SELECT a.user_id, count(a.user_id) as attivita, d.value as categoria "
+                ."FROM wp_bp_activity a, wp_bp_xprofile_data d "
+                ."WHERE component = 'activity' "
+                ."AND date_recorded BETWEEN '".$parametri[0]."' AND '".$parametri[1]."' "
+                ."AND d.user_id = a.user_id "
+                ."AND d.field_id = 15 "
+                ."GROUP BY user_id "
+                ."ORDER BY categoria ASC, attivita DESC";
+        //echo $query;
+        
+        $result = $wpdb->get_results($query);
+        
+        return $result;
+    } catch (Exception $ex) {
+        _e($ex);
+        return false;
+    }
+    
+}
+
+
+function getEmailsFromCategoria($categoria){
+    //La funzione data una categoria, restituisce un array di email di utenti appartenenti a quella categoria
+    global $wpdb;
+    try{
+        $query = "SELECT user_id FROM wp_bp_xprofile_data WHERE value = '".$categoria."'";
+        //echo $query;
+        $idUtenti = $wpdb->get_results($query);
+        
+        $result = array();
+        foreach($idUtenti as $id){            
+            $user_info = get_userdata($id->user_id);
+            array_push($result, $user_info->user_email);
+        }
+        
+        return $result;
+        
+    } catch (Exception $ex) {
+        _e($ex);
+        return false;
+    }
+    
+}
+
+
+add_action( 'wp_ajax_my_ajax_get_emails', 'my_ajax_get_emails' );
+add_action( 'wp_ajax_nopriv_my_ajax_get_emails', 'my_ajax_get_emails' );
+function my_ajax_get_emails(){    
+    if(isset($_POST['categoria'])){
+        //ottengo le mail dalle catogorie
+        $emails = getEmailsFromCategoria($_POST['categoria']);
+        
+        echo json_encode($emails);
+        wp_die();        
+    }
+    
+}
+
+add_action( 'admin_enqueue_scripts', 'register_theme_admin_style' );
+function register_theme_admin_style() {
+    wp_register_style('admin-style', get_bloginfo('template_directory').'/css/style_admin_pages.css' );
+    wp_enqueue_style('admin-style');
 }
 
 ?>
