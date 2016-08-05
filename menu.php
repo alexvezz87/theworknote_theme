@@ -124,6 +124,7 @@
                 <a href="<?php echo bp_loggedin_user_domain() ?>profile/public">Visualizza profilo</a>
                 <a href="<?php echo bp_loggedin_user_domain() ?>profile/change-avatar">Cambia immagine profilo</a>
                 <a href="<?php echo bp_loggedin_user_domain() ?>profile/change-cover-image/">Cambia immagine di copertina</a>
+                <a href="<?php echo home_url() ?>/preferenze">Modifca APPERTENZA/PREFERENZE</a>
                 <a href="<?php echo bp_loggedin_user_domain() ?>settings">Impostazioni</a>
                 <a href="<?php echo bp_loggedin_user_domain() ?>settings/notifications">Notifiche</a>
                 <a href="<?php echo wp_logout_url() ?>">Logout</a>
@@ -233,6 +234,7 @@
                         <a href="<?php echo bp_loggedin_user_domain() ?>profile/public">- Visualizza profilo</a>
                         <a href="<?php echo bp_loggedin_user_domain() ?>profile/change-avatar">- Cambia immagine</a>
                         <a href="<?php echo bp_loggedin_user_domain() ?>profile/change-cover-image/">- Cambia copertina</a>
+                        <a href="<?php echo home_url() ?>/preferenze">- Modifca APPERTENZA/PREFERENZE</a>
                         <a href="<?php echo bp_loggedin_user_domain() ?>settings">- Impostazioni</a>
                         <a href="<?php echo bp_loggedin_user_domain() ?>settings/notifications">- Notifiche</a>
                         <a href="<?php echo wp_logout_url() ?>">- Logout</a>

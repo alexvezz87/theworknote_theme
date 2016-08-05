@@ -13,9 +13,11 @@
  */
 class SottocategoriaView {
     private $controller;
+    private $impostazioni;
     
     function __construct() {
         $this->controller = new SottocategoriaController();
+        $this->impostazioni = new ImpostazioneController();
     }
     
     function getController() {
@@ -165,8 +167,9 @@ class SottocategoriaView {
         $titolo = "";
         if($tipo == 'a'){
             $titolo = 'Appartenenza';
-            $sottocategoria = 'appartenenza';
-            $categorie = getCategoriaByUser($idUtente);
+            $sottocategoria = 'appartenenza';            
+            //$categorie = getCategoriaByUser($idUtente);
+            $categorie = getValueCategoriaCommerciale();
         }
         else{
             $titolo = 'Preferenze';
@@ -174,9 +177,8 @@ class SottocategoriaView {
             $categorie = getValueCategoriaCommerciale();
         }
         
-    ?>    
-        <form action="<?php echo curPageURL()?>" name="<?php echo $tipo ?>" method="POST">
-        <h2><?php echo $titolo ?></h2>
+    ?>
+        <form action="<?php echo curPageURL()?>" name="<?php echo $tipo ?>" method="POST">        
         <input type="hidden" name="id-utente" value="<?php echo get_current_user_id() ?>">
     <?php
         foreach($categorie as $categoria){
@@ -185,8 +187,12 @@ class SottocategoriaView {
             
             if(count($sub) > 0){
     ?>
-                <h3><?php echo stripslashes($categoria->name) ?></h3>
-                <ul>
+                <div class="container-categoria">
+                <div class="col-xs-12 col-sm-6 titolo-categoria">                   
+                    <h3><?php echo stripslashes($categoria->name) ?></h3>                    
+                </div>
+                <div class="col-xs-12 col-sm-6 categorie-list">
+                    <ul>
     <?php
                 foreach ($sub as $i){
                     $s = new Sottocategoria();
@@ -196,20 +202,25 @@ class SottocategoriaView {
                         $checked = "checked";
                     }
     ?>
-                    <li><input class="sottocategorie" type="checkbox" name="<?php echo $sottocategoria ?>[]" value="<?php echo $s->getID() ?>" <?php echo $checked ?> /><label><?php echo $s->getNome() ?></label></li>
+                    <li><label class="checkbox-inline"><input class="sottocategorie" type="checkbox" name="<?php echo $sottocategoria ?>[]" value="<?php echo $s->getID() ?>" <?php echo $checked ?> /><?php echo $s->getNome() ?></label></li>
     <?php            
                 }
     ?>                
-                </ul>
+                    </ul>
+                </div>
+                <div class="clear separatore"></div>
+                </div>
     <?php
             }
         }
     ?>
-        <div>
+        <div class="col-xs-12 col-sm-6 col-sm-push-6">            
             <input class="select-all" type="checkbox" name="select-all" value="" /><label>Seleziona tutti</label>
             <input class="deselect-all" type="checkbox" name="deselect-all" value="" /><label>Deseleziona tutti</label>
         </div>
-        <input type="submit" name="salva-<?php echo $sottocategoria ?>" value="AGGIORNA <?php echo strtoupper($titolo) ?>" />
+        <div class="clear">
+            <input type="submit" name="salva-<?php echo $sottocategoria ?>" value="AGGIORNA <?php echo strtoupper($titolo) ?>" />
+        </div>
         </form>
     <?php
     }
@@ -242,34 +253,172 @@ class SottocategoriaView {
      * Funzione che stampa a video gli utenti che fanno match con un determinato utente passato come parametro
      * @param type $idUtente
      */
-    public function printMatching($idUtente){
+    public function printMatching($idUtente, $mode = 4, $widget = false){
+                
+        //mode = 1 --> carosello da 1
+        //mode = 2 --> carosello da 2
+        //mode = 4 --> carosello da 4
     
         $matched = $this->controller->matchingByUtente($idUtente);
         
+        //misure di un singolo match (widht + margin-right)
+        $singleElement = 175+45;
+        //$maxElement = 9;
+        
+        //calcolo lunghezza ul
+        $ulWidth = count($matched) * $singleElement;
+        
+        $ulContainerWidht = $mode * $singleElement;
+       
+        
+        $widthCarusel =  ($ulContainerWidht + 60).'px';
+        
+        if($mode == 4){
+            $widthCarusel = '100%';
+        }
+        
         if(count($matched) > 0){
+            
+            if($widget == true){
+    ?>    
+            <div class="fascia-verde banner">
+                <div class="col-xs-12">
+                    <h3>Professionisti o attività consigliati</h3>
+                </div>
+            </div>
+    <?php
+            
+        }
+            
             echo '<input type="hidden" name="url" value="'.get_home_url().'/wp-admin/admin-ajax.php" />';
-            echo '<ul class="matching">';
+            echo '<input type="hidden" name="liWidth" value="'.$singleElement.'" />';
+            echo '<input type="hidden" name="ulWidth" value="'.$ulContainerWidht.'" />';
+                        
+            echo '<input type="hidden" name="isWidget" value="'.$mode.'" />';
+           
+            
+            echo '<div class="pagina-matching carusel" style="width:'.$widthCarusel.'">';
+            echo '  <div class="arrow avanti"></div>';
+            echo '  <div class="container-ul" style="width:'.$ulContainerWidht.'px">';
+            
+            echo '      <ul class="matching" style="width:'.$ulWidth.'px">';
             foreach($matched as $m){
                 //url dell'immagine dell'avatar
                 $img = bp_core_fetch_avatar(  array( 'item_id' => $m, 'html' => false ) );
                 $url = bp_core_get_userlink($m, false, true);
                 $user_info = get_userdata($m);
-                echo '<li>';
-                echo '<a href="'.$url.'" target="_blank">';
-                echo '<img class="avatar-50" src="'.$img.'" />';
-                echo '<span>'.$user_info->display_name.'</span>';
-                echo '</a>';
-                echo '<input type="hidden" name="id-utente" value="'.$idUtente.'" />';
-                echo '<input type="hidden" name="id-utente-proposto" value="'.$m.'" />';
-                echo '<input class="rimuovi-proposto" name="rimuovi-proposto" type="button" value="RIMUOVI" />';
-                echo '</li>';
+                $categoria = getValueCategoriaByUser($user_info->ID);
+                
+                echo '      <li>';
+                echo '          <a href="'.$url.'" target="_blank">';
+                echo '              <img class="avatar-50" src="'.$img.'" />';
+                echo '          </a>';                
+                echo '          <a class="testo" href="'.$url.'" target="_blank">';
+                echo '              <span class="nome-utente">'.$user_info->display_name.'</span><br>';
+                echo '              <span class="categoria">'.$categoria.'</span>';
+                echo '          </a>';               
+                echo '          <div class="buttons">';
+                echo '              <form action="'.$url.'" method="POST">';
+                echo '                  <input type="hidden" name="id-utente" value="'.$idUtente.'" />';
+                echo '                  <input type="hidden" name="id-utente-proposto" value="'.$m.'" />';
+                echo '                  <input style="float:left" class="button visualizza" type="submit" value="VISUALIZZA" />';
+                echo '                  <input style="float:right" class="button rimuovi-proposto" name="rimuovi-proposto" type="button" value="RIMUOVI" />';
+                echo '              </form>';
+                echo '          </div>';
+                echo '      </li>';
             }
             
-            echo '</ul>';
+            echo '      </ul>';
+            echo '  </div>';
+            echo '  <div class="arrow indietro"></div>';        
+            echo '  <div class="clear"></div>';
+            echo '</div>';
         }
         else{
-            echo '<p>nessun match trovato :(</p>';
+            if($mode == 4){
+                echo '<p class="no-match">PER ORA NESSUN UTENTE CORRISPONDE ALLE TUE PREFERENZE</p>';
+            }
+            else{
+        ?>
+            <div class="banner-preferenze">
+                <h3>
+                    Vuoi avere più contatti tra clienti e fornitori?
+                </h3>
+                <form action="<?php echo home_url() ?>/preferenze" method="POST">
+                    <input type="submit" value="Scopri come" />
+                </form>
+            </div>
+        <?php
+            }
+        }
+        
+       
+        
+        
+        
+        /*
+        //stampa fittizia
+        echo '<div class="pagina-matching carusel">';
+        echo '<div class="arrow avanti"><<</div>';
+        echo '<div class="container-ul" style="width:'.$ulContainerWidht.'px">';
+        echo '<ul class="matching" style="width:'.$ulWidth.'px">';
+        for($i=0; $i < $maxElement; $i++){
+            echo '<li>';
+            echo '<a href="#" target="_blank">';
+            echo '<img class="avatar-50" src="'.get_template_directory_uri().'/images/avatar-fake.png" />';
+            echo '</a>';
+            echo '<a class="testo" href="#" target="_blank">';
+            echo '<span class="nome-utente">Utente con il nome lungo lungo '.$i.'</span><br>';
+            echo '<span class="categoria">Casalinghi, Giochi, Regalistica</span>';
+            echo '</a>';
+            echo '<input type="hidden" name="id-utente" value="Utente-'.$i.'" />';
+            echo '<input type="hidden" name="id-utente-proposto" value="utente-'.$i.'" />';
+            echo '<div class="buttons">';
+            echo '<form action="'.$url.'" method="POST">';
+            echo '<input class="button visualizza" type="submit" value="VISUALIZZA" />';
+            echo '<input class="button rimuovi-proposto" name="rimuovi-proposto" type="button" value="RIMUOVI" />';
+            echo '</form>';
+            echo '</div>';
+            echo '</li>';
+        }
+        echo '</ul>';
+        echo '</div>';
+        echo '<div class="arrow indietro">>></div>';        
+        echo '<div class="clear"></div>';
+        echo '</div>';
+        */
+        
+    }
+    
+    
+    public function printWidgetMatching($idUtente, $mode){
+        
+        //controllo se nelle impostazioni il matching è attivo
+        if(intval($this->impostazioni->getImpostazioneByNome('attiva-matching')) == 1){
+        
+            if($this->controller->isUtenteCompleto($idUtente)){
+                //l'utente ha compilato le tabelle
+    ?>
+
+    <?php           
+                $this->printMatching($idUtente, $mode, true);
+            }
+            else{
+                //l'utente non ha compilato le tabelle
+    ?>
+                <div class="banner-preferenze">
+                    <h3>
+                        Vuoi avere più contatti tra clienti e fornitori?
+                    </h3>
+                    <form action="<?php echo home_url() ?>/preferenze" method="POST">
+                        <input type="submit" value="Scopri come" />
+                    </form>
+                </div>
+    <?php
+
+            }
         }
     }
+    
 
 }

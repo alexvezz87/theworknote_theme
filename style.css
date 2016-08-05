@@ -864,7 +864,42 @@ div.triangolo {
     display:none;
 }
 
+#visible-boxed {
+    display: none;
+}
+
 /** fine Registrazione **/
+
+
+/** RICERCA **/
+
+.ricerca {
+    min-height: 61vh;
+}
+
+.ricerca .gsc-control-cse.gsc-control-cse-it{
+    margin-top:10px;
+}
+
+.ricerca .gsc-input-box {    
+    height: 50px;
+}
+
+.ricerca td.gsc-input #gsc-i-id1{
+    background:#fff !important;
+    height: 40px !important;
+}
+
+.ricerca input.gsc-search-button, 
+.ricerca input.gsc-search-button:hover, 
+.ricerca input.gsc-search-button:focus{
+    height:50px;
+    background: url('images/ico-cerca-sidebar.png') center center;
+    background-repeat: no-repeat;
+}
+
+
+/** fine RICERCA **/
 
 
 /** Home **/
@@ -1774,8 +1809,217 @@ body.not-logged-in .container-1024 #buddypress .activity.no-ajax{
     display:none;
 }
 
-/** fine PREFERENZE **/
 
+.fascia-verde{
+    background: #077b36;
+    color:#fff;
+    font-family: 'Oswald';
+    text-transform: uppercase;
+    text-align: center;
+    padding-top:15px;
+    padding-bottom: 15px;
+}
+
+.fascia-verde h3{
+    padding:0;
+    margin:0;
+}
+
+.fascia-verde.banner{
+    height: 40px;
+    padding:0;
+}
+
+.fascia-verde.banner h3{
+    font-size:15px;
+    line-height: 40px;
+    
+}
+
+.preferenze .fascia-verde-chiaro{
+    background: #30ad63;
+}
+
+.preferenze .separatore{
+    height: 1px;
+    background: #077b36;
+    width:100%;
+    clear:both;
+    margin-bottom: 10px;
+}
+
+.preferenze .categorie-list{
+    margin-bottom:30px;
+   
+}
+
+.preferenze .categorie-list li label{
+    font-weight: 500;
+    padding-left: 10px;
+}
+
+.preferenze .titolo-categoria, .preferenze .categorie-list{
+    padding-top:20px;
+    font-family: 'Oswald';
+}
+.preferenze .titolo-categoria h3{
+    text-transform: uppercase;
+    padding-left:50%;
+    font-size:16px;
+        
+}
+
+.preferenze .container-preferenze{
+    padding-bottom:40px;
+}
+
+.preferenze .no-match{
+    font-family:'Oswald';
+    color: #fff;
+    font-size:16px;
+    padding-top:50px;
+    padding-bottom:50px;
+}
+
+/** PAGINA MATCHING **/
+.pagina-matching{
+    margin:auto;
+      
+   
+}
+
+.pagina-matching .arrow {
+    float:left;
+    width:15px;
+    height:38px;    
+    margin-top:45px;
+    cursor:pointer;
+}
+
+.pagina-matching .arrow.indietro{
+    background:url('images/succ.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.pagina-matching .arrow.avanti{
+    background:url('images/prev.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#buddypress ul.item-list li .pagina-matching .arrow.avanti{
+    
+}
+
+.pagina-matching .container-ul{
+    width:90%;
+    margin-left:2.5%;
+    margin-right:2.5%;
+    overflow-x:hidden;
+    padding-top:15px;
+    float:left;
+    
+}
+
+.pagina-matching ul {
+   height:110px;
+   margin-left:0;
+}
+
+.matching li, #buddypress ul.item-list li .matching li{
+    float:left;
+    width:175px;
+    margin-right:22.5px;
+    margin-left:22.5px;
+    background: transparent;
+}
+
+.matching li a, #buddypress ul.item-list li .matching li a{
+    float:left;   
+}
+
+.matching li a.testo, #buddypress ul.item-list li .matching li a.testo{    
+    word-wrap:break-word;
+    width:100px;
+    margin-left:20px;
+}
+
+.matching li a span {
+    
+}
+
+.matching li .buttons, #buddypress ul.item-list li .matching li .buttons{
+    padding-top:15px;
+    margin-bottom:10px;
+    clear:both;
+}
+
+.matching a {
+    color:#000;
+    text-decoration: none;
+}
+
+.matching span.nome-utente, .matching span.categoria{
+    font-family: Oswald;
+}
+.matching span.nome-utente{    
+    text-transform: uppercase;
+}
+
+.matching span.categoria{
+    font-weight:100;
+}
+
+.matching .buttons form, #buddypress ul.item-list li .matching .buttons form{
+    width: 75%;
+    margin: auto;
+    text-align: center;
+}
+
+.matching input.button, #buddypress ul.item-list li .matching input.button{
+    width:60px;
+    height: 20px;    
+    font-size:10px;
+    padding:0px;
+}
+
+
+    
+
+/** end PAGINA MATCHING **/
+
+.banner-preferenze{
+    height: 130px;
+    width: 100%;
+    background: #7CD6A0;
+    text-align: center;
+    padding-top:25px;
+    padding-left:10px;
+    padding-right: 10px;
+    margin-bottom:25px;
+}
+
+.banner-preferenze h3 {
+    font-family: 'Oswald';
+    text-transform: uppercase;
+    color:#077C38;
+    font-weight: bold;
+}
+
+.banner-preferenze input, .banner-preferenze input:hover {
+    width:100px;
+    height: 25px;
+    padding:0px;
+    margin:0px;
+    font-size:0.9em;
+}
+
+#buddypress ul.item-list li.li-preferenze {
+    background: transparent;
+}
+
+/** fine PREFERENZE **/
 /** ACCROCCHI **/
 
 #buddypress .bp-reshare-img, #buddypress .rs-count,

@@ -136,6 +136,25 @@ class SottocategoriaUtenteDAO {
             return false;
         }
     }
+    
+    /**
+     * LA funzione controlla se un utente è presente nella tabella
+     * @param type $idUtente
+     * @return boolean
+     */
+    public function isUtenteInTabella($idUtente){
+        try{
+            $query = "SELECT ID FROM ".$this->table." WHERE id_utente = ".$idUtente;
+            $result = $this->wpdb->get_results($query);
+            if($result == null){
+                return false;
+            }
+            return true;   
+        } catch (Exception $ex) {
+            _e($ex);
+            return false;
+        }
+    }
             
 
 }

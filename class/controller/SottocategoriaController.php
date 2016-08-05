@@ -215,7 +215,9 @@ class SottocategoriaController {
                       
             if(count($users) > 0){
                 foreach($users as $user){
-                    array_push($utenti, $user->id_utente);
+                    if($user->id_utente != $idUtente){
+                        array_push($utenti, $user->id_utente);
+                    }
                 }
             }
         }
@@ -242,7 +244,10 @@ class SottocategoriaController {
             //scremo
             $result = $this->removeElementsFromArray($result, $rimossi);            
         }
-       
+        
+        //mischio gli elementi dell'array in modo random
+        shuffle($result);
+        
         return $result;        
     }
     
@@ -298,6 +303,18 @@ class SottocategoriaController {
         }
         
         return $utenti;
+    }
+    
+    /**
+     * Funzione che indica se l'utente ha compilato entrambe le tabelle (preferite e appartenenza)
+     * @param type $idUtente
+     * @return boolean
+     */
+    public function isUtenteCompleto($idUtente){        
+        if($this->appartenenzaDAO->isUtenteInTabella($idUtente) == true && $this->preferiteDAO->isUtenteInTabella($idUtente) == true){
+            return true;
+        }
+        return false;
     }
 
 }

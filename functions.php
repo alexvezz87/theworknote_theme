@@ -28,7 +28,10 @@
 
 require_once 'myWidget.php';
 require_once 'class/classes.php';
+require_once 'widget_matching.php';
+
 include( ABSPATH.'wp-content/plugins/buddypress/bp-templates/bp-legacy/buddypress-functions.php' );
+
 
 
 
@@ -129,6 +132,7 @@ add_theme_support( 'buddypress' );
 //ADD WIDGET
 function myplugin_register_widgets() {
 	register_widget( 'MyWidget' );
+        register_widget( 'Matching' );
 }
 
 add_action( 'widgets_init', 'myplugin_register_widgets' );
@@ -1322,5 +1326,42 @@ function register_theme_admin_style() {
     wp_register_style('admin-style', get_bloginfo('template_directory').'/css/style_admin_pages.css' );
     wp_enqueue_style('admin-style');
 }
+
+
+function printRemarketingGoogle($nomeUtente, $categoria){
+    
+?>
+     
+    <!-- Google Code per il tag di remarketing -->
+    <!--------------------------------------------------
+    I tag di remarketing possono non essere associati a informazioni di identificazione personale o inseriti in pagine relative a categorie sensibili. Ulteriori informazioni e istruzioni su come impostare il tag sono disponibili alla pagina: http://google.com/ads/remarketingsetup
+    --------------------------------------------------->
+    <script type="text/javascript">
+        var google_tag_params = {
+        dynx_itemid: "<?php echo $nomeUtente ?>",
+        dynx_itemid2: "<?php echo $categoria ?>",
+        dynx_pagetype: "Members",
+        dynx_totalvalue: 30
+        };
+    </script>
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        var google_conversion_id = 944518337;
+        var google_custom_params = window.google_tag_params;
+        var google_remarketing_only = true;
+        /* ]]> */
+    </script>
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+        <div style="display:inline;">
+        <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/944518337/?value=0&amp;guid=ON&amp;script=0"/>
+        </div>
+    </noscript>
+        
+<?php        
+    
+}
+
 
 ?>

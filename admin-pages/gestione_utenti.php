@@ -6,7 +6,9 @@
 $impController = new ImpostazioneController();
 
 $args = array(
-    'role' => 'subscriber'
+    'role' => 'subscriber',
+    'orderby'      => 'registered',
+    'order'        => 'ASC',
 );
 
 $users = get_users($args);

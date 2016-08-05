@@ -364,66 +364,124 @@ $( document ).ready(function() {
     
     //PAGINA PREFERENZE
     
-    if($('.preferenze').size() > 0){
+    
         
         //select all 
-        $("input[name=select-all").click(function(){
-            //becco il padre
-            var $form = $(this).parent('div').parent('form');
-            $form.find('input.sottocategorie').attr('checked', 'true');
-            $form.find('input.sottocategorie').prop('checked', true);
-            $(this).hide();
-            $(this).siblings('label').hide();
-            $(this).siblings('input').show();
-            $(this).siblings('input.deselect-all + label').show();
-        });
-        //deselect all
-        $("input[name=deselect-all").click(function(){
-            //becco il padre
-            var $form = $(this).parent('div').parent('form');
-            $form.find('input.sottocategorie').removeAttr('checked');
-            $form.find('input.sottocategorie').prop('checked', false);
-            $(this).hide();
-            $(this).siblings('label').hide();
-            $(this).siblings('input').show();
-            $(this).siblings('input.select-all + label').show();
-        });
-                
-        //rimuovi proposto
-        $("input[name=rimuovi-proposto]").click(function(){
-            var idUtente = $(this).siblings('input[name=id-utente]').val();
-            var idUtenteProposto = $(this).siblings('input[name=id-utente-proposto]').val();
-            var $objectLi = $(this).parent('li');
-            //alert('id1: '+idUtente+' id2: '+idUtenteProposto);
-            $.ajax({
-                type:'POST',
-                dataType: 'json',
-                url: $('input[name=url]').val(),
-                data: {
-                    action : 'remove_proposto',
-                    idUtente : idUtente,
-                    idUtenteProposto: idUtenteProposto
-                },
-                success : function(data){
-                   
-                    fadeOutLi(data, $objectLi);
-                        
-                    
-                },
-                error : function(){
-                    alert('error');
-                }
-                
-            });
-        });
+    $("input[name=select-all]").click(function(){
+        //becco il padre
+        var $form = $(this).parent('div').parent('form');
+        $form.find('input.sottocategorie').attr('checked', 'true');
+        $form.find('input.sottocategorie').prop('checked', true);
+        $(this).hide();
+        $(this).siblings('label').hide();
+        $(this).siblings('input').show();
+        $(this).siblings('input.deselect-all + label').show();
+    });
+    //deselect all
+    $("input[name=deselect-all]").click(function(){
+        //becco il padre
+        var $form = $(this).parent('div').parent('form');
+        $form.find('input.sottocategorie').removeAttr('checked');
+        $form.find('input.sottocategorie').prop('checked', false);
+        $(this).hide();
+        $(this).siblings('label').hide();
+        $(this).siblings('input').show();
+        $(this).siblings('input.select-all + label').show();
+    });
+
+    //rimuovi proposto
+    $("input[name=rimuovi-proposto]").click(function(){       
+       
+        var idUtente = $(this).siblings('input[name=id-utente]').val();
+        var idUtenteProposto = $(this).siblings('input[name=id-utente-proposto]').val();
+        var $objectLi = $(this).parent('form').parent('div.buttons').parent('li');
+        var $objectUl = $objectLi.parent('ul.matching');
+        var liWidth = $objectUl.parent('.container-ul').parent('.carusel').siblings('input[name=liWidth]');
         
-        function fadeOutLi(data, li){
-            if(data == true){
-                li.fadeOut();
+        //alert('id1: '+idUtente+' id2: '+idUtenteProposto);
+        $.ajax({
+            type:'POST',
+            dataType: 'json',
+            url: $('input[name=url]').val(),
+            data: {
+                action : 'remove_proposto',
+                idUtente : idUtente,
+                idUtenteProposto: idUtenteProposto
+            },
+            success : function(data){
+                fadeOutLi(data, $objectLi, $objectUl, liWidth);
+            },
+            error : function(){
+                alert('error');
+            }
+
+        });
+    });
+
+    function fadeOutLi(data, li, ul, liWidth){
+        if(data == true){
+            li.remove();
+                     
+            var ulWidth = ul.css('width').replace('px', '');
+            
+            ulWidth  = ulWidth - liWidth.val();            
+            ul.css('width', ulWidth+'px');
+            ul.css('margin-left', '0px');
+            
+            if(ul.find('li').size() == 0){
+                //se non ci sono più elementi se sono nel caso del widget, elimino al cosa
+                if( liWidth.siblings('input[name=isWidget]').size()> 0){
+                    liWidth.siblings('.pagina-matching.carusel').remove();
+                    liWidth.siblings('.banner').remove();
+                }
+                else{
+                    liWidth.siblings('.pagina-matching.carusel').html('<p class="no-match">NESSUN UTENTE CORRISPONDE ALLE TUE PREFERENZE</p>');  
+                }
             }
         }
     }
     
+    
+    //REGISTRAZIONE
+    if($('.registrazione #registration-complete').size() > 0){
+        $('#visible-boxed').show();
+    }
+    
+    
+    //MATCHING
+    
+    if($('.pagina-matching.carusel').size() > 0){
+        $('.arrow.indietro, .arrow.avanti').click(function(){
+            
+            var carusel = $(this).parent('.carusel');
+            var matching = $(this).siblings('.container-ul').find('.matching');
+            
+            var liWidth = carusel.siblings('input[name=liWidth]').val();
+            var ulWidthOr = carusel.siblings('input[name=ulWidth]').val();
+            
+            var margin = matching.css('margin-left').replace('px', '');
+            var ulWidth = matching.css('width').replace('px', '');
+           
+            //indietro
+            if($(this).hasClass('indietro')){
+                if(parseInt(ulWidth) + parseInt(margin) > ulWidthOr){
+                    matching.stop().animate({
+                        marginLeft: '-='+liWidth+'px'
+                    }, 500);
+                }
+            }
+            
+            //avanti
+            if($(this).hasClass('avanti')){
+                if(margin < 0){
+                    $(this).siblings('.container-ul').find('.matching').stop().animate({
+                        marginLeft: '+='+liWidth+'px'
+                    }, 500);
+                }
+            }
+            
+        });        
+    }
 });
 
 
