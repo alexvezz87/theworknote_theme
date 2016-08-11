@@ -188,11 +188,11 @@ class SottocategoriaView {
             if(count($sub) > 0){
     ?>
                 <div class="container-categoria">
-                <div class="col-xs-12 col-sm-6 titolo-categoria">                   
-                    <h3><?php echo stripslashes($categoria->name) ?></h3>                    
-                </div>
-                <div class="col-xs-12 col-sm-6 categorie-list">
-                    <ul>
+                    <div class="col-xs-12 col-sm-6 titolo-categoria">                   
+                        <h3><?php echo stripslashes($categoria->name) ?></h3>                    
+                    </div>
+                    <div class="col-xs-12 col-sm-6 categorie-list">
+                        <ul>
     <?php
                 foreach ($sub as $i){
                     $s = new Sottocategoria();
@@ -202,22 +202,24 @@ class SottocategoriaView {
                         $checked = "checked";
                     }
     ?>
-                    <li><label class="checkbox-inline"><input class="sottocategorie" type="checkbox" name="<?php echo $sottocategoria ?>[]" value="<?php echo $s->getID() ?>" <?php echo $checked ?> /><?php echo $s->getNome() ?></label></li>
+                        <li><label class="checkbox-inline"><input class="sottocategorie" type="checkbox" name="<?php echo $sottocategoria ?>[]" value="<?php echo $s->getID() ?>" <?php echo $checked ?> /><?php echo $s->getNome() ?></label></li>
     <?php            
                 }
     ?>                
-                    </ul>
-                </div>
-                <div class="clear separatore"></div>
+                        </ul>
+                    </div>
+                    <div class="clear separatore"></div>
                 </div>
     <?php
             }
         }
     ?>
+        <!--
         <div class="col-xs-12 col-sm-6 col-sm-push-6">            
             <input class="select-all" type="checkbox" name="select-all" value="" /><label>Seleziona tutti</label>
             <input class="deselect-all" type="checkbox" name="deselect-all" value="" /><label>Deseleziona tutti</label>
         </div>
+        -->
         <div class="clear">
             <input type="submit" name="salva-<?php echo $sottocategoria ?>" value="AGGIORNA <?php echo strtoupper($titolo) ?>" />
         </div>

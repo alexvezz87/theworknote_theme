@@ -1881,6 +1881,18 @@ body.not-logged-in .container-1024 #buddypress .activity.no-ajax{
     padding-bottom:50px;
 }
 
+
+.preferenze .container-descrizione{
+    
+    padding-top:25px;
+    padding-bottom:25px;
+}
+
+.preferenze .container-descrizione .container-1024{
+    font-size:1.5em;
+      
+}
+
 /** PAGINA MATCHING **/
 .pagina-matching{
     margin:auto;

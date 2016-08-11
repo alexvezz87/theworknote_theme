@@ -22,7 +22,28 @@ $printer->listenerSottocategorie();
     
     
     <div class="main-content">
-    
+    <div class="fascia-verde">
+        <div class="container-1024">
+            <div class="col-xs-12">
+                <h3>AIUTACI A CONNETTERTI A NUOVI CLIENTI</h3>
+            </div>
+            <div class="clear"></div>         
+        </div>
+    </div>   
+    <div class="container-descrizione">
+        <div class="container-1024">
+
+            <?php if ( have_posts() ) : ?>
+                <?php while ( have_posts() ) : the_post(); ?>		
+                    <?php the_content(); ?>  
+                <?php endwhile; ?>
+
+            <?php endif; ?>
+
+        </div>
+        <div class="clear"></div> 
+    </div>    
+        
     <?php if($controller->isUtenteCompleto($idUtente)){ ?>    
         <div class="fascia-verde">
             <div class="container-1024">

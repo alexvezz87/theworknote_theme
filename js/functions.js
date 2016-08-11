@@ -363,8 +363,6 @@ $( document ).ready(function() {
     
     
     //PAGINA PREFERENZE
-    
-    
         
         //select all 
     $("input[name=select-all]").click(function(){
@@ -482,6 +480,27 @@ $( document ).ready(function() {
             
         });        
     }
+    
+    //SELEZIONA AL MASSIMO 10 PERFERENZE
+    $('input.sottocategorie').click(function(){
+        //ho cliccato sull'input, ora controllo quante sono le scelte effettuate
+        //setto il counter a 0
+        //var counter = 0;
+        //ottengo il padre
+        var form = $(this).parent('label').parent('li').parent('ul').parent('.categorie-list').parent('.container-categoria').parent('form');
+        //trovo tutti gli input
+        var counter = form.find('input.sottocategorie:checked').size();
+        
+        if(counter > 20){
+            //se il counter ha superato le 10 unità non posso selezionare questo input
+            $(this).prop( "checked", false );
+            alert('Hai già selezionato 20 preferenze');
+        }
+            
+        
+        
+    });
+    
 });
 
 
