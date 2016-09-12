@@ -127,7 +127,7 @@
                 <a href="<?php echo home_url() ?>/preferenze">Modifca APPERTENZA/PREFERENZE</a>
                 <a href="<?php echo bp_loggedin_user_domain() ?>settings">Impostazioni</a>
                 <a href="<?php echo bp_loggedin_user_domain() ?>settings/notifications">Notifiche</a>
-                <a href="<?php echo wp_logout_url() ?>">Logout</a>
+                <a href="<?php echo wp_logout_url(home_url() ) ?>">Logout</a>
             </div>
         </div>
         
@@ -237,7 +237,7 @@
                         <a href="<?php echo home_url() ?>/preferenze">- Modifca APPERTENZA/PREFERENZE</a>
                         <a href="<?php echo bp_loggedin_user_domain() ?>settings">- Impostazioni</a>
                         <a href="<?php echo bp_loggedin_user_domain() ?>settings/notifications">- Notifiche</a>
-                        <a href="<?php echo wp_logout_url() ?>">- Logout</a>
+                        <a href="<?php echo wp_logout_url(home_url() ) ?>">- Logout</a>
                     </div>
                 </div>
             </div>

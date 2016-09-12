@@ -76,9 +76,15 @@ if($pagename == 'non-registrato' && is_user_logged_in()){
         
         <link rel="icon" href="<?php echo $path_img ?>favicon.png" type="image/png" />
         
+        <script type="text/javascript">
+            $(window).load(function() {
+                    $(".loader").fadeOut("slow");
+            })
+        </script>
+        
         <?php wp_head(); ?>
         
-        <link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/style.css" type="text/css" >
+        <link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/style.min.css" type="text/css" >
 	
 </head>
 <body 
@@ -96,6 +102,7 @@ if($pagename == 'non-registrato' && is_user_logged_in()){
         }
     ?>
     >
+    <div class="loader"></div> 
     <div class="container-header">
         <header class="container-1024">
 

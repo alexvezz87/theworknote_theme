@@ -175,6 +175,16 @@ footer .footer-2 a.to-info-page{
     text-align: left;
 }
 
+.loader {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: #FFFFFF url('images/loader.gif') 50% 50% no-repeat ;
+}
+
 
 .avatar-50 {
     border-radius: 50%;
@@ -2032,6 +2042,294 @@ body.not-logged-in .container-1024 #buddypress .activity.no-ajax{
 }
 
 /** fine PREFERENZE **/
+
+
+/** PREZZI **/
+
+.page-prezzi .container-descrizione{
+    padding-top:30px;
+    padding-bottom:30px;
+    font-size:14px;
+}
+
+.page-prezzi .fascia-verde{
+    background:#30ad63;
+    min-height: 200px;
+    padding:0;
+}
+
+.page-prezzi .fascia-verde .container-1024{
+    background:url('images/prezzi-fascia-verde-sfondo.jpg') center left no-repeat;
+    background-size:contain;
+    min-height: 200px;
+}
+
+.page-prezzi .fascia-verde .container-1024 h2{
+    font-size:22px;
+    color: #0b3a08;
+    font-weight: 400;
+    padding:0;
+    margin:0;
+    margin-top:75px;
+    margin-left:45px;
+    min-width:220px;
+    margin-bottom: 20px;
+}
+
+.container-box-offerta{
+    display:inline-block;
+    height: 190px;
+    width: 230px;
+    background:#e2e2e2;
+    margin-top:5px;
+    margin-right:25px;
+    padding:10px;
+}
+
+.container-box-offerta .box-offerta{
+    border: 1px solid #30ad63;
+    width:100%;
+    height: 100%;
+    display: table;
+}
+
+.container-box-offerta .box-offerta > div{
+    display:table-cell;
+    vertical-align: middle;
+}
+
+.container-box-offerta .box-offerta > div h3{
+    font-family: 'Oswald';
+    font-weight: 400;
+    font-size: 16px;
+    color: #0b3a08;
+    margin-bottom:25px;
+}
+
+.container-box-offerta .box-offerta > div p {
+    font-family: "Open Sans";
+    color:#000;
+    font-size:12px;
+    text-transform: none;
+    padding-left:12px;
+    padding-right: 12px;
+}
+
+.container-box-offerta .box-offerta > div a.button-link, .container-box-offerta .box-offerta > div a.button-link:hover {
+    display:block;
+    font-family: "Oswald";
+    font-weight: 400;
+    font-size: 16px;
+    color: #0b3a08;
+    border: 2px solid #30ad63;
+    width:90px;    
+    border-radius: 15px;
+    padding:2px;
+    margin:auto;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.container-fasce{
+   
+}
+
+.fascia{
+    min-height: 68px;
+    text-align: center;
+}
+
+.bianca{
+    background:#fff;
+}
+
+.grigia{
+    background:#e2e2e2
+}
+
+.grigia .description-row, .fascia.last .pg, .fascia.last .fb{
+    background:#fff;
+}
+
+.fascia.first{
+    padding-top:35px;
+}
+
+.fascia.last{
+    min-height: 140px
+}
+
+.fascia.first h3{
+    font-family: "Oswald";
+    font-weight: 400;
+    color: #077b36;        
+}
+.fascia.first p{
+    font-family: "Open Sans";
+    font-size:11px;
+    color:#000;
+    line-height: 11px;
+    padding-bottom: 11px;
+}
+
+.fascia.first .pg h3, .fascia.first .fb h3{
+    font-size:19px;
+}
+
+.pg, .twn, .fb{
+    min-height: 68px;
+    background:rgba(177, 179, 180, 0.3);
+}
+.twn{
+    background:rgba(124, 215, 161, 0.3);
+}
+
+.fascia.first .pg , .fascia.first .fb{
+    background: transparent;
+}
+
+.fascia.first .twn h3{
+    font-size:25px;
+}
+
+.pg.spunta, .fb.spunta {
+    background:rgba(177, 179, 180, 0.3) url('images/spunta-nera.png') center center no-repeat;
+    background-size:27px 26px;
+}
+.twn.spunta{    
+    background:rgba(124, 215, 161, 0.3) url('images/spunta-verde.png') center center no-repeat;
+    background-size:32px 31px;
+}
+
+.croce {
+    background: rgba(177, 179, 180, 0.3) url('images/croce-rossa.png') center center no-repeat;
+    background-size:27px 26px;
+}
+
+.description-row{
+    display: table;
+    height: 68px;   
+}
+
+.description-row p{
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size:15px;    
+    color:#000;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+p.values{
+    font-family: "Open Sans";
+    font-weight: 600;
+    font-size:11px;
+    line-height: 68px;
+    color:#000;
+    text-align: center;
+}
+
+.container-button-iscriviti{
+    width:168px;
+    height: 66px;
+    background: #fff;
+    padding:3px;    
+    margin:auto;
+}
+
+.button-iscriviti, .button-iscriviti:hover{
+    width:100%;
+    height: 100%;
+    background:#e2001a;
+    color:#fff;
+    font-family: 'Oswald';
+    font-weight: 400;
+    font-size:18px;
+    line-height: 62px;
+    text-transform: uppercase;
+    display:block;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/** fine PREZZI **/
+
+/** PAGAMENTO **/
+
+.page-pagamento {
+    background: #fff;
+}
+
+.page-pagamento .container-descrizione{
+    font-family: "Oswald";
+    font-weight: 400;
+    font-size:14px;
+}
+
+.page-pagamento .immagine-abbonamento{
+    text-align: center;
+    margin-top:50px;
+    margin-bottom:50px;
+}
+
+.page-pagamento .immagine-abbonamento img{      
+    width:100%;
+    max-width: 430px;
+    margin:auto;
+}
+
+.page-pagamento .container-form-paypal{    
+    margin-top:50px;
+    text-align: center;
+    margin-bottom:60px;
+}
+
+/** fine PAGAMENTO **/
+
+
+/** OK REGISTRAZIONE **/
+.page-ok-registrazione{
+    background: #e2e2e2;
+    padding-top:50px;
+}
+
+.page-ok-registrazione .good{
+    display:block;
+    width:130px;
+    height: 135px;
+    background: url('images/good_big.png') center center no-repeat;
+    background-size: contain;
+    margin:auto;    
+    margin-bottom: 50px;
+}
+
+.page-ok-registrazione .testo{
+    font-family: "Oswald";
+    font-weight: 400;
+    text-align: center;
+    margin-bottom:40px;
+}
+
+.page-ok-registrazione .testo h3{
+    font-size: 22px;
+}
+
+.page-ok-registrazione .testo p{
+    font-size:14px;
+}
+
+.page-ok-registrazione .freccia-down{
+    width:45px;
+    height: 25px;
+    margin:auto;
+    background: url('images/freccia.png') center center no-repeat;
+    background-size: contain;
+    margin-bottom:50px;
+}
+
+/** fine OK REGISTRAZIONE **/
+
 /** ACCROCCHI **/
 
 #buddypress .bp-reshare-img, #buddypress .rs-count,
@@ -2630,6 +2928,34 @@ body.not-logged-in .container-1024 #buddypress .activity.no-ajax{
     .comment-submit{
         text-align: right;
         margin-top:30px;
+    }
+    
+    .description-row{
+        max-width:465px;
+    }
+    
+    .description-row p{        
+        text-align: left;        
+    }
+    .pg, .fb {
+        min-width:130px;
+    }
+
+    .twn {
+        min-width: 175px;
+    }
+    
+    .fascia.first .container-1024{
+        height: 80px;
+    }
+     
+    .grigia .description-row{
+        background:#e2e2e2
+    }
+    
+    .container-button-iscriviti{       
+        margin-left:-11px;
+        margin-top:1px;        
     }
 }
 
