@@ -146,7 +146,7 @@ class MyWidget extends WP_Widget {
                         for($i=0; $i < $max_image_show; $i++){
                             if($result_get_images[$i]->value != ''){
         ?>                    
-                                <li class="gallery-image" data-num="<?php echo ($i+1) ?>" style="background-image:url('<?php echo$upload_dir['baseurl'].$result_get_images[$i]->value ?>')"></li>
+                                <li class="gallery-image" data-num="<?php echo ($i+1) ?>" style="background-image:url('<?php echo $upload_dir['baseurl'].$result_get_images[$i]->value ?>')"></li>
         <?php
                             }
                         }

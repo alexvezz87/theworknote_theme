@@ -56,8 +56,7 @@ if($pagename == 'non-registrato' && is_user_logged_in()){
 	<![endif]-->
         
         
-        
-       <script src="<?php echo $path_js ?>jquery-2.1.4.min.js"></script>
+        <script src="<?php echo $path_js ?>jquery-2.1.4.min.js"></script>
         <!-- swiper -->
         <link rel="stylesheet" href="<?php echo $path_css ?>swiper.min.css">   
        
@@ -86,6 +85,46 @@ if($pagename == 'non-registrato' && is_user_logged_in()){
         
         <link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/style.min.css" type="text/css" >
 	
+        <!-- tag per facebook -->
+        <?php 
+            $id_user = getIdMemeber(curPageURL());
+            $upload_dir = wp_upload_dir();
+            
+            $shareIMG = "";
+            if($id_user != null){
+                //immagine
+                //prendo da immagine aziendale
+                $shareIMG = getField(bp_displayed_user_id(), 'Immagine Aziendale');
+                if($shareIMG == ''){
+                    //se non c'è l'immagine aziendale, la prendo la prima immagine della galleria
+                    $result_get_images = getGallery($id_user);
+                    foreach($result_get_images as $k => $v){
+                        $shareIMG = $v->value;
+                        break;
+                    } 
+                }
+                               
+                //type
+                echo '<meta property="og:type" content="website" />';
+                
+                //Titolo
+                echo '<meta property="og:title" content="'.getField(bp_displayed_user_id(), 'Ragione Sociale').' | The WorkNote" />';  
+                echo '<meta property="og:site_name" content="'.getField(bp_displayed_user_id(), 'Ragione Sociale').'" />';  
+                
+                //descrizione
+                echo '<meta property="og:description" content="'.getField(bp_displayed_user_id(), 'Descrizione').'" />';                
+                
+                //url
+                echo '<meta property="og:url" content="'.  curPageURL().'" />';
+                
+                 echo '<meta property="og:image" content="'.$upload_dir['baseurl'].$shareIMG.'" />';
+            }
+            
+                
+            
+        
+        ?>    
+        <!-- fine tag per facebook -->
 </head>
 <body 
     <?php
@@ -112,7 +151,7 @@ if($pagename == 'non-registrato' && is_user_logged_in()){
 
             <?php if(!is_user_logged_in()){ //Utente non loggato ?>
             <div class="col-xs-12 col-sm-6 logo-txt">
-                Il primo social network che ti connette al professionista più vicino a te
+                L'unico social network che semplifica il tuo lavoro
             </div> 
             <?php } else { //Utente loggato 
 
