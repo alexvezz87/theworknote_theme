@@ -2007,8 +2007,6 @@ body.not-logged-in .container-1024 #buddypress .activity.no-ajax{
 }
 
 
-    
-
 /** end PAGINA MATCHING **/
 
 .banner-preferenze{
@@ -2330,6 +2328,22 @@ p.values{
 
 /** fine OK REGISTRAZIONE **/
 
+/** pagina LISTA MEMBERS **/
+
+#members-list .item-avatar, #members-list .item{
+    float:left;
+}
+
+#members-list .item{
+    width:80%;
+}
+
+#members-list .item .item-info p{
+    margin:0;
+    margin-bottom:5px;
+}
+
+/** fine pagina LISTA MEMBERS **/
 /** ACCROCCHI **/
 
 #buddypress .bp-reshare-img, #buddypress .rs-count,

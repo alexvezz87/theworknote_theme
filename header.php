@@ -83,7 +83,7 @@ if($pagename == 'non-registrato' && is_user_logged_in()){
         
         <?php wp_head(); ?>
         
-        <link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/style.min.css" type="text/css" >
+        <link rel="stylesheet" href="<?php echo esc_url( get_template_directory_uri() ); ?>/style.css" type="text/css" >
 	
         <!-- tag per facebook -->
         <?php 
