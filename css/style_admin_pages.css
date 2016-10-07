@@ -22,3 +22,35 @@ and open the template in the editor.
     margin:auto;
     overflow-y: scroll;
 }
+
+
+.form-ricerca{
+    width:90%;
+    padding:10px;
+    border: 1px solid #777;
+    background:#ccc;
+    margin:auto;
+}
+
+.form-ricerca .field{
+    float:left;
+    width:40%;
+}
+
+.form-ricerca .field input{
+    width:80%;
+}
+
+.form-ricerca .field.ricerca{
+    float:right;
+    width:auto;
+}
+
+.form-ricerca .field.ricerca input, .form-ricerca .field.tipo input{
+    width:100%;
+}
+
+.form-ricerca .field.tipo{
+    width:auto;
+    margin-right: 20px;
+}

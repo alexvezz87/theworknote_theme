@@ -970,6 +970,90 @@ function removeUtenteProposto(){
     }
 }
 
+add_action( 'wp_ajax_log_email', 'logEmail' );
+add_action( 'wp_ajax_nopriv_log_email', 'logEmail' );
+
+/**
+ * Funzione che gestisce il log e l'invio della mail messaggio dalla pagina utente
+ */
+function logEmail(){
+    if(isset($_POST['idDest']) && isset($_POST['nomeMitt']) && isset($_POST['emailMitt']) && isset($_POST['oggetto']) && isset($_POST['messaggio'])){
+        $destinatario = get_user_by('id', $_POST['idDest']); 
+        $adminEmail = 'info@theworknote.com';
+        
+        //creo il log
+        $log = new Log();
+        $log->setDestinatario(getField( $_POST['idDest'], 'Ragione Sociale') );
+        $log->setMittente($_POST['nomeMitt'].' ('.$_POST['emailMitt'].')');
+        $log->setTipo('invio mail');
+        
+        //salvo il log
+        $logController = new LogController();        
+        $logController->saveLog($log);       
+        
+        //invio una mail al destinatario
+        //aggiungo il filtro per l'html sulla mail
+        add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
+        $messaggio = '<img width="230" style="margin:auto" src="http://www.theworknote.com/wp-content/uploads/2016/09/theworknote_3D2.jpg" /><br><br>';
+        $messaggio .= '<span>Qualcuno ti ha cercato...</span><br><br>';
+        //$messaggio.= "<strong>Oggetto:</strong> ".$_POST['oggetto'].'<br>';
+        $messaggio.= "<strong>da: </strong>".$_POST['nomeMitt'].'<br>';
+        $messaggio.= '<strong>da mail: </strong> <a href="mailto:'.$_POST['emailMitt'].'">'.$_POST['emailMitt'].'</a><br>';
+        $messaggio.= "<strong>Messaggio: </strong><br>";
+        $messaggio.= $_POST['messaggio'].'<br><br><br>';
+        $messaggio.= "<hr><br>";
+        $messaggio.= 'Servizio GRATUITO di <a href="http://www.theworknote.com">TheWorkNote</a><br><br>';
+        $messaggio.= 'Ricordati di tenere aggiornato il profilo! <img width="50" src="http://www.theworknote.com/wp-content/uploads/2016/04/Good.jpg" />';
+        
+        $oggetto = "Servizio messaggi TWN: ".$_POST['oggetto'];
+        //array di email
+        $to = array($destinatario->user_email);        
+        if(wp_mail($to, $oggetto, $messaggio)){
+            echo json_encode(true);
+        }
+        //invio una mail all'amministratore
+        add_filter('wp_mail_content_type',create_function('', 'return "text/html"; '));
+        $oggetto = "Servizio messaggi TWN - Email inviata da ".$_POST['nomeMitt'].' a '.getField( $_POST['idDest'], 'Ragione Sociale');
+        wp_mail($adminEmail, $oggetto, $messaggio);
+        
+        wp_die();
+    }
+}
+
+add_action( 'wp_ajax_log_tel', 'logTelefono' );
+add_action( 'wp_ajax_nopriv_log_tel', 'logTelefono' );
+
+/**
+ * Funzione che gestisce il logo visualizza telefono
+ */
+function logTelefono(){
+    if(isset($_POST['idBPUser']) && isset($_POST['idWPUser'])){
+        //creo il log
+        $log = new Log();
+        $log->setDestinatario(getField($_POST['idBPUser'], 'Ragione Sociale'));
+        if($_POST['idWPUser'] == 0 ){
+            $log->setMittente('Utente non registrato');
+        }
+        else{
+            $log->setMittente(getField($_POST['idWPUser'], 'Ragione Sociale'));
+        }
+        $log->setTipo('visualizza telefono');
+        
+        //salvo il log
+        $logController = new LogController();        
+        $logController->saveLog($log); 
+        
+        
+        //ottengo il numero di telefono        
+        echo json_encode(getField($_POST['idBPUser'], 'Contatto telefonico'));  
+        //attivo il cookie
+        setcookie('scopriTelefono-'.$_POST['idBPUser'], true, time() + (86400 * 7), "/"); // 86400 = 1 day
+        
+        wp_die();
+    }
+}
+
+
 function getCommenti($controller, $idCommented){
     //idCommented è l'id dell'utente della pagina in cui ci sono i commenti
     $array = $controller->getCommentsByAjax($idCommented);
@@ -999,7 +1083,7 @@ function add_admin_theme_menu(){
     add_submenu_page('gestione_utenti', 'Gestione Newsletter', 'Gestione Newsletter', 'administrator', 'gestione_newsletter', 'add_newsletter');
     add_submenu_page('gestione_utenti', 'Sottocategorie', 'Sottocategorie', 'administrator', 'gestione_sottocategorie', 'add_sottocategorie');
     add_submenu_page('gestione_utenti', 'Impostazioni', 'Impostazioni', 'administrator', 'impostazioni', 'add_impostazioni');
-    
+    add_submenu_page('gestione_utenti', 'Log', 'Log', 'administrator', 'log', 'add_log');
 }
 
 
@@ -1019,6 +1103,10 @@ function add_sottocategorie(){
     include 'admin-pages/gestione_sottocategorie.php';
 }
 
+
+function add_log(){
+    include 'admin-pages/visualizza_log.php';
+}
 
 //registro il menu
 add_action('admin_menu', 'add_admin_theme_menu');
@@ -1328,6 +1416,15 @@ function register_theme_admin_style() {
 }
 
 
+
+//Aggiungo il file di Javascript al tema
+function register_twn_admin_js_script(){
+    wp_register_script('jquery-ui', get_bloginfo('template_directory').'/js/jquery-ui.min.js', array('jquery'), '1.0', false);   
+    wp_enqueue_script('jquery-ui');   
+}
+
+add_action( 'admin_enqueue_scripts', 'register_twn_admin_js_script' );
+
 function printRemarketingGoogle($nomeUtente, $categoria){
     
 ?>
@@ -1362,6 +1459,5 @@ function printRemarketingGoogle($nomeUtente, $categoria){
 <?php        
     
 }
-
 
 ?>

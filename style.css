@@ -887,6 +887,10 @@ div.triangolo {
     min-height: 61vh;
 }
 
+#ricerca-cv .ricerca{
+    min-height: 0px;
+}
+
 .ricerca .gsc-control-cse.gsc-control-cse-it{
     margin-top:10px;
 }
@@ -1690,7 +1694,9 @@ a.button.delete-activity:active, a.button.delete-activity:focus,
 #buddypress div.generic-button.pending_friend a, 
 #buddypress div.generic-button.pending_friend a:hover,
 #buddypress div.generic-button.is_friend.add.pending_friend a, 
-#buddypress div.generic-button.is_friend.add.pending_friend a:hover{   
+#buddypress div.generic-button.is_friend.add.pending_friend a:hover, 
+#buddypress .generic-button.friendship-button.awaiting_response_friend a,
+#buddypress .generic-button.friendship-button.awaiting_response_friend a:hover{   
     background:url('images/ico-wait-friend.png') no-repeat center center;
     background-size:40px 40px;    
 }
@@ -2344,6 +2350,94 @@ p.values{
 }
 
 /** fine pagina LISTA MEMBERS **/
+
+/** popup invia messaggio **/
+
+#buddypress #item-header-cover-image .container-boxes > div a.email{
+    cursor: pointer;
+}
+
+#buddypress #cover-image-container {
+    z-index:99;
+}
+
+.container-invio-mail, .message-ok{
+    width:100%;
+    max-width:800px;
+    height:auto;
+    position: fixed;
+    left:0;
+    top:0; 
+    background: rgba(6,122,54,0.8);
+    padding:30px;
+    z-index: 9999999;
+    text-align:center;
+    color:#fff;
+    font-family: 'Oswald';
+    display: none;
+}
+
+.message-ok{
+    max-width:400px;   
+    text-transform: uppercase;
+}
+
+.container-invio-mail h2{
+    font-family: 'Oswald';
+    font-size: 20px;
+    text-transform: uppercase
+}
+
+.container-invio-mail  label{
+    display: block;
+    font-weight: 400;
+    font-size:15px;
+    margin-top:10px;
+    margin-bottom:5px;
+    text-transform: uppercase;
+}
+
+.container-invio-mail input, .container-invio-mail textarea{
+    width:100%;
+    color:#000;
+    text-align: center;
+}
+
+.container-invio-mail textarea{
+    min-height: 150px;
+    text-align: left;
+    padding:10px;
+}
+
+.container-invio-mail .invia, .chiudi-finestra{
+    width: 100px;
+    color: #fff;
+    background: transparent;
+    border: 2px solid #7bd6a0;
+    border-radius: 30px;
+    padding:5px 20px;
+    text-transform: uppercase;
+    font-size:15px;
+    margin:auto;
+    margin-top:20px;
+    cursor: pointer;
+}
+
+.container-invio-mail .close-window{
+    width:35px;
+    height: 35px;
+    float:right;
+    background: url('images/ico-slider-chiudi.png') no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+    margin-top:-25px;
+    margin-right: -25px;
+    z-index:999999;
+}
+
+/** fine popup invia messaggio **/
+
+
 /** ACCROCCHI **/
 
 #buddypress .bp-reshare-img, #buddypress .rs-count,
@@ -2979,6 +3073,20 @@ p.values{
 @media (min-width: 992px) {
     .menu .icona{   
         margin-right: 15px;
+    }
+    
+    .container-invio-mail{       
+        left:50%;
+        margin-left:-400px;    
+        top:50%;
+        margin-top:-250px;       
+    }
+    
+    .message-ok{
+        left:50%;
+        margin-left:-200px;    
+        top:50%;
+        margin-top:-250px;   
     }
 }
 
