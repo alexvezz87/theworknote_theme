@@ -201,8 +201,8 @@ class SottocategoriaController {
         $result = array();
         
         //1. Ottengo le sottocategorie preferite di un utente
-        $preferite = $this->preferiteDAO->getSottocategorie($idUtente);
-                        
+        $preferite = $this->preferiteDAO->getSottocategorie($idUtente);        
+        
         if($preferite == null){
             return $result;
         }
@@ -222,9 +222,12 @@ class SottocategoriaController {
             }
         }
         
-        
         //3. scremo gli ottenuti
-        $result = array_unique($utenti);
+        $temp = array_unique($utenti);
+        //ciclo l'array per standardizzare la posizione dell'array
+        foreach($temp as $item){
+            array_push($result, $item);
+        }              
         
         //tolgo gli amici
         $friends = friends_get_friend_user_ids($idUtente);
@@ -235,14 +238,15 @@ class SottocategoriaController {
         } 
         
         //4. scremo togliendo i rimossi dalla visualizzazione
-        $temp = $this->displayDAO->getRimossi($idUtente);
+        $temp = $this->displayDAO->getRimossi($idUtente);       
         if($temp != null && count($temp) > 0){
             $rimossi = array();
             foreach($temp as $t){
                 array_push($rimossi, $t->id_utente_proposto);
             } 
-            //scremo
-            $result = $this->removeElementsFromArray($result, $rimossi);            
+            //scremo 
+            $result = $this->removeElementsFromArray($result, $rimossi);      
+            
         }
         
         //mischio gli elementi dell'array in modo random
