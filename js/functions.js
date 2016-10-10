@@ -526,6 +526,11 @@ $( document ).ready(function() {
            empty = true;
        }       
        
+       if(!$('.container-invio-mail input[name=privacy]').is(":checked")){
+           empty = true;
+       }
+       
+       
        if(empty == true){
            alert('Campi obbligatori mancanti!');
        }

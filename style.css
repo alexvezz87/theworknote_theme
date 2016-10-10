@@ -2435,6 +2435,20 @@ p.values{
     z-index:999999;
 }
 
+.container-invio-mail input[name=privacy]{
+    float: left;
+    width: auto;
+} 
+
+.container-invio-mail label.privacy{
+    text-align: left;
+    margin-left:20px;
+    font-size:12px;
+}
+
+.container-invio-mail label.privacy a{
+    color:#fff;
+}
 /** fine popup invia messaggio **/
 
 

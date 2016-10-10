@@ -1000,12 +1000,12 @@ function logEmail(){
         $messaggio.= "<strong>da: </strong>".$_POST['nomeMitt'].'<br>';
         $messaggio.= '<strong>da mail: </strong> <a href="mailto:'.$_POST['emailMitt'].'">'.$_POST['emailMitt'].'</a><br>';
         $messaggio.= "<strong>Messaggio: </strong><br>";
-        $messaggio.= $_POST['messaggio'].'<br><br><br>';
+        $messaggio.= stripslashes($_POST['messaggio']).'<br><br><br>';
         $messaggio.= "<hr><br>";
         $messaggio.= 'Servizio GRATUITO di <a href="http://www.theworknote.com">TheWorkNote</a><br><br>';
         $messaggio.= 'Ricordati di tenere aggiornato il profilo! <img width="50" src="http://www.theworknote.com/wp-content/uploads/2016/04/Good.jpg" />';
         
-        $oggetto = "Servizio messaggi TWN: ".$_POST['oggetto'];
+        $oggetto = "Servizio messaggi TWN: ".stripslashes($_POST['oggetto']);
         //array di email
         $to = array($destinatario->user_email);        
         if(wp_mail($to, $oggetto, $messaggio)){
