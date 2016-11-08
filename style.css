@@ -634,6 +634,11 @@ div.triangolo {
     font-size: 30px;
 }
 
+.gray-main-container h2 a, .gray-main-container h2 a:hover{
+    color:#0b3a08;
+    text-decoration:none;
+}
+
 
 .link-box {
     text-align: center;
@@ -1014,13 +1019,14 @@ div.triangolo {
 
 .recensioni-container{
     padding-top:75px;
-    padding-bottom: 215px;
-    background:url('images/puzzle-bn.jpg') no-repeat center center;
-    background-size: cover;
+    padding-bottom: 215px;    
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
 }
 
 .container-carusel{
-    background: rgba(48,173,99,0.4);
+    background: rgba(48,173,99,0.7);
     padding-top:25px;
 }
 

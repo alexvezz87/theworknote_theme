@@ -13,6 +13,7 @@ $path_img = esc_url( get_template_directory_uri() ).'/images/';
 $id = get_the_ID();
 
 $video = getUrlEmbedVideo( get_post_meta($id, 'video', true));
+$bgCarusel = wp_get_attachment_url( get_post_thumbnail_id($id)); 
     
  
 ?>
@@ -75,16 +76,22 @@ $video = getUrlEmbedVideo( get_post_meta($id, 'video', true));
     <div class="gray-main-container">
         <div class="container-1024">
             <div class="col-xs-12 col-sm-6 title-h2">
-                <h2>SCOPRI L'IDEA<br>DI THEWORKNOTE</h2>
+                <h2>
+                    <a href="<?php echo home_url() ?>/chi-siamo">
+                        SCOPRI L'IDEA<br>DI THEWORKNOTE
+                    </a>
+                </h2>
             </div>
             <div class="col-xs-12 col-sm-6 image-h2">
-                <img src="<?php echo $path_img ?>home-icona04.png" />
+                <a href="<?php echo home_url() ?>/chi-siamo">
+                    <img src="<?php echo $path_img ?>home-icona04.png" />
+                </a>
             </div>
             <div class="clear"></div>
         </div>
     </div>
     
-    <div class="recensioni-container">
+    <div class="recensioni-container" style="background:url('<?php echo $bgCarusel ?>')">
         <div class="fascia-verde">
             <div class="container-1024">
                 <h3>ALCUNE RECENSIONI DI ISCRITTI CHE HANNO INIZIATO A COLLABORARE</h3>

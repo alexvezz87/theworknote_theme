@@ -76,9 +76,9 @@ if($pagename == 'non-registrato' && is_user_logged_in()){
         <link rel="icon" href="<?php echo $path_img ?>favicon.png" type="image/png" />
         
         <script type="text/javascript">
-            $(window).load(function() {
+            $(document).ready(function() {
                     $(".loader").fadeOut("slow");
-            })
+            });
         </script>
         
         <?php wp_head(); ?>
