@@ -1460,4 +1460,82 @@ function printRemarketingGoogle($nomeUtente, $categoria){
     
 }
 
+
+function printRecensioniCarusel($mode = 3){
+    
+    
+    //ottengo le recensioni
+    $args = array(
+	'posts_per_page'   => -1,
+	'offset'           => 0,	
+	'category_name'    => 'recensioni',
+	'orderby'          => 'date',
+	'order'            => 'DESC',	
+	'post_type'        => 'post',	
+	'post_status'      => 'publish',
+	'suppress_filters' => true 
+    );
+    $recensioni = get_posts( $args ); 
+    
+    //print_r($recensioni);
+    
+    $tot = count($recensioni);
+    //misure di un singolo match (widht + margin-right)
+    $singleElement = 235+60;
+    //calcolo lunghezza ul
+    $ulWidth = $tot * $singleElement;
+    
+    $ulContainerWidht = $mode * $singleElement;
+    
+    $widthCarusel =  ($ulContainerWidht + 60).'px';
+    
+?>
+    <input type="hidden" name="liWidth" value="<?php echo $singleElement ?>" />
+    <input type="hidden" name="ulWidth" value="<?php echo $ulContainerWidht ?>" />
+    <div class="carusel" style="width:<?php echo $widthCarusel ?>">       
+        <div class="arrow avanti"></div>
+            <div class="container-ul" style="width:<?php echo $ulContainerWidht ?>px">
+                <ul class="recensioni matching" style="width:<?php echo $ulWidth ?>px">
+                <?php
+                    foreach($recensioni as $item){
+                        $categoria = get_post_meta($item->ID, 'categoria', true);
+                        $logo =  wp_get_attachment_url( get_post_thumbnail_id($item->ID)); 
+                        $titolo = $item->post_title;
+                        if(strlen($item->post_title) > 22){
+                            $titolo = substr($titolo, 0, 22).'...';
+                        }
+                        $url = get_post_meta($item->ID, 'url', true);
+                         
+                ?>
+                    <li class="recensione">
+                        <a href="<?php echo $url ?>" class="avatar" style="background:url('<?php echo $logo ?>')"></a>
+                        <div class="container-utente">
+                            <h4 class="nome-utente"><a href="<?php echo $url ?>"><?php echo $titolo ?></a></h4>
+                            <div class="white-balloon">
+                                <div class="categoria"><?php echo $categoria ?></div>
+                                <p class="description">
+                                    <?php echo $item->post_content ?>
+                                </p>
+                            </div>
+                            <div class="triangolino"></div>
+                        </div>
+                    </li>
+                <?php
+                    }
+                ?>
+                </ul>
+            </div>
+        <div class="arrow indietro"></div>
+    </div>
+<?php    
+    
+}
+
+
+function getUrlEmbedVideo($url){
+    $embed_video = explode('watch?v=', $url);
+    $idVideo = $embed_video[count($embed_video)-1]; 
+    return 'https://www.youtube.com/embed/'.$idVideo.'?rel=0';
+}
+
 ?>

@@ -58,7 +58,7 @@ if($pagename == 'non-registrato' && is_user_logged_in()){
         
         <script src="<?php echo $path_js ?>jquery-2.1.4.min.js"></script>
         <!-- swiper -->
-        <link rel="stylesheet" href="<?php echo $path_css ?>swiper.min.css">   
+        <!--<link rel="stylesheet" href="<?php echo $path_css ?>swiper.min.css">  --> 
        
         <!-- end swiper -->  
         
@@ -143,22 +143,24 @@ if($pagename == 'non-registrato' && is_user_logged_in()){
     >
     <div class="loader"></div> 
     <div class="container-header">
-        <header class="container-1024">
+        <header>
+            <div class="container-1024">
 
-            <div class="col-xs-10 col-sm-6 logo-img">
-                <a href="<?php echo home_url() ?>"></a>            
-            </div> 
+                <div class="col-xs-10 col-sm-6 logo-img">
+                    <a href="<?php echo home_url() ?>"></a>            
+                </div> 
 
-            <?php if(!is_user_logged_in()){ //Utente non loggato ?>
-            <div class="col-xs-12 col-sm-6 logo-txt">
-                L'unico social network che semplifica il tuo lavoro
-            </div> 
-            <?php } else { //Utente loggato 
+                <?php if(!is_user_logged_in()){ //Utente non loggato ?>
+                <div class="col-xs-12 col-sm-6 logo-txt">
+                    L'unico social network che semplifica il tuo lavoro
+                </div> 
+                <?php } else { //Utente loggato 
 
-                //aggiungo il menu personalizzato dalle grafiche
-                echo add_menu_personalizzato($current_user);
+                    //aggiungo il menu personalizzato dalle grafiche
+                    echo add_menu_personalizzato($current_user);
 
-            } ?>
-            <div class="clear"></div>
+                } ?>
+                <div class="clear"></div>
+            </div>
         </header>
     </div>

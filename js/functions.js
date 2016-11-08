@@ -448,7 +448,7 @@ $( document ).ready(function() {
     
     //MATCHING
     
-    if($('.pagina-matching.carusel').size() > 0){
+    if($('.pagina-matching.carusel, .recensioni-container .carusel').size() > 0){
         $('.arrow.indietro, .arrow.avanti').click(function(){
             
             var carusel = $(this).parent('.carusel');
