@@ -1124,18 +1124,18 @@ div.triangolo {
 
 .iscriviti-link, .iscriviti-link:hover{
     display: block;
-    width:215px;
-    height: 60px;
+    width:250px;
+    height: 80px;
     margin:auto;
     margin-top:75px;
     text-align: center;
-    background: #d9dadb;
+    background: red;
     border: 3px solid #fff;
     border-radius: 50px;
-    color: #0b3a08 !important;
+    color: #fff !important;
     font-family: 'Oswald';
-    font-size: 21px;
-    line-height: 55px;
+    font-size: 25px;
+    line-height: 75px;
     text-decoration: none;
 }
 
